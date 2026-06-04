@@ -319,6 +319,8 @@ function DesertCase({ go }) {
         </div>
       </section>
 
+      <OutroCTA />
+
       <footer className="proj-footer">
         <a onClick={() => go("home")} style={{ cursor: "pointer" }}>← Home</a>
         <a className="proj-footer-next" onClick={() => go("case", next.id)} style={{ cursor: "pointer" }}>
@@ -666,6 +668,8 @@ function VRCase({ go }) {
         </div>
       </section>
 
+      <OutroCTA />
+
       <footer className="proj-footer">
         <a onClick={() => go("home")} style={{ cursor: "pointer" }}>← Home</a>
         <a className="proj-footer-next" onClick={() => go("case", next.id)} style={{ cursor: "pointer" }}>
@@ -966,6 +970,8 @@ function KNSCase({ go }) {
           <p>The real lesson: you can't force people to care from inside the product. You build the conditions outside it — partner with places they already go, work with voices they already trust — and let them find the value themselves.</p>
         </div>
       </section>
+
+      <OutroCTA />
 
       <footer className="proj-footer">
         <a onClick={() => go("home")} style={{ cursor: "pointer" }}>← Home</a>

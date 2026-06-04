@@ -183,6 +183,52 @@ body:has(.hero) .hero { flex: 1; min-height: 0; }
 .proj-footer { display: flex; justify-content: space-between; align-items: center; padding: 28px 32px; border-top: 1px solid rgba(0,0,0,0.08); }
 .proj-footer a { font-size: 17px; letter-spacing: 0.12em; text-transform: uppercase; transition: opacity 0.2s ease; }
 .proj-footer a:hover { opacity: 0.4; }
+
+/* Outro CTA — head walks in slowly at the bottom, runs away fast on leaving */
+.outro-cta {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  padding: 56px 32px; min-height: 150px;
+  overflow: hidden; max-width: 1200px; margin: 0 auto; width: 100%;
+}
+.outro-head {
+  position: absolute; left: 100%; top: 50%;
+  width: 96px; height: 96px; margin-top: -48px; margin-left: 28px;
+  background: url("assets/head.png") center/contain no-repeat;
+  transform: translateX(-130vw) scaleX(1);
+  transition: transform 0.32s ease-in;
+  will-change: transform;
+}
+.outro-cta.is-in .outro-head {
+  transform: translateX(0) scaleX(-1);
+  transition: transform 4s cubic-bezier(0.33, 1, 0.68, 1) 0.5s;
+}
+.outro-group {
+  position: relative;
+  display: inline-flex; align-items: center; gap: 18px;
+}
+.outro-interested {
+  font-size: clamp(28px, 4vw, 44px); font-weight: 500; letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+.outro-talk {
+  background: #000; padding: 16px 28px; flex-shrink: 0;
+  font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase;
+  text-decoration: none; white-space: nowrap; transition: opacity 0.2s ease;
+}
+.outro-talk, .outro-talk:link, .outro-talk:visited,
+.outro-talk:hover, .outro-talk:active, .outro-talk:focus { background: #000 !important; }
+.outro-talk, .outro-talk * { color: #fff !important; }
+.outro-talk:hover { opacity: 0.82; }
+@media (max-width: 640px) {
+  .outro-cta { padding: 40px 20px; min-height: 110px; }
+  .outro-head { width: 52px; height: 52px; margin-top: -26px; margin-left: 14px; }
+  .outro-group { gap: 12px; }
+  .outro-talk { padding: 13px 18px; font-size: 13px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .outro-head, .outro-cta.is-in .outro-head { transition: none; }
+}
 .proj-footer-next { display: inline-flex; align-items: center; gap: 14px; text-decoration: none; }
 .proj-footer-next img { width: 44px; height: 44px; object-fit: contain; mix-blend-mode: multiply; flex-shrink: 0; }
 

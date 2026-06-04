@@ -460,6 +460,8 @@ function BrickCase({ go }) {
         </div>
       </section>
 
+      <OutroCTA />
+
       <footer className="proj-footer">
         <a onClick={() => go("home")} style={{ cursor: "pointer" }}>← Home</a>
         <a className="proj-footer-next" onClick={() => go("case", next.id)} style={{ cursor: "pointer" }}>

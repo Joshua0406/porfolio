@@ -2,11 +2,11 @@
    Exports to window so other babel scripts can use them. */
 
 const PROJECTS = [
-  { id: "brick",          src: "assets/projects/brick_main.png",          title: "Brick"     ,         tags: "UX Research  ·  UI Design  ·  Usability Testing" },
-  { id: "desertification", src: "assets/projects/desertification_main.png", title: "Into the Desert",   tags: "Content Strategy  ·  Campaign Design  ·  Visual Communication" },
-  { id: "supermarket",    src: "assets/projects/supermarket_main.png",    title: "VR Supermarket",    tags: "VR Research  ·  Behavioural Science  ·  Statistical Analysis" },
-  { id: "kns",            src: "assets/projects/kns_main.png",            title: "Katana N' Samurai", tags: "Visual Design  ·  Branding  ·  Community Management" },
-];
+{ id: "brick", src: "assets/projects/brick_main.png", title: "Brick", tags: "UX Research  ·  UI Design  ·  Usability Testing" },
+{ id: "desertification", src: "assets/projects/desertification_main.png", title: "Into the Desert", tags: "Content Strategy  ·  Campaign Design  ·  Visual Communication" },
+{ id: "supermarket", src: "assets/projects/supermarket_main.png", title: "VR Supermarket", tags: "VR Research  ·  Behavioural Science  ·  Statistical Analysis" },
+{ id: "kns", src: "assets/projects/kns_main.png", title: "Katana N' Samurai", tags: "Visual Design  ·  Branding  ·  Community Management" }];
+
 
 
 /* Runtime-constructed email — keeps the literal string out of HTML/JS source
@@ -36,24 +36,24 @@ function Nav({ view, current, go }) {
       <nav className="nav">
         <a onClick={() => go("about")} style={{ cursor: "pointer" }}>ME</a>
         <a href={"mailto:" + CONTACT}>CONTACT</a>
-      </nav>
-    );
+      </nav>);
+
   }
   if (view === "about") {
     return (
       <nav className="nav">
         <a onClick={() => go("home")} style={{ cursor: "pointer" }}>← HOME</a>
         <a href={"mailto:" + CONTACT}>CONTACT</a>
-      </nav>
-    );
+      </nav>);
+
   }
   // case study
-  const idx = PROJECTS.findIndex(p => p.id === current) + 1;
+  const idx = PROJECTS.findIndex((p) => p.id === current) + 1;
   return (
     <nav className="nav transparent">
       <a className={"nav-home" + (hidden ? " hidden" : "")} onClick={() => go("home")} style={{ cursor: "pointer" }}>← Home</a>
       <div className="nav-projects">
-        {PROJECTS.map(p => {
+        {PROJECTS.map((p) => {
           const isActive = p.id === current;
           return (
             <a
@@ -62,13 +62,13 @@ function Nav({ view, current, go }) {
               onClick={isActive ? undefined : () => go("case", p.id)}
               style={isActive ? { pointerEvents: "none", cursor: "default" } : undefined}>
               <img src={p.src} alt={p.title} draggable="false" />
-            </a>
-          );
+            </a>);
+
         })}
       </div>
       <span className="proj-index mono">{String(idx).padStart(2, "0")} / 04</span>
-    </nav>
-  );
+    </nav>);
+
 }
 
 /* Stat numeral that scrambles → settles when it enters the viewport. */
@@ -77,7 +77,7 @@ function ScrambleNum({ value, prefix = "" }) {
   React.useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { el.textContent = prefix + value; return; }
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {el.textContent = prefix + value;return;}
     const CHARS = "0123456789";
     const isDecimal = value.includes(".");
     const decimals = isDecimal ? value.split(".")[1].length : 0;
@@ -85,7 +85,7 @@ function ScrambleNum({ value, prefix = "" }) {
     const hasComma = value.includes(",");
     let started = false;
     const run = () => {
-      const duration = 1500, SPLIT = 0.4, start = performance.now();
+      const duration = 1500,SPLIT = 0.4,start = performance.now();
       const frame = (now) => {
         const linear = Math.min((now - start) / duration, 1);
         let display;
@@ -99,12 +99,12 @@ function ScrambleNum({ value, prefix = "" }) {
           if (hasComma) display = Number(display).toLocaleString("en-US");
         }
         el.textContent = prefix + display;
-        if (linear < 1) requestAnimationFrame(frame); else el.textContent = prefix + value;
+        if (linear < 1) requestAnimationFrame(frame);else el.textContent = prefix + value;
       };
       requestAnimationFrame(frame);
     };
     const obs = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting && !started) { started = true; run(); obs.disconnect(); }
+      if (e.isIntersecting && !started) {started = true;run();obs.disconnect();}
     }, { threshold: 0.3 });
     obs.observe(el);
     return () => obs.disconnect();
@@ -120,7 +120,7 @@ function ReadingProgress() {
     const measure = () => {
       const doc = document.documentElement;
       const max = doc.scrollHeight - window.innerHeight;
-      setPct(max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0);
+      setPct(max > 0 ? Math.min(100, Math.max(0, window.scrollY / max * 100)) : 0);
     };
     measure();
     window.addEventListener("scroll", measure, { passive: true });
@@ -133,11 +133,52 @@ function ReadingProgress() {
   return (
     <div className="reading-progress" aria-hidden="true">
       <div className="reading-progress-bar" style={{ width: pct + "%" }}></div>
-    </div>
-  );
+    </div>);
+
 }
 
-Object.assign(window, { PROJECTS, Nav, ScrambleNum, ReadingProgress });
+/* ─── Outro CTA — scroll-scrubbed "Interested? Let's talk!" strip ───────
+   Head walks in from the left as the strip scrolls up into view; then
+   "Interested?" and the black "Let's talk!" button appear in sequence.
+   Scrubbed both ways — scrolling up slides all three back off to the left. */
+function OutroCTA() {
+  const ref = React.useRef(null);
+  const [atBottom, setAtBottom] = React.useState(false);
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    let raf = null;
+    const compute = () => {
+      raf = null;
+      // Only "at bottom" once the page is actually scrolled to its very end —
+      // so the slow walk-in plays while you're sitting at the bottom.
+      const scrollY = window.scrollY || window.pageYOffset || 0;
+      const docH = document.documentElement.scrollHeight;
+      setAtBottom((window.innerHeight + scrollY) >= docH - 60);
+    };
+    const onScroll = () => {if (raf == null) raf = requestAnimationFrame(compute);};
+    compute();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (raf != null) cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  return (
+    <div className={"outro-cta" + (atBottom ? " is-in" : "")} ref={ref} aria-label="Get in touch">
+      <div className="outro-group">
+        <span className="outro-interested">Interested?</span>
+        <a className="outro-talk" href={"mailto:" + CONTACT}>Let&apos;s talk →</a>
+        <div className="outro-head" aria-hidden="true"></div>
+      </div>
+    </div>);
+
+}
+
+Object.assign(window, { PROJECTS, Nav, ScrambleNum, ReadingProgress, OutroCTA });
 
 /* ─── Global hold-to-enlarge ("peek") ──────────────────────────────────
    Press and hold ANY content image to pop it up enlarged; release to dismiss.
@@ -150,22 +191,22 @@ Object.assign(window, { PROJECTS, Nav, ScrambleNum, ReadingProgress });
   window.__peekInit = true;
 
   const EXCLUDE = [
-  "a",                   // any linked image should navigate, not peek (video, thumbnails)
-  ".hero-proj",          // home 4-up project thumbnails
-  ".nav-proj-link",      // nav thumbnail switcher
-  ".proj-footer-next",   // footer next-project thumbnail
-  ".proj-hero-obj",      // case hero object metaphor
-  ".brick-title-logo",   // brick wordmark image
-  ".brick-screen",       // Selected-Posts gallery (self-managed peek)
+  "a", // any linked image should navigate, not peek (video, thumbnails)
+  ".hero-proj", // home 4-up project thumbnails
+  ".nav-proj-link", // nav thumbnail switcher
+  ".proj-footer-next", // footer next-project thumbnail
+  ".proj-hero-obj", // case hero object metaphor
+  ".brick-title-logo", // brick wordmark image
+  ".brick-screen", // Selected-Posts gallery (self-managed peek)
   ".vr-stimulus-img", ".vr-cond-img", // VR images (self-managed peek)
-  ".brick-peek"].         // the overlay itself
+  ".brick-peek"]. // the overlay itself
   join(",");
   window.__peekExclude = EXCLUDE;
   window.__isPeekable = function (img) {
     return img && img.tagName === "IMG" && !img.closest(EXCLUDE);
   };
 
-  let host = null, imgEl = null, hideTimer = 0;
+  let host = null,imgEl = null,hideTimer = 0;
 
   function ensure() {
     if (host) return;
@@ -261,8 +302,8 @@ Object.assign(window, { PROJECTS, Nav, ScrambleNum, ReadingProgress });
     for (const m of muts) {
       for (const n of m.addedNodes) {
         if (n.nodeType !== 1) continue;
-        if (n.tagName === "IMG") tag(n);
-        else sweep(n);
+        if (n.tagName === "IMG") tag(n);else
+        sweep(n);
       }
     }
   }).observe(document.body, { childList: true, subtree: true });
