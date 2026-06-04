@@ -4,17 +4,10 @@ function About({ go }) {
   return (
     <div className="about-page" data-screen-label="About">
       <div className="about-top">
-        <p className="about-bio">Joshua Lee is a Communication Science student at the University of Twente, specialising in UX research and visual communication. He works at the intersection of data-driven design and strategic storytelling — conducting VR experiments in a lab, running think-aloud usability tests, and crafting visual identities for international communities. His work is defined by a commitment to rigour: every design decision is traceable to a research finding, and every finding is communicated in a form that non-specialists can act on.
-
-
-
-
-
-
-
-
-
-        </p>
+        <div className="about-bio-col">
+          <p className="about-bio">Joshua Lee is a Communication Science student at the University of Twente, specialising in UX research and visual communication. He works at the intersection of data-driven design and strategic storytelling — conducting VR experiments in a lab, running think-aloud usability tests, and crafting visual identities for international communities. His work is defined by a commitment to rigour: every design decision is traceable to a research finding, and every finding is communicated in a form that non-specialists can act on.</p>
+          <a href="assets/CV_General.pdf" target="_blank" rel="noopener noreferrer" className="cv-btn">Resume</a>
+        </div>
         <div className="portrait">
           <img src="assets/joshua_portrait.jpeg" alt="Joshua Lee" draggable="false" />
         </div>
@@ -23,7 +16,6 @@ function About({ go }) {
           <a href={"mailto:" + CONTACT}>{CONTACT}</a>
           <a href="https://www.linkedin.com/in/joshua-lee-1576b720b/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a href="https://www.instagram.com/p1sxou/" target="_blank" rel="noopener noreferrer">Instagram</a>
-          <a href="assets/CV_General.pdf" download="Joshua-Lee-CV.pdf" className="contact-cv">Download CV ↓</a>
           <span style={{ display: "block", marginTop: 12, lineHeight: 1.8 }}>
             +31 643 005 279<br />Hengelo, Netherlands<br />Currently enrolled at the University of Twente · eligible for Dutch zoekjaar (orientation year) post-graduation
           </span>

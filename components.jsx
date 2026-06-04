@@ -144,17 +144,25 @@ function ReadingProgress() {
 function OutroCTA() {
   const ref = React.useRef(null);
   const [atBottom, setAtBottom] = React.useState(false);
+  const [arrived, setArrived] = React.useState(false);
+  React.useEffect(() => { if (!atBottom) setArrived(false); }, [atBottom]);
   React.useEffect(() => {
     const el = ref.current;
     if (!el) return;
     let raf = null;
     const compute = () => {
       raf = null;
-      // Only "at bottom" once the page is actually scrolled to its very end —
-      // so the slow walk-in plays while you're sitting at the bottom.
       const scrollY = window.scrollY || window.pageYOffset || 0;
       const docH = document.documentElement.scrollHeight;
-      setAtBottom((window.innerHeight + scrollY) >= docH - 60);
+      const distFromBottom = docH - (window.innerHeight + scrollY);
+      // Hysteresis: switch ON within 80px of the bottom, only switch OFF once
+      // clearly scrolled away (>240px). Stops Safari's toolbar resize jitter
+      // from re-triggering the animation mid-walk.
+      setAtBottom((prev) => {
+        if (distFromBottom <= 80) return true;
+        if (distFromBottom > 240) return false;
+        return prev;
+      });
     };
     const onScroll = () => {if (raf == null) raf = requestAnimationFrame(compute);};
     compute();
@@ -172,7 +180,13 @@ function OutroCTA() {
       <div className="outro-group">
         <span className="outro-interested">Interested?</span>
         <a className="outro-talk" href={"mailto:" + CONTACT}>Let&apos;s talk →</a>
-        <div className="outro-head" aria-hidden="true"></div>
+        <div
+          className={"outro-head" + (arrived ? " arrived" : "")}
+          aria-hidden="true"
+          style={atBottom
+            ? { transform: "translateX(0)", transition: "transform 4s linear 0.5s" }
+            : { transform: "translateX(-130vw)", transition: "transform 1s linear" }}
+          onTransitionEnd={() => { setArrived(atBottom); }}></div>
       </div>
     </div>);
 
