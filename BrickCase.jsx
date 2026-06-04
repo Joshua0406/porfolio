@@ -56,7 +56,7 @@ function BrickCase({ go }) {
   ["assets/brick/page_03.png", "03", "Lobby", "Friends as bricks in a shared social space."],
   ["assets/brick/page_04.png", "04", "Profile", "Streak, rank, achievements — and the relocated App Block."],
   ["assets/brick/page_05.png", "05", "Shop", "Avatar cosmetics + real-world coupons."],
-  ["assets/brick/page_06.png", "06", "Blocked state", "The cool-down moment — 'take a brick'."],
+  ["assets/brick/rank.png", "06", "Rank", "Leaderboard — least screen time wins the week."],
   ["assets/brick/page_07.png", "07", "Settings", "Notifications, themes, privacy."],
   ["assets/brick/page_08.png", "08", "App Block selection", "Choose categories of distracting apps to lock."]];
 
@@ -146,7 +146,7 @@ function BrickCase({ go }) {
           <option value="brick-research">Research</option>
           <option value="brick-testing">Testing</option>
           <option value="brick-outcome">Outcome</option>
-          <option value="brick-takeaway">Takeaway</option>
+          <option value="brick-reflection">Reflection</option>
         </select>
       </nav>
 
@@ -275,17 +275,6 @@ function BrickCase({ go }) {
           </figure>
         )}
       </div>
-      <div className="brick-cta-wrap">
-        <div className="brick-cta">
-          <div className="brick-cta-left">
-            <span className="brick-ds-cap">Live Prototype</span>
-            <h3 className="brick-cta-title">Try the interactive Axure prototype</h3>
-            <p className="brick-cta-body">Full flow: app blocking, social interactions, and leaderboard.</p>
-          </div>
-          <button className="brick-cta-btn" onClick={() => window.open('https://app.axure.cloud/app/project/qmx6wq/preview', '_blank')}>Open in Axure Cloud →</button>
-        </div>
-      </div>
-
       {/* USABILITY TESTING */}
       <section className="brick-section" id="brick-testing">
         <div className="brick-label">Usability Testing</div>
@@ -367,48 +356,61 @@ function BrickCase({ go }) {
       <section className="brick-section">
         <div className="brick-label">Iteration</div>
         <div className="brick-body">
-          <p>Fixing the discoverability bug.</p>
+          <p style={{ fontSize: "30px" }}>Fixing the discoverability bug.</p>
           <div className="brick-ba">
+            <div className="brick-ba-pair">
             <div className="brick-ba-card">
               <span className="brick-ba-tag brick-ba-tag-before">Before</span>
+              <div className="brick-ba-media"><img src="assets/brick/before_1.png" alt="App Block buried in Profile — before" draggable="false" /></div>
               <h3 className="brick-ba-title">App Block buried in Profile</h3>
               <p>Users had to tap Profile → dismiss a notification banner → scroll → tap App Block. Average task time was high, and 3 of 6 participants needed prompting.</p>
             </div>
             <div className="brick-ba-card">
               <span className="brick-ba-tag brick-ba-tag-after">After</span>
+              <div className="brick-ba-media"><img src="assets/brick/after_1.png" alt="App Block elevated to Homepage — after" draggable="false" /></div>
               <h3 className="brick-ba-title">App Block elevated to Homepage</h3>
               <p>App Block becomes a primary action on the dashboard. The dismissable notification collapses by default. The core value of the product is now one tap away.</p>
             </div>
+            </div>
 
+            <div className="brick-ba-pair">
             <div className="brick-ba-card">
               <span className="brick-ba-tag brick-ba-tag-before">Before</span>
+              <div className="brick-ba-media"><video src="assets/brick/before_2.mp4" autoPlay loop muted playsInline></video></div>
               <h3 className="brick-ba-title">No friction on unblocking</h3>
               <p>One tap dismissed an active block. Participant 6: &ldquo;The blocking is too easy to turn off. It defeats the whole point.&rdquo; The feature existed; the deterrent didn&rsquo;t.</p>
             </div>
             <div className="brick-ba-card">
               <span className="brick-ba-tag brick-ba-tag-after">After</span>
+              <div className="brick-ba-media"><img src="assets/brick/after_2.png" alt="A 30-second cool-down before unblock — after" draggable="false" /></div>
               <h3 className="brick-ba-title">A 30-second cool-down before unblock</h3>
               <p>Directly suggested by Participant 2: &ldquo;You should add some features that you need to wait for a bit — if you can unblock easily, it&rsquo;s not stopping me.&rdquo; A visible countdown gates every unblock action: small enough not to feel punitive, large enough to interrupt impulse.</p>
             </div>
+            </div>
 
+            <div className="brick-ba-pair">
             <div className="brick-ba-card">
               <span className="brick-ba-tag brick-ba-tag-before">Before</span>
+              <div className="brick-ba-media"><img src="assets/brick/before_3.png" alt="First-time users dropped at Lobby — before" draggable="false" /></div>
               <h3 className="brick-ba-title">First-time users dropped at Lobby</h3>
               <p>The isometric social space had no introduction. New users tapped around for a while before realising friends-as-bricks was the core social loop.</p>
             </div>
             <div className="brick-ba-card">
               <span className="brick-ba-tag brick-ba-tag-after">After</span>
+              <div className="brick-ba-media"><img src="assets/brick/after_3.png" alt="One-time tutorial overlay — after" draggable="false" /></div>
               <h3 className="brick-ba-title">One-time tutorial overlay</h3>
               <p>A dismissable spotlight tour on first launch points at the App Block, the streak counter, and the friend lobby — then never reappears. No mandatory onboarding wall.</p>
+            </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* REFLECTION */}
-      <section className="brick-section">
+      <section className="brick-section" id="brick-reflection">
         <div className="brick-label">Reflection</div>
         <div className="brick-body">
+          <p className="brick-statement" style={{ fontSize: "44px", textAlign: "left", marginBottom: 28 }}>A good idea is worthless if people can't find it.</p>
           <div className="brick-reflect">
             <div>
               <h4 className="brick-sublabel brick-sublabel-cased" style={{ fontSize: "22px" }}>What worked</h4>
@@ -445,18 +447,6 @@ function BrickCase({ go }) {
               <p style={{ marginTop: 12 }}>The cool-down delay would follow as a behavioural-change study with a 2-week diary phase to measure actual unblock frequency, not just intent.</p>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* TAKEAWAY */}
-      <section className="brick-section" id="brick-takeaway">
-        <div className="brick-label">Takeaway</div>
-        <div className="brick-body">
-          <p className="brick-statement" style={{ fontSize: "44px", textAlign: "left" }}>A good idea is worthless if people can't find it.</p>
-          <p>Brick's concept worked in every interview — people liked being rewarded for cutting screen time instead of being punished for it. But testing showed a basic problem: the most important button, the one that actually blocks apps, was hidden three taps deep. The idea was solid. The way to reach it wasn't.</p>
-          <h4 style={{ fontSize: "22px", fontWeight: 500, margin: "24px 0 8px" }}>Key design learning</h4>
-          <p>Moving that button to the home screen was the whole fix — it didn't change what Brick does, it just let people actually use it. The lesson: where you put a feature is a real decision, not an afterthought.</p>
-          <p>With what I have now, the next step is clear — test it with the 13–17 age group the app was actually made for, and track one simple number: how fast a new user blocks their first app.</p>
         </div>
       </section>
 
