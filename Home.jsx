@@ -81,7 +81,6 @@ function Home({ go }) {
       <footer className="site-footer">
         <div className="footer-contact">
           <span className="footer-available">Available for internship — Aug 2026</span>
-          <a href={"mailto:" + CONTACT}>{CONTACT}</a>
         </div>
         <a className="small" href="https://www.utwente.nl/en/education/bachelor/programmes/communication-science/" target="_blank" rel="noopener noreferrer">BSc Communication Science &nbsp;·&nbsp; University of Twente</a>
       </footer>

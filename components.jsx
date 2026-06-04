@@ -112,7 +112,32 @@ function ScrambleNum({ value, prefix = "" }) {
   return <span ref={ref} className="stat-num">{prefix + value}</span>;
 }
 
-Object.assign(window, { PROJECTS, Nav, ScrambleNum });
+/* Thin reading-progress bar — pinned to top of viewport, fills as you scroll.
+   Used on case pages only. */
+function ReadingProgress() {
+  const [pct, setPct] = React.useState(0);
+  React.useEffect(() => {
+    const measure = () => {
+      const doc = document.documentElement;
+      const max = doc.scrollHeight - window.innerHeight;
+      setPct(max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0);
+    };
+    measure();
+    window.addEventListener("scroll", measure, { passive: true });
+    window.addEventListener("resize", measure);
+    return () => {
+      window.removeEventListener("scroll", measure);
+      window.removeEventListener("resize", measure);
+    };
+  }, []);
+  return (
+    <div className="reading-progress" aria-hidden="true">
+      <div className="reading-progress-bar" style={{ width: pct + "%" }}></div>
+    </div>
+  );
+}
+
+Object.assign(window, { PROJECTS, Nav, ScrambleNum, ReadingProgress });
 
 /* ─── Global hold-to-enlarge ("peek") ──────────────────────────────────
    Press and hold ANY content image to pop it up enlarged; release to dismiss.
@@ -135,6 +160,10 @@ Object.assign(window, { PROJECTS, Nav, ScrambleNum });
   ".vr-stimulus-img", ".vr-cond-img", // VR images (self-managed peek)
   ".brick-peek"].         // the overlay itself
   join(",");
+  window.__peekExclude = EXCLUDE;
+  window.__isPeekable = function (img) {
+    return img && img.tagName === "IMG" && !img.closest(EXCLUDE);
+  };
 
   let host = null, imgEl = null, hideTimer = 0;
 
@@ -169,7 +198,7 @@ Object.assign(window, { PROJECTS, Nav, ScrambleNum });
   document.addEventListener("pointerdown", (e) => {
     if (!e.target || !e.target.closest) return;
     const img = e.target.closest("img");
-    if (!img || img.closest(EXCLUDE)) return;
+    if (!window.__isPeekable(img)) return;
     const src = img.currentSrc || img.getAttribute("src");
     if (!src) return;
     try {img.setPointerCapture(e.pointerId);} catch (_) {}
@@ -178,6 +207,26 @@ Object.assign(window, { PROJECTS, Nav, ScrambleNum });
   });
   document.addEventListener("pointerup", hide);
   document.addEventListener("pointercancel", hide);
+
+  // Keyboard: focus a peekable img → Enter/Space holds the overlay open.
+  let keyDown = false;
+  document.addEventListener("keydown", (e) => {
+    if (e.repeat) return;
+    if (e.key !== "Enter" && e.key !== " ") return;
+    const img = document.activeElement;
+    if (!window.__isPeekable(img)) return;
+    const src = img.currentSrc || img.getAttribute("src");
+    if (!src) return;
+    keyDown = true;
+    show(src);
+    e.preventDefault();
+  });
+  document.addEventListener("keyup", (e) => {
+    if (!keyDown) return;
+    if (e.key !== "Enter" && e.key !== " " && e.key !== "Escape") return;
+    keyDown = false;
+    hide();
+  });
 })();
 
 /* ─── Auto lazy-load + async decode for non-thumbnail images ─────────── */
@@ -191,6 +240,15 @@ Object.assign(window, { PROJECTS, Nav, ScrambleNum });
     if (img.matches(SKIP)) return;
     if (!img.hasAttribute("loading")) img.setAttribute("loading", "lazy");
     if (!img.hasAttribute("decoding")) img.setAttribute("decoding", "async");
+    // Make peekable images keyboard-focusable (Enter/Space holds enlarge).
+    if (window.__isPeekable && window.__isPeekable(img)) {
+      if (!img.hasAttribute("tabindex")) img.setAttribute("tabindex", "0");
+      if (!img.hasAttribute("role")) img.setAttribute("role", "button");
+      if (!img.hasAttribute("aria-label")) {
+        const alt = img.getAttribute("alt") || "image";
+        img.setAttribute("aria-label", "Hold to enlarge: " + alt);
+      }
+    }
   }
   function sweep(root) {
     (root.querySelectorAll ? root.querySelectorAll("img") : []).forEach(tag);
