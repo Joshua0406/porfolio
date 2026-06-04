@@ -65,13 +65,9 @@ body:has(.hero) .hero { flex: 1; min-height: 0; }
   top: 0;
   left: 0;
   background: url('assets/head.png') center/contain no-repeat;
-  animation: head-sweep 14s linear infinite !important;
-  animation-duration: 14s !important;
+  transform: translateX(-15vw);
+  transform-origin: center;
   will-change: transform;
-}
-@keyframes head-sweep {
-  0%   { transform: translateX(-15vw); }
-  100% { transform: translateX(100vw); }
 }
 .hero h1 {
   position: relative; z-index: 1;

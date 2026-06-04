@@ -5,7 +5,50 @@ function Home({ go }) {
   const h1Ref = React.useRef(null);
   const imessageRef = React.useRef(null);
   const projectInfoRef = React.useRef(null);
+  const headRef = React.useRef(null);
   const [hovered, setHovered] = React.useState(null);
+
+  // Head sweep: moves L↔R at constant speed, pauses randomly, flips on each pause.
+  // Wraps around when reaching an edge without pausing.
+  React.useEffect(() => {
+    const head = headRef.current;
+    if (!head) return;
+    let raf;
+    // 50/50 start side
+    let dir = Math.random() < 0.5 ? 1 : -1;
+    let x = dir > 0 ? -0.16 : 1.0;
+    head.style.setProperty("--flip", dir === -1 ? "-1" : "1");
+    let mode = "move";
+    let modeUntil = performance.now() + 1500 + Math.random() * 5500;
+    let last = performance.now();
+    const speed = 0.11;
+
+    function tick(now) {
+      const dt = (now - last) / 1000;
+      last = now;
+      if (mode === "move") {
+        x += dir * speed * dt;
+        // wrap around (no direction or mirror change)
+        if (dir > 0 && x > 1.0) x = -0.16;
+        else if (dir < 0 && x < -0.16) x = 1.0;
+        if (now >= modeUntil) {
+          mode = "pause";
+          modeUntil = now + 500 + Math.random() * 1500;
+        }
+      } else {
+        if (now >= modeUntil) {
+          mode = "move";
+          dir = -dir;
+          head.style.setProperty("--flip", dir === -1 ? "-1" : "1");
+          modeUntil = now + 1500 + Math.random() * 5500;
+        }
+      }
+      head.style.transform = `translateX(${x * 100}vw) scaleX(var(--flip, 1))`;
+      raf = requestAnimationFrame(tick);
+    }
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, []);
 
   React.useEffect(() => {
     const h1 = h1Ref.current;
@@ -51,7 +94,7 @@ function Home({ go }) {
     <section className="hero" data-screen-label="Home">
       <div className="hero-title">
         <div className="head-track" aria-hidden="true">
-          <div className="head-img"></div>
+          <div className="head-img" ref={headRef}></div>
         </div>
         <h1 ref={h1Ref}>
           {"Joshua Lee".split("").map((ch, i) =>
