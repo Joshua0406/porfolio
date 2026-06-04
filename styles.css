@@ -226,4 +226,23 @@ body:has(.hero) .hero { flex: 1; min-height: 0; }
   .hero-proj-label { display: flex; flex-direction: column; gap: 2px; align-items: center; text-align: center; padding: 0 4px; }
   .hero-proj-label-title { font-size: 15px; font-weight: 500; letter-spacing: -0.01em; }
   .hero-proj-label-tags { font-size: 11px; letter-spacing: 0.04em; opacity: 0.6; line-height: 1.4; }
+
+  /* Nav */
+  .nav { padding: 16px 20px; }
+  .nav a { font-size: 14px; letter-spacing: 0.1em; }
+  .nav-projects { gap: 6px; }
+  .nav-proj-link img { width: 32px; height: 32px; }
+  .proj-index { font-size: 13px; letter-spacing: 0.1em; }
+  .nav.transparent ~ article { padding-top: 72px; }
+
+  /* About page */
+  .about-page { padding: 16px 20px 60px; }
+  .about-top { grid-template-columns: 1fr; gap: 32px; margin-bottom: 40px; }
+  .about-top .portrait { max-width: 240px; }
+  .about-bio { font-size: 16px; line-height: 1.6; }
+  .contact-info { font-size: 16px; line-height: 1.8; }
+  .about-bottom { grid-template-columns: 1fr; gap: 32px; padding-top: 24px; }
+  .cv-col h3 { margin-bottom: 12px; }
+  .cv-entry { margin-bottom: 12px; }
+  .cv-entry .role, .cv-entry .place, .cv-entry .year { font-size: 15px; }
 }

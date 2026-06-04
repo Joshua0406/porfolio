@@ -647,6 +647,24 @@ article[data-screen-label="Case: Katana"] .brick-screen img { object-fit: cover;
   .brick-meta-key { font-size: 11px; }
   .brick-meta-val { font-size: 15px; }
   .brick-nav { padding: 14px 24px; }
+  /* Single column / smaller items at phone width */
+  .brick-strip, .brick-stats { grid-template-columns: repeat(2, 1fr); gap: 24px; padding: 32px 24px; }
+  .brick-strip-num, .brick-stat-num { font-size: clamp(32px, 9vw, 48px); }
+  .brick-strip-desc { font-size: 12px; }
+  .brick-section-wide { padding: 24px 24px 40px; }
+  .brick-section-wide .brick-label { margin-bottom: 16px; }
+  .brick-screens-grid { grid-template-columns: 1fr; gap: 24px 0; padding: 24px 24px 48px; }
+  .brick-cta-wrap { padding: 24px 24px 48px; }
+  .brick-cta { padding: 20px; gap: 20px; }
+  .brick-toc { padding: 12px 24px; }
+  .brick-subtitle { font-size: 18px; line-height: 1.45; }
+  .brick-strategy-grid { grid-template-columns: 1fr; }
+  .vr-stimuli-grid, .vr-cond-grid { grid-template-columns: 1fr; }
+  .desert-infographic-wrap, .vr-layout-wrap, .vr-lab-wrap, .vr-plot-wrap { padding: 0 24px 40px; }
+  .kns-map-tail { grid-template-columns: 1fr; }
+  .kns-map-grid { grid-template-columns: 1fr; max-width: none; }
+  .brick-outcome-themes { grid-template-columns: 1fr; }
+  .proj-footer { padding: 32px 24px; }
 }
 
 /* Reading progress — thin bar at the top of case pages */
