@@ -117,11 +117,13 @@ function Home({ go }) {
 
       <div className="hero-grid">
         {PROJECTS.map((p, i) =>
-        <a key={p.id} className="hero-proj"
+        <a key={p.id} className="hero-proj" href={"/" + p.id}
         onMouseEnter={() => setHovered(p)} onMouseLeave={() => setHovered(null)}
-        onClick={() => go("case", p.id)}>
+        onFocus={() => setHovered(p)} onBlur={() => setHovered(null)}
+        onClick={(e) => { e.preventDefault(); go("case", p.id); }}>
             <div className="img-wrap"><img src={p.src} alt={p.title} /></div>
             <span className="hero-proj-num mono">({i + 1})</span>
+            <span className="visually-hidden">{p.title} — {p.tags}</span>
           </a>
         )}
       </div>

@@ -24,7 +24,7 @@ function BrickCase({ go }) {
   "Kind, family-oriented. Spends time on football and games. Wants to focus for university applications but needs social motivation."]];
 
   const requirements = [
-  ["REQ_01", "Customizable competition", "5/6 wanted leaderboards. 1/6 reported stress. Competition must be opt-in, not default."],
+  ["REQ_01", "Customizable competition", "5 of 6 participants wanted leaderboards. 1 of 6 reported stress. Competition must be opt-in, not default."]
   ["REQ_02", "Stress-free motivation", "Users want progress without pressure. Gamified rewards yes; punishment no."],
   ["REQ_03", "Social with privacy control", "Friend visibility motivates, but users need granular control over what's shared."],
   ["REQ_04", "Clear visual feedback", "Weekly summaries and visual progress were universally requested across all 6 interviews."],
@@ -42,7 +42,7 @@ function BrickCase({ go }) {
   "Self-determination theory shows autonomy is critical for sustained motivation. Forceful blocking damages long-term use — confirmed by all 6 participants."],
   ["02", "Mandatory leaderboards", "Opt-in competition",
   "Leaderboards and challenges are optional with an anonymous-mode toggle. Default view encourages but doesn't enforce comparison.",
-  "5/6 users responded positively; 1/6 (Taiwanese, female) reported stress. Forcing competition would alienate stress-sensitive users."],
+  "5 of 6 participants responded positively; 1 of 6 reported stress. Forcing competition would alienate stress-sensitive users."]
   ["03", "External rewards", "Identity-based rewards",
   "Dual-track: avatar cosmetics (identity expression) + real-world coupons (tangible benefit). Avatar growth visible in social spaces.",
   "Rewards don't erode intrinsic motivation when they're tied to identity or progress. Customization reinforces self-efficacy."],
@@ -179,9 +179,9 @@ function BrickCase({ go }) {
         <div className="brick-body">
           <p className="brick-lead-sm" style={{ fontSize: "30px" }}>6 users. 6 countries. 5 requirements.</p>
           <h4 className="brick-sublabel">Method</h4>
-          <p>Semi-structured interviews with 6 participants aged 21–24 from Taiwan, Mexico, Bulgaria, Korea, Malaysia, and Finland. Each session covered screen-time habits, past attempts to reduce use, and reactions to proposed features.</p>
+          <p>Semi-structured interviews with 6 participants aged 21–24 recruited from six different national backgrounds. Each session covered screen-time habits, past attempts to reduce use, and reactions to proposed features.</p>
           <h4 className="brick-sublabel">Why this composition</h4>
-          <p>Cross-cultural recruitment surfaced design-relevant tensions that a single-market study would miss — most notably, the Taiwanese participant's stress response to competition, which became a load-bearing constraint for the gamification system.</p>
+          <p>Cross-cultural recruitment surfaced design-relevant tensions that a single-market study would miss — most notably, one participant's stress response to competition, which became a load-bearing constraint for the gamification system.</p>
 
           <h4 className="brick-sublabel brick-sublabel-spaced">User personas</h4>
           <p style={{ fontSize: "15px", color: "rgba(0,0,0,0.6)", marginBottom: 16 }}>Two extremes from the 6-person sample — chosen to bracket the design space. Anna anchors the stress-sensitive end; James anchors the externally-motivated end. The remaining 4 participants fell between them.</p>

@@ -11,7 +11,7 @@ const PROJECTS = [
 
 /* Runtime-constructed email — keeps the literal string out of HTML/JS source
    so basic scrapers don't grab it. */
-const CONTACT_USER = "joshua040633920175";
+const CONTACT_USER = "plsxou46";
 const CONTACT_DOM = "gmail" + "." + "com";
 const CONTACT = CONTACT_USER + "@" + CONTACT_DOM;
 Object.assign(window, { CONTACT });
@@ -196,6 +196,9 @@ Object.assign(window, { PROJECTS, Nav, ScrambleNum, ReadingProgress });
   }
 
   document.addEventListener("pointerdown", (e) => {
+    // On touch devices, let the OS handle long-press (save image / share)
+    // instead of intercepting with the peek overlay.
+    if (e.pointerType === "touch") return;
     if (!e.target || !e.target.closest) return;
     const img = e.target.closest("img");
     if (!window.__isPeekable(img)) return;

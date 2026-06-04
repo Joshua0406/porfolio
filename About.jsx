@@ -21,10 +21,11 @@ function About({ go }) {
         <div className="contact-info">
           <span className="contact-available">Available Aug 2026</span>
           <a href={"mailto:" + CONTACT}>{CONTACT}</a>
-          <a href="https://www.linkedin.com/in/joshua-lee" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/joshua-lee-1576b720b/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a href="https://www.instagram.com/p1sxou/" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="assets/CV_General.pdf" download="Joshua-Lee-CV.pdf" className="contact-cv">Download CV ↓</a>
           <span style={{ display: "block", marginTop: 12, lineHeight: 1.8 }}>
-            +31 643 005 279<br />Hengelo, Netherlands<br />Taiwanese (non-EU)
+            +31 643 005 279<br />Hengelo, Netherlands<br />Currently enrolled at the University of Twente · eligible for Dutch zoekjaar (orientation year) post-graduation
           </span>
         </div>
       </div>
@@ -44,7 +45,7 @@ function About({ go }) {
           <h3 style={{ fontSize: "17px" }}>Skills</h3>
           <div className="cv-entry"><span className="role">Research</span><span className="place">Usability Testing · Think-Aloud · Qualitative Coding · Regression (R)</span></div>
           <div className="cv-entry"><span className="role">Design</span><span className="place">Figma · Axure · Illustrator · Photoshop · Procreate · Unity</span></div>
-          <div className="cv-entry"><span className="role">Languages</span><span className="place">Mandarin (Native) · English (TOEFL 89) · Dutch (B1)</span></div>
+          <div className="cv-entry"><span className="role">Languages</span><span className="place">Mandarin (Native) · English (Professional working proficiency) · Dutch (B1)</span></div>
         </div>
       </div>
     </div>);
