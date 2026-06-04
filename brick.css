@@ -701,9 +701,9 @@ article[data-screen-label="Case: Katana"] .brick-screen img { object-fit: cover;
   }
   /* Let touches pass through child .brick-screen so the carousel actually scrolls */
   #desert-posts ~ .brick-screens-grid .brick-screen,
-  .brick-screens-swipe .brick-screen { touch-action: pan-x pan-y; }
+  .brick-screens-swipe .brick-screen { touch-action: pan-x pan-y !important; }
   #desert-posts ~ .brick-screens-grid .brick-screen img,
-  .brick-screens-swipe .brick-screen img { pointer-events: none; touch-action: pan-x pan-y; }
+  .brick-screens-swipe .brick-screen img { pointer-events: none; touch-action: pan-x pan-y !important; }
   .brick-cta-wrap { padding: 24px 24px 48px; }
   .brick-cta { padding: 20px; gap: 20px; }
   .brick-toc { padding: 12px 24px; }
