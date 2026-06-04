@@ -77,7 +77,6 @@ function ScrambleNum({ value, prefix = "" }) {
   React.useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {el.textContent = prefix + value;return;}
     const CHARS = "0123456789";
     const isDecimal = value.includes(".");
     const decimals = isDecimal ? value.split(".")[1].length : 0;

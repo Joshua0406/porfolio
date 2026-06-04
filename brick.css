@@ -238,6 +238,28 @@ article[data-screen-label="Case: Katana"] .brick-screens-grid { grid-template-co
 .brick-ba-title { font-size: 17px; font-weight: 500; margin-bottom: 10px; }
 .brick-ba-card p { font-size: 15px; line-height: 1.6; }
 
+/* Rounded corners on all case-study photos (Brick prototype screens excluded) */
+.vr-method-photo, .vr-results-plot, .vr-layout, .vr-lab, .vr-plot,
+.vr-stimulus-img, .vr-cond-img, .vr-framework img,
+.desert-infographic,
+.kns-brief-img, .kns-contrib-team, .kns-contrib-asset, .kns-slideshow,
+.kns-map-banner, .kns-map-grid img, .kns-map-video {
+  border-radius: 14px;
+}
+.vr-stimulus-img, .vr-cond-img, .kns-map-video, .kns-slideshow { overflow: hidden; }
+/* Desert "Selected Visuals" + KNS "Selected Posts" galleries — rounded; Brick prototype stays sharp */
+article[data-screen-label="Case: Desertification"] .brick-screen,
+article[data-screen-label="Case: Katana"] .brick-screen { border-radius: 14px; overflow: hidden; }
+
+/* Touch devices — kill sticky hover/press states */
+@media (hover: none) {
+  .brick-cta-btn:hover, .brick-cta-btn:hover * { background: var(--brick-accent); color: #fff; }
+  .brick-hero-cta:hover { background: none; }
+  .brick-hero-cta:hover, .brick-hero-cta:hover * { color: #000; }
+  .brick-toc-select:hover { color: rgba(0,0,0,0.55); border-color: rgba(0,0,0,0.15); }
+  .kns-post:hover, .brick-screen:hover, .vr-stimulus-img:hover, .vr-cond-img:hover { opacity: 1; }
+}
+
 /* Reflection — two columns */
 .brick-reflect { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 12px; }
 .brick-bullets { list-style: none; display: flex; flex-direction: column; gap: 14px; }
@@ -555,6 +577,15 @@ article[data-screen-label="Case: Katana"] .brick-screen img { object-fit: cover;
 .kns-brief-media { flex: 1 1 0; min-height: 0; margin-top: 28px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
 .kns-brief-media .kns-brief-img { flex: 1 1 0; min-height: 0; width: auto; height: 100%; max-width: 100%; object-fit: contain; object-position: left top; margin: 0; }
 .kns-phase-img { width: 100%; max-width: 380px; height: auto; }
+/* Strategy phases: full-width section so the image sits in the left rail */
+#kns-strategy { display: block; }
+#kns-strategy .brick-label { margin-bottom: 32px; }
+#kns-strategy .brick-body { max-width: none; }
+.brick-findings { gap: 16px; }
+.kns-phase-withimg { grid-template-columns: 280px 1fr; gap: 0 48px; align-items: start; }
+.kns-phase-text .brick-finding-num { display: block; margin-bottom: 8px; padding-top: 0; }
+.kns-phase-imgwrap { border-radius: 12px; overflow: hidden; background: rgba(0,0,0,0.04); }
+.kns-phase-imgwrap img { width: 100%; height: auto; display: block; -webkit-user-drag: none; user-select: none; }
 
 .kns-slideshow { position: relative; width: 100%; max-width: 380px; aspect-ratio: 4/3; margin-top: 20px; overflow: hidden; background: rgba(0,0,0,0.04); }
 .kns-slideshow img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -696,8 +727,14 @@ article[data-screen-label="Case: Katana"] .brick-screen img { object-fit: cover;
   .brick-label-asset { max-width: 50% !important; height: auto !important; }
   /* VR method/layout photos and similar — full width on mobile */
   .vr-method-photo, .vr-results-plot { max-width: 100% !important; width: 100% !important; }
+  .kns-phase-img { max-width: 100% !important; width: 100% !important; }
+  /* KNS phase image: full-width, above the number + title on mobile */
+  .kns-phase-withimg { display: flex; flex-direction: column; gap: 12px; }
+  .kns-phase-withimg .kns-phase-imgwrap { order: -1; max-width: 100%; width: 100%; margin-bottom: 4px; }
+  .kns-phase-withimg .kns-phase-text .brick-finding-num { margin-bottom: 6px; }
   /* KNS cultural-map small image grid */
   .kns-map-grid img { width: 100% !important; height: auto !important; aspect-ratio: 1/1; object-fit: cover; }
+  .kns-map-banner { height: auto !important; width: 100%; }
   .brick-title { font-size: clamp(44px, 13vw, 80px); letter-spacing: -0.03em; }
   .brick-eyebrow { font-size: 14px; margin-bottom: 20px; }
   .brick-tags { font-size: 13px; }

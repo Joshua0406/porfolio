@@ -525,7 +525,7 @@ function VRCase({ go }) {
         <figure className="vr-stimulus" key={src}>
             <div
             className="vr-stimulus-img"
-            onPointerDown={(e) => {e.currentTarget.setPointerCapture(e.pointerId);openPeek(i);}}
+            onPointerDown={(e) => {if (window.matchMedia("(max-width: 640px)").matches) return; e.currentTarget.setPointerCapture(e.pointerId);openPeek(i);}}
             onPointerUp={closePeek}
             onPointerCancel={closePeek}>
             
@@ -562,7 +562,7 @@ function VRCase({ go }) {
         <figure className="vr-cond" key={src}>
             <div
             className="vr-cond-img"
-            onPointerDown={(e) => {e.currentTarget.setPointerCapture(e.pointerId);openPeek(3 + i);}}
+            onPointerDown={(e) => {if (window.matchMedia("(max-width: 640px)").matches) return; e.currentTarget.setPointerCapture(e.pointerId);openPeek(3 + i);}}
             onPointerUp={closePeek}
             onPointerCancel={closePeek}>
             
@@ -728,9 +728,9 @@ function KNSCase({ go }) {
   };
 
   const phases = [
-  ["01", "Merchant onboarding", "Partner Japanese-cuisine venues first, mechanics second. We onboarded 15+ stores (yakiniku, yakitori, izakaya, ramen, cafés, curry, tea) into the cultural map before any holder-facing occupation feature launched — stores needed to see a real audience before joining a token economy. Co-built the map with 串燒小次郎 (@kojiroutaipei) as anchor merchant partner."],
-  ["02", "User research & community activation", "Ongoing community research, including the 4/15 town hall (里民大會) that surfaced what holders actually wanted versus what the team assumed. Activation ran through cross-NFT whitelist collaborations (Neocypher, 呢喃貓, RPF, Kaiju, Mepunk, Elysium DAO, Demi-human) and the food-scene partner network. Town-hall concerns — runway, second-wave pricing, physical utility — fed directly into the map roadmap."],
-  ["03", "Occupation reward system", "Holders could claim partner shops with real-time leaderboards. Reward design favored repeat engagement over one-time hype — daily activity, contested territories, merchant-issued perks. Off-ramps (shop-wide discount drops, not just top-occupier rewards) gave casual holders a reason to stay."]];
+  ["01", "Merchant onboarding", "Partner Japanese-cuisine venues first, mechanics second. We onboarded 15+ stores (yakiniku, yakitori, izakaya, ramen, cafés, curry, tea) into the cultural map before any holder-facing occupation feature launched — stores needed to see a real audience before joining a token economy.", "assets/kns/merchant.png"],
+  ["02", "User research & community activation", "Ongoing community research, including the 4/15 town hall (里民大會) that surfaced what holders actually wanted versus what the team assumed. Activation ran through cross-NFT whitelist collaborations (Neocypher, 呢喃貓, RPF, Kaiju, Mepunk, Elysium DAO, Demi-human) and the food-scene partner network. Town-hall concerns — runway, second-wave pricing, physical utility — fed directly into the map roadmap.", "assets/kns/ama.jpg"],
+  ["03", "Occupation reward system", "Holders could claim partner shops with real-time leaderboards. Reward design favored repeat engagement over one-time hype — daily activity, contested territories, merchant-issued perks. Off-ramps (shop-wide discount drops, not just top-occupier rewards) gave casual holders a reason to stay.", "assets/kns/occupation.png"]];
 
 
 
@@ -827,7 +827,6 @@ function KNSCase({ go }) {
           <span>The Brief</span>
           <div className="kns-brief-media">
             <img className="kns-brief-img" src="assets/kns/brief_samurai.jpeg" alt="Ukiyo-e samurai NFT artwork" draggable="false" />
-            <img className="kns-brief-img" src="assets/kns/brief_sale.jpg" alt="Katana N' Samurai public sale" draggable="false" />
           </div>
         </h2>
         <div className="brick-body" style={{ paddingTop: 48 }}>
@@ -840,14 +839,14 @@ function KNSCase({ go }) {
       <section className="brick-section" id="kns-strategy">
         <h2 className="brick-label">
           Strategy
-          <img className="brick-label-asset kns-phase-img" src="assets/kns/roadmap_3.jpeg" alt="Three-phase rollout roadmap" draggable="false" />
         </h2>
         <div className="brick-body" style={{ paddingTop: 48 }}>
           <div className="brick-findings">
-            {phases.map(([num, h, p]) =>
-            <div className="brick-finding" key={num}>
-                <span className="brick-finding-num">{num}</span>
-                <div>
+            {phases.map(([num, h, p, img]) =>
+            <div className={"brick-finding" + (img ? " kns-phase-withimg" : "")} key={num}>
+                {img && <div className="kns-phase-imgwrap"><img src={img} alt={h} draggable="false" /></div>}
+                <div className="kns-phase-text">
+                  <span className="brick-finding-num">{num}</span>
                   <h3 className="brick-finding-title">{h}</h3>
                   <p>{p}</p>
                 </div>
