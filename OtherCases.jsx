@@ -77,7 +77,7 @@ function DesertCase({ go }) {
       <div className="brick-hero">
         <div className="brick-hero-left">
           <div className="brick-eyebrow">02 · Content Strategy &amp; Campaign Design</div>
-          <h1 className="brick-title brick-title-red">Into the<br />Desert</h1>
+          <h1 className="brick-title brick-title-logo"><img src="assets/desert/title_logo.png" alt="Into the Desert" draggable="false" /></h1>
           <p className="brick-subtitle" style={{ width: "550px" }}>A theory-driven awareness campaign for Commonland × Viper — turning a slow climate crisis into a benefit festival Dutch 18–34s would actually attend.</p>
           <div className="brick-tags">Content Strategy  ·  Campaign Design  ·  Visual Communication</div>
           <div className="brick-meta">
@@ -241,7 +241,11 @@ function DesertCase({ go }) {
         <figure className="brick-screen-fig" key={i}>
             <div
             className="brick-screen"
-            onPointerDown={(e) => {e.currentTarget.setPointerCapture(e.pointerId);openPeek(i);}}
+            onPointerDown={(e) => {
+              if (window.matchMedia("(max-width: 640px)").matches) return;
+              e.currentTarget.setPointerCapture(e.pointerId);
+              openPeek(i);
+            }}
             onPointerUp={closePeek}
             onPointerCancel={closePeek}
             aria-label="Hold to enlarge campaign post">
@@ -653,9 +657,11 @@ function VRCase({ go }) {
       <section className="brick-section" id="vr-takeaway">
         <h2 className="brick-label">Takeaway</h2>
         <div className="brick-body">
-          <p className="brick-statement" style={{ fontSize: "44px", textAlign: "left" }}>The cue existed. The meaning didn't.</p>
-          <p>Static avatars were physically present but socially invisible — read as obstacles, not as people making a choice. <b>Social proof requires perceived social presence, not just spatial presence.</b> The manipulation check exposed it; only because we thought to ask.</p>
-          <p>Null results aren't failure. They're honest data asking a harder question \u2014 in this case: at what point does presence become social?</p>
+          <p className="brick-statement" style={{ fontSize: "44px", textAlign: "left" }}>I thought the crowd would do the work. It didn't.</p>
+          <p>The whole study was one bet: drop five avatars into the healthy aisle, watch people drift toward the apples. The basket came back the same whether the aisle was busy or empty (p = .717). For about a week I thought I'd just run a bad study.</p>
+          <p>Then I looked at dwell time. In the "crowded" condition, people cut almost a third of the time they'd otherwise spend in the unhealthy aisle (d = 0.43). The crowd didn't pull anyone toward broccoli — but the empty unhealthy aisle quietly pushed them past the chips.</p>
+          <p>The manipulation check told me why no one felt crowded. One participant just asked, "what are they looking at?" The avatars stood there, didn't move, didn't reach for anything — they read as obstacles, not shoppers. Social proof needs people who look like they're making a choice, not just bodies in the room.</p>
+          <p>Null results aren't fails. They're data asking a sharper question. Mine is: when does just being in the room start counting as being part of the crowd?</p>
         </div>
       </section>
 
@@ -920,12 +926,16 @@ function KNSCase({ go }) {
           <p>A sample from the ~400 posts shipped across the campaign. Editorial rule: write like a regular, not an operator. Bilingual EN/ZH across IG, Twitter, and Discord.</p>
         </div>
       </section>
-      <div className="brick-screens-grid" aria-label="Selected campaign posts">
+      <div className="brick-screens-grid brick-screens-swipe" aria-label="Selected campaign posts">
         {posts.map((src, i) =>
         <figure className="brick-screen-fig" key={i}>
             <div
             className="brick-screen"
-            onPointerDown={(e) => {e.currentTarget.setPointerCapture(e.pointerId);openPeek(i);}}
+            onPointerDown={(e) => {
+              if (window.matchMedia("(max-width: 640px)").matches) return;
+              e.currentTarget.setPointerCapture(e.pointerId);
+              openPeek(i);
+            }}
             onPointerUp={closePeek}
             onPointerCancel={closePeek}
             aria-label="Hold to enlarge campaign post">

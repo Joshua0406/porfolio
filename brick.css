@@ -205,7 +205,7 @@ article[data-screen-label="Case: Katana"] .brick-screens-grid { grid-template-co
 .brick-stats.brick-stats-inline .brick-stat > :first-child, .brick-stats.brick-stats-inline .brick-stat-num { font-size: clamp(28px, 3vw, 40px); }
 .brick-stat { display: flex; flex-direction: column; gap: 12px; }
 .brick-stat > :first-child, .brick-stat-num { font-size: clamp(36px, 4vw, 56px); letter-spacing: -0.03em; line-height: 1; font-variant-numeric: tabular-nums; color: var(--brick-accent); }
-.brick-stat .brick-stat-num-plain { color: #000; }
+.brick-stat .brick-stat-num-plain { color: var(--brick-accent); }
 .brick-stat > span:last-child { font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; }
 
 /* Usability — bar chart */
@@ -636,8 +636,32 @@ article[data-screen-label="Case: Katana"] .brick-screen img { object-fit: cover;
 
 /* ─── Mobile (≤640px) — case hero scales down so titles don't clip ─── */
 @media (max-width: 640px) {
+  /* Stop any horizontal overflow at the article + app level */
+  article, #app { overflow-x: hidden; max-width: 100vw; }
   .brick-hero { padding: 16px 0; }
   .brick-hero-left { margin: 0 24px; }
+  /* Hero right: tall portrait frame, fill with cover (no whitespace, no overflow) */
+  .brick-hero { overflow: hidden; max-width: 100vw; }
+  .brick-hero-left { min-width: 0; max-width: calc(100vw - 48px); }
+  .brick-hero-right {
+    aspect-ratio: 4/5;
+    align-self: auto;
+    width: 100%;
+    max-width: 100vw;
+    min-width: 0;
+    overflow: hidden;
+  }
+  .brick-hero-img { width: 100% !important; max-width: 100% !important; height: 100% !important; object-fit: cover !important; aspect-ratio: auto !important; padding: 0 !important; }
+  .brick-title-logo img { max-width: 100% !important; }
+  /* Kill fixed inline widths that overflow the viewport */
+  .brick-subtitle,
+  .brick-lead, .brick-lead-sm,
+  .brick-body p, .brick-body { width: auto !important; max-width: 100% !important; }
+  .brick-label-asset { max-width: 50% !important; height: auto !important; }
+  /* VR method/layout photos and similar — full width on mobile */
+  .vr-method-photo, .vr-results-plot { max-width: 100% !important; width: 100% !important; }
+  /* KNS cultural-map small image grid */
+  .kns-map-grid img { width: 100% !important; height: auto !important; aspect-ratio: 1/1; object-fit: cover; }
   .brick-title { font-size: clamp(44px, 13vw, 80px); letter-spacing: -0.03em; }
   .brick-eyebrow { font-size: 14px; margin-bottom: 20px; }
   .brick-tags { font-size: 13px; }
@@ -654,6 +678,26 @@ article[data-screen-label="Case: Katana"] .brick-screen img { object-fit: cover;
   .brick-section-wide { padding: 24px 24px 40px; }
   .brick-section-wide .brick-label { margin-bottom: 16px; }
   .brick-screens-grid { grid-template-columns: 1fr; gap: 24px 0; padding: 24px 24px 48px; }
+  /* Desert "Selected Visuals" + Brick Prototype → horizontal swipe carousel on mobile */
+  #desert-posts ~ .brick-screens-grid,
+  .brick-screens-swipe {
+    display: flex;
+    grid-template-columns: none;
+    gap: 12px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 8px 24px 32px;
+    scrollbar-width: none;
+  }
+  #desert-posts ~ .brick-screens-grid::-webkit-scrollbar,
+  .brick-screens-swipe::-webkit-scrollbar { display: none; }
+  #desert-posts ~ .brick-screens-grid .brick-screen-fig,
+  .brick-screens-swipe .brick-screen-fig {
+    flex: 0 0 78vw;
+    scroll-snap-align: center;
+  }
   .brick-cta-wrap { padding: 24px 24px 48px; }
   .brick-cta { padding: 20px; gap: 20px; }
   .brick-toc { padding: 12px 24px; }
@@ -664,7 +708,19 @@ article[data-screen-label="Case: Katana"] .brick-screen img { object-fit: cover;
   .kns-map-tail { grid-template-columns: 1fr; }
   .kns-map-grid { grid-template-columns: 1fr; max-width: none; }
   .brick-outcome-themes { grid-template-columns: 1fr; }
+  .brick-outcome-title { min-height: 0; justify-content: flex-start; }
+  .brick-outcome-count { margin-top: 4px; }
+  /* KNS "My Contribution" — make slideshow + team photo same width */
+  .kns-contrib-media { display: flex; flex-direction: column; gap: 12px; }
+  .kns-contrib-asset { display: block !important; width: 100% !important; max-width: 100% !important; margin: 0 !important; }
+  .kns-contrib-asset .kns-slideshow { width: 100%; max-width: 100%; aspect-ratio: 4/3; }
+  .kns-contrib-team { width: 100% !important; max-width: 100% !important; aspect-ratio: 4/3; object-fit: cover; margin-top: 0 !important; }
   .proj-footer { padding: 32px 24px; }
+  /* Footer "next" — image only, hide title text on mobile */
+  .proj-footer-next > span:not([aria-hidden]) { display: none; }
+  /* Tighten key findings spacing on mobile */
+  .brick-findings { gap: 4px; }
+  .brick-finding { padding: 14px 12px; gap: 12px; grid-template-columns: 32px 1fr; }
 }
 
 /* Reading progress — thin bar at the top of case pages */
