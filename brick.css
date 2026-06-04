@@ -653,3 +653,62 @@ article[data-screen-label="Case: Katana"] .brick-screen img { object-fit: cover;
 .reading-progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 100; pointer-events: none; background: transparent; }
 .reading-progress-bar { height: 100%; background: #000; transition: width 0.1s ease-out; will-change: width; }
 @media (prefers-reduced-motion: reduce) { .reading-progress-bar { transition: none; } }
+
+/* ─── Print / PDF — Cmd+P friendly ────────────────────────────────────
+   Hide site chrome (nav, progress bar, footer CTA, peek overlay),
+   force monochrome, let case-study content flow page to page. */
+@media print {
+  /* 1. Hide everything that's interactive chrome. */
+  .nav, .nav.transparent,
+  .reading-progress,
+  .brick-peek,
+  .proj-footer,
+  .site-footer,
+  .brick-cta, .brick-cta-row,
+  .brick-toc-wrap, .brick-toc,
+  .nav-projects, .nav-home,
+  [aria-hidden="true"].brick-peek {
+    display: none !important;
+  }
+
+  /* 2. Reclaim the top padding that the fixed/transparent nav reserved. */
+  .nav.transparent ~ article { padding-top: 0 !important; }
+  article { padding-top: 0 !important; }
+
+  /* 3. Page setup — A4-ish, comfortable inner margin. */
+  @page { margin: 18mm 14mm; }
+
+  /* 4. White paper, ink-only colour, no shadows or animation. */
+  html, body {
+    background: #fff !important;
+    color: #000 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    box-shadow: none !important;
+  }
+
+  /* 5. Force images and dark blocks to print, not skip. */
+  img, video { max-width: 100% !important; height: auto !important; page-break-inside: avoid; }
+  .kns-flow-step { background: #000 !important; color: #fff !important; }
+
+  /* 6. Keep section labels with their content; allow body to flow. */
+  .brick-section { page-break-inside: auto; break-inside: auto; }
+  h1, h2, h3, h4 { page-break-after: avoid; break-after: avoid-page; }
+  .brick-hero { page-break-after: avoid; break-after: avoid-page; }
+
+  /* 7. Show the destination of links inline so PDF readers know where they go. */
+  a[href^="http"]::after,
+  a[href^="mailto:"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    color: rgba(0,0,0,0.5);
+    word-break: break-all;
+  }
+  /* …but not for nav links to internal hashes / images / footer hops. */
+  .brick-nav a::after, .proj-footer a::after,
+  a:has(img)::after, .site-footer a::after { content: "" !important; }
+}
