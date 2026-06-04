@@ -51,23 +51,46 @@ body:has(.hero) .hero { flex: 1; min-height: 0; }
 
 /* ── HERO (home) ── */
 .hero { width: 100%; display: flex; flex-direction: column; padding-top: 16px; overflow: hidden; }
+.hero-title { position: relative; flex-shrink: 0; }
+.head-track {
+  position: absolute; left: 0; right: 0; top: 50%; height: 130%;
+  transform: translateY(-50%);
+  pointer-events: none; z-index: 0;
+  overflow: hidden;
+}
+.head-img {
+  position: absolute;
+  height: 100%;
+  aspect-ratio: 571 / 600;
+  top: 0;
+  left: 0;
+  background: url('assets/head.png') center/contain no-repeat;
+  animation: head-sweep 14s linear infinite !important;
+  animation-duration: 14s !important;
+  will-change: transform;
+}
+@keyframes head-sweep {
+  0%   { transform: translateX(-15vw); }
+  100% { transform: translateX(100vw); }
+}
 .hero h1 {
+  position: relative; z-index: 1;
   font-size: 13.5vw; line-height: 0.84; letter-spacing: -0.02em; text-align: center;
   text-transform: uppercase; white-space: nowrap; cursor: default; user-select: none; flex-shrink: 0;
 }
 .hero h1 .char { display: inline-block; will-change: transform; }
-.hero-bio-wrap { padding: 16px 32px 12px; display: flex; align-items: flex-end; gap: 24px; flex-shrink: 0; }
-.imessage { display: inline-flex; flex-direction: column; gap: 5px; list-style: none; flex-shrink: 0; }
+.hero-bio-wrap { padding: 16px 32px 12px; display: flex; align-items: flex-end; gap: 24px; flex-shrink: 0; position: relative; justify-content: center; }
+.imessage { display: inline-flex; flex-direction: column; gap: 5px; list-style: none; flex-shrink: 0; max-width: 420px; }
 .imessage li {
   display: inline-block; padding: 7px 14px; border-radius: 20px; font-size: 20px; line-height: 1.45;
-  background: #e5e5ea; align-self: flex-start; border-bottom-left-radius: 4px; max-width: 80%;
+  background: #e5e5ea; align-self: flex-start; border-bottom-left-radius: 4px; max-width: 100%;
   opacity: 0; animation: bubble-in 0.3s ease forwards;
 }
 .imessage li:nth-child(1) { animation-delay: 0.1s; }
 .imessage li:nth-child(2) { animation-delay: 0.35s; }
 .imessage li:nth-child(3) { animation-delay: 0.6s; }
 @keyframes bubble-in { from { opacity: 0; transform: translateY(6px) scale(0.96); } to { opacity: 1; transform: none; } }
-.project-info { flex: 1 1 0; min-width: 0; text-align: right; transition: opacity 0.2s ease; }
+.project-info { position: absolute; right: 32px; bottom: 12px; min-width: 0; max-width: 30%; text-align: right; transition: opacity 0.2s ease; }
 .project-info-title { font-size: clamp(48px, 5.7vw, 81px); font-weight: 300; letter-spacing: -0.03em; line-height: 1; white-space: nowrap; }
 .project-info-tags { font-size: 17px; letter-spacing: 0.05em; margin-top: 6px; }
 

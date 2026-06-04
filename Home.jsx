@@ -49,11 +49,16 @@ function Home({ go }) {
 
   return (
     <section className="hero" data-screen-label="Home">
-      <h1 ref={h1Ref}>
-        {"Joshua Lee".split("").map((ch, i) =>
-        <span key={i} className="char">{ch === " " ? "\u00A0" : ch}</span>
-        )}
-      </h1>
+      <div className="hero-title">
+        <div className="head-track" aria-hidden="true">
+          <div className="head-img"></div>
+        </div>
+        <h1 ref={h1Ref}>
+          {"Joshua Lee".split("").map((ch, i) =>
+          <span key={i} className="char">{ch === " " ? "\u00A0" : ch}</span>
+          )}
+        </h1>
+      </div>
 
       <div className="hero-bio-wrap">
         <ul className="imessage" ref={imessageRef}>
