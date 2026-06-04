@@ -172,3 +172,30 @@ Object.assign(window, { PROJECTS, Nav, ScrambleNum });
   document.addEventListener("pointerup", hide);
   document.addEventListener("pointercancel", hide);
 })();
+
+/* ─── Auto lazy-load + async decode for non-thumbnail images ─────────── */
+(function initLazyImgs() {
+  if (window.__lazyImgsInit) return;
+  window.__lazyImgsInit = true;
+  const SKIP = ".hero-proj img, .nav-proj-link img, .proj-footer-next img";
+  function tag(img) {
+    if (img.dataset.lazyDone) return;
+    img.dataset.lazyDone = "1";
+    if (img.matches(SKIP)) return;
+    if (!img.hasAttribute("loading")) img.setAttribute("loading", "lazy");
+    if (!img.hasAttribute("decoding")) img.setAttribute("decoding", "async");
+  }
+  function sweep(root) {
+    (root.querySelectorAll ? root.querySelectorAll("img") : []).forEach(tag);
+  }
+  sweep(document);
+  new MutationObserver((muts) => {
+    for (const m of muts) {
+      for (const n of m.addedNodes) {
+        if (n.nodeType !== 1) continue;
+        if (n.tagName === "IMG") tag(n);
+        else sweep(n);
+      }
+    }
+  }).observe(document.body, { childList: true, subtree: true });
+})();
