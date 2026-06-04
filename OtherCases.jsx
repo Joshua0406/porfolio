@@ -78,7 +78,7 @@ function DesertCase({ go }) {
         <div className="brick-hero-left">
           <div className="brick-eyebrow">02 · Content Strategy &amp; Campaign Design</div>
           <h1 className="brick-title brick-title-logo"><img src="assets/desert/title_logo.png" alt="Into the Desert" draggable="false" /></h1>
-          <p className="brick-subtitle" style={{ width: "550px" }}>A theory-driven awareness campaign for Commonland × Viper — turning a slow climate crisis into a benefit festival Dutch 18–34s would actually attend.</p>
+          <p className="brick-subtitle">A theory-driven awareness campaign for Commonland × Viper — turning a slow climate crisis into a benefit festival Dutch 18–34s would actually attend.</p>
           <div className="brick-tags">Content Strategy  ·  Campaign Design  ·  Visual Communication</div>
           <div className="brick-meta">
             {[
@@ -154,7 +154,7 @@ function DesertCase({ go }) {
       <section className="brick-section" id="desert-audience">
         <div className="brick-label">Target Audience</div>
         <div className="brick-body">
-          <p className="brick-lead-sm" style={{ fontSize: "30px", width: "620px" }}>3M people. 95% online daily. One shared interest.</p>
+          <p className="brick-lead-sm" style={{ fontSize: "30px" }}>3M people. 95% online daily. One shared interest.</p>
           <p>The Dutch 18–34 cohort is ≈3M people (CBS, 2019) — 17% of the Dutch population, 95% of whom use social media daily. The age band is internally diverse: ideologies, classes, channel preferences differ widely. The reliable common ground was <b>festivals</b> (Brecht, 2024). The strategy used that as the anchor.</p>
 
           <h4 className="brick-sublabel brick-sublabel-spaced">Audience Personas</h4>
