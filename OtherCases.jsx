@@ -96,7 +96,7 @@ function DesertCase({ go }) {
           </div>
         </div>
         <div className="brick-hero-right">
-          <img className="brick-hero-img" src="assets/desert/viper_cactus_hero.png" alt="Viper × Into the Desert — Cactus Edition" draggable="false" style={{ objectPosition: "top center", padding: 0 }} />
+          <img className="brick-hero-img" src="assets/desert/viper_cactus_hero.jpg" alt="Viper × Into the Desert — Cactus Edition" draggable="false" style={{ objectPosition: "top center", padding: 0 }} />
         </div>
       </div>
 
@@ -728,9 +728,9 @@ function KNSCase({ go }) {
   };
 
   const phases = [
-  ["01", "Merchant onboarding", "Partner Japanese-cuisine venues first, mechanics second. We onboarded 15+ stores (yakiniku, yakitori, izakaya, ramen, cafés, curry, tea) into the cultural map before any holder-facing occupation feature launched — stores needed to see a real audience before joining a token economy.", "assets/kns/merchant.png"],
+  ["01", "Merchant onboarding", "Partner Japanese-cuisine venues first, mechanics second. We onboarded 15+ stores (yakiniku, yakitori, izakaya, ramen, cafés, curry, tea) into the cultural map before any holder-facing occupation feature launched — stores needed to see a real audience before joining a token economy.", "assets/kns/merchant.jpg"],
   ["02", "User research & community activation", "Ongoing community research, including the 4/15 town hall (里民大會) that surfaced what holders actually wanted versus what the team assumed. Activation ran through cross-NFT whitelist collaborations (Neocypher, 呢喃貓, RPF, Kaiju, Mepunk, Elysium DAO, Demi-human) and the food-scene partner network. Town-hall concerns — runway, second-wave pricing, physical utility — fed directly into the map roadmap.", "assets/kns/ama.jpg"],
-  ["03", "Occupation reward system", "Holders could claim partner shops with real-time leaderboards. Reward design favored repeat engagement over one-time hype — daily activity, contested territories, merchant-issued perks. Off-ramps (shop-wide discount drops, not just top-occupier rewards) gave casual holders a reason to stay.", "assets/kns/occupation.png"]];
+  ["03", "Occupation reward system", "Holders could claim partner shops with real-time leaderboards. Reward design favored repeat engagement over one-time hype — daily activity, contested territories, merchant-issued perks. Off-ramps (shop-wide discount drops, not just top-occupier rewards) gave casual holders a reason to stay.", "assets/kns/occupation.jpg"]];
 
 
 
