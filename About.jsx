@@ -20,7 +20,7 @@ function About({ go }) {
         </div>
         <div className="contact-info">
           <span className="contact-available">Available Aug 2026</span>
-          <a href="mailto:joshua040633920175@gmail.com">joshua040633920175@gmail.com</a>
+          <a href={"mailto:" + CONTACT}>{CONTACT}</a>
           <a href="https://www.linkedin.com/in/joshua-lee" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a href="https://www.instagram.com/p1sxou/" target="_blank" rel="noopener noreferrer">Instagram</a>
           <span style={{ display: "block", marginTop: 12, lineHeight: 1.8 }}>

@@ -8,6 +8,13 @@ const PROJECTS = [
   { id: "kns",            src: "assets/projects/kns_main.png",            title: "Katana N' Samurai", tags: "Visual Design  ·  Branding  ·  Community Management" },
 ];
 
+
+/* Runtime-constructed email — keeps the literal string out of HTML/JS source
+   so basic scrapers don't grab it. */
+const CONTACT_USER = "joshua040633920175";
+const CONTACT_DOM = "gmail" + "." + "com";
+const CONTACT = CONTACT_USER + "@" + CONTACT_DOM;
+Object.assign(window, { CONTACT });
 /* Fixed nav. On home: solid white, "ME" + "CONTACT".
    On a case study: transparent, ← Home + thumbnail switcher + index. */
 function Nav({ view, current, go }) {
@@ -28,7 +35,7 @@ function Nav({ view, current, go }) {
     return (
       <nav className="nav">
         <a onClick={() => go("about")} style={{ cursor: "pointer" }}>ME</a>
-        <a href="mailto:joshua040633920175@gmail.com">CONTACT</a>
+        <a href={"mailto:" + CONTACT}>CONTACT</a>
       </nav>
     );
   }
@@ -36,7 +43,7 @@ function Nav({ view, current, go }) {
     return (
       <nav className="nav">
         <a onClick={() => go("home")} style={{ cursor: "pointer" }}>← HOME</a>
-        <a href="mailto:joshua040633920175@gmail.com">CONTACT</a>
+        <a href={"mailto:" + CONTACT}>CONTACT</a>
       </nav>
     );
   }

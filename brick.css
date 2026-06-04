@@ -633,3 +633,18 @@ article[data-screen-label="Case: Katana"] .brick-screen img { object-fit: cover;
   .brick-cta { grid-template-columns: 1fr; }
   .brick-bar-row { grid-template-columns: 1fr; gap: 4px; }
 }
+
+/* ─── Mobile (≤640px) — case hero scales down so titles don't clip ─── */
+@media (max-width: 640px) {
+  .brick-hero { padding: 16px 0; }
+  .brick-hero-left { margin: 0 24px; }
+  .brick-title { font-size: clamp(44px, 13vw, 80px); letter-spacing: -0.03em; }
+  .brick-eyebrow { font-size: 14px; margin-bottom: 20px; }
+  .brick-tags { font-size: 13px; }
+  .brick-lead { font-size: 18px; line-height: 1.45; }
+  .brick-section { padding: 32px 24px; }
+  .brick-meta-row { grid-template-columns: 100px 1fr; gap: 12px; }
+  .brick-meta-key { font-size: 11px; }
+  .brick-meta-val { font-size: 15px; }
+  .brick-nav { padding: 14px 24px; }
+}

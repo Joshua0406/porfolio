@@ -177,3 +177,17 @@ body:has(.hero) .hero { flex: 1; min-height: 0; }
   * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
   .imessage li { opacity: 1; }
 }
+
+/* ─── Mobile (≤640px) — explicit fixes for cramped phone widths ─── */
+@media (max-width: 640px) {
+  html, body { overflow-x: hidden; }
+  .hero h1 { font-size: 18vw; }
+  .hero-bio-wrap { padding: 16px 24px 8px; flex-direction: column; align-items: stretch; gap: 12px; }
+  .imessage { max-width: 100%; }
+  .imessage li { font-size: 17px; max-width: 92%; }
+  .project-info { text-align: left; }
+  .site-footer { flex-direction: column; align-items: flex-start; gap: 12px; padding: 24px; }
+  .site-footer .footer-available { font-size: 19px; }
+  .footer-contact { gap: 4px; }
+  .site-footer .small { white-space: normal; }
+}
