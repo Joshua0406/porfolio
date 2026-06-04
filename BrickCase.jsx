@@ -452,10 +452,11 @@ function BrickCase({ go }) {
       <section className="brick-section" id="brick-takeaway">
         <div className="brick-label">Takeaway</div>
         <div className="brick-body">
-          <p className="brick-statement" style={{ fontSize: "44px", textAlign: "left" }}>You can be right about what users want and still hide it from them.</p>
-          <p>Brick's premise — reward autonomy instead of enforcing restriction — held up in every interview. But testing exposed the gap between that hypothesis and the interface: the single most important feature, app-blocking, was the hardest one to find.</p>
-          <p><b>Discoverability isn't a finishing touch — it decides whether the core value of a product is ever experienced at all.</b></p>
-          <p>The redesign didn't change Brick's strategy. It changed whether anyone could reach it — and that distinction is where most of the design work actually lived.</p>
+          <p className="brick-statement" style={{ fontSize: "44px", textAlign: "left" }}>A good idea is worthless if people can't find it.</p>
+          <p>Brick's concept worked in every interview — people liked being rewarded for cutting screen time instead of being punished for it. But testing showed a basic problem: the most important button, the one that actually blocks apps, was hidden three taps deep. The idea was solid. The way to reach it wasn't.</p>
+          <h4 style={{ fontSize: "22px", fontWeight: 500, margin: "24px 0 8px" }}>Key design learning</h4>
+          <p>Moving that button to the home screen was the whole fix — it didn't change what Brick does, it just let people actually use it. The lesson: where you put a feature is a real decision, not an afterthought.</p>
+          <p>With what I have now, the next step is clear — test it with the 13–17 age group the app was actually made for, and track one simple number: how fast a new user blocks their first app.</p>
         </div>
       </section>
 

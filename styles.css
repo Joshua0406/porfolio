@@ -224,7 +224,7 @@ body:has(.hero) .hero { flex: 1; min-height: 0; }
 /* ─── Mobile (≤640px) — explicit fixes for cramped phone widths ─── */
 @media (max-width: 640px) {
   html, body { overflow-x: hidden; }
-  .hero h1 { font-size: 18vw; }
+  .hero h1 { font-size: 14vw; letter-spacing: -0.03em; }
   .hero-bio-wrap { padding: 16px 24px 8px; flex-direction: column; align-items: stretch; gap: 12px; }
   .imessage { max-width: 100%; }
   .imessage li { font-size: 17px; max-width: 92%; }

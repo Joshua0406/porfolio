@@ -311,10 +311,11 @@ function DesertCase({ go }) {
       <section className="brick-section" id="desert-takeaway">
         <div className="brick-label">Takeaway</div>
         <div className="brick-body">
-          <p className="brick-statement" style={{ fontSize: "44px", textAlign: "left" }}>Fear paralyses. Facts don't stick. What works is connecting an abstract problem to something people already care about losing.</p>
-          <p>That reframe shaped every choice. Not "the land is dying" — but "the wine regions, the harvests, the landscapes you take for granted are already disappearing." <b>Loss-aversion as a design decision, not a rhetorical flourish.</b></p>
-          <p>The festival applied the same principle at a different scale: to make someone care about something abstract, put them inside an experience that makes it concrete. A post can inform. A moment can shift how someone feels for years.</p>
-          <p>The infographic was where I had to make those choices visible — what to show, what to cut, what order creates understanding versus overwhelm. Designing for comprehension under three seconds of attention is its own discipline.</p>
+          <p className="brick-statement" style={{ fontSize: "44px", textAlign: "left" }}>People don't act on big, distant problems. They act on things close to them.</p>
+          <p>The campaign was about desertification — a slow problem on land most of our audience had never seen. Telling people "the land is dying" didn't work. So we flipped it: "the wine, the food, the places you already love are disappearing." Same facts, but now it felt personal — close enough for a 21-year-old at a festival to care.</p>
+          <h4 style={{ fontSize: "22px", fontWeight: 500, margin: "24px 0 8px" }}>Key design learning</h4>
+          <p>Everything in the campaign came back to that one idea, which is a good sign the strategy was clear. If a whole creative system can grow from a single rule, you've got the foundation right.</p>
+          <p>The part I'd check first next time is the "loss" angle itself — it might feel motivating to some people and preachy to others. With what I have now, the smart next step is talking to 8–10 people from the hard-to-reach group before building everything on that one assumption.</p>
         </div>
       </section>
 
@@ -657,11 +658,11 @@ function VRCase({ go }) {
       <section className="brick-section" id="vr-takeaway">
         <h2 className="brick-label">Takeaway</h2>
         <div className="brick-body">
-          <p className="brick-statement" style={{ fontSize: "44px", textAlign: "left" }}>I thought the crowd would do the work. It didn't.</p>
-          <p>The whole study was one bet: drop five avatars into the healthy aisle, watch people drift toward the apples. The basket came back the same whether the aisle was busy or empty (p = .717). For about a week I thought I'd just run a bad study.</p>
-          <p>Then I looked at dwell time. In the "crowded" condition, people cut almost a third of the time they'd otherwise spend in the unhealthy aisle (d = 0.43). The crowd didn't pull anyone toward broccoli — but the empty unhealthy aisle quietly pushed them past the chips.</p>
-          <p>The manipulation check told me why no one felt crowded. One participant just asked, "what are they looking at?" The avatars stood there, didn't move, didn't reach for anything — they read as obstacles, not shoppers. Social proof needs people who look like they're making a choice, not just bodies in the room.</p>
-          <p>Null results aren't fails. They're data asking a sharper question. Mine is: when does just being in the room start counting as being part of the crowd?</p>
+          <p className="brick-statement" style={{ fontSize: "44px", textAlign: "left" }}>Sometimes the result you didn't expect is more useful than the one you were chasing.</p>
+          <p>I expected that a crowd of avatars near the healthy food would make people pick healthier items. It didn't — baskets looked about the same either way (p = .717). But people spent roughly a third less time in the unhealthy aisle when it was empty (d = 0.43). The crowd didn't pull people in; an empty aisle quietly pushed them out.</p>
+          <h4 style={{ fontSize: "22px", fontWeight: 500, margin: "24px 0 8px" }}>Key design learning</h4>
+          <p>Why it didn't fully work: the avatars just stood there, so people read them as objects, not shoppers. For a "crowd" to influence anyone, the people have to look like they're actually making a choice — not just standing around.</p>
+          <p>With what I have now, the next experiment is obvious — test the opposite idea directly: does an empty, quiet unhealthy aisle move people on its own, without needing a crowd anywhere at all?</p>
         </div>
       </section>
 
@@ -958,10 +959,11 @@ function KNSCase({ go }) {
       <section className="brick-section" id="kns-takeaway">
         <h2 className="brick-label">Takeaway</h2>
         <div className="brick-body">
-          <p className="brick-statement" style={{ fontSize: "30px", textAlign: "left" }}>The work is on the perimeter, not the centre.</p>
-          <p>I went in thinking the question was “what new value do we build.” That was the wrong question. The real one was “what scene are we already part of.” Value designed in isolation gets ignored. Value that slots into something people already love — a ramen shop, a regular's seat — compounds on its own.</p>
-          <p>Most of the calls I argued for were tone decisions disguised as strategy decisions. Between the team's voice and a shop owner reading a one-pager over the counter. Between what members said in a survey and what they actually showed up for. Strategy work in community, it turns out, is mostly translation work.</p>
-          <p>And the bigger lesson — you can't make people care from inside the product. You design the conditions where they discover it matters themselves. Partner with shops they already visit. Invite voices they already trust. The work is on the perimeter, not the centre.</p>
+          <p className="brick-statement" style={{ fontSize: "44px", textAlign: "left" }}>Value built in a vacuum gets ignored. Value tied to something people already love grows on its own.</p>
+          <p>My first instinct was to build new features for the NFT community. The better question turned out to be: what are these people already into? The answer — Taipei's Japanese-food scene — became the whole strategy. We signed up real shops before launching anything to holders, so the map had real places to visit before we asked anyone to care.</p>
+          <h4 style={{ fontSize: "22px", fontWeight: 500, margin: "24px 0 8px" }}>Key design learning</h4>
+          <p>Looking back, most of the big calls were really about tone, not features — like how to explain crypto ideas to a shop owner in plain words, or noticing the gap between what members said and what they actually did.</p>
+          <p>The real lesson: you can't force people to care from inside the product. You build the conditions outside it — partner with places they already go, work with voices they already trust — and let them find the value themselves.</p>
         </div>
       </section>
 
