@@ -399,6 +399,7 @@ article[data-screen-label="Case: Katana"] .brick-screen { border-radius: 14px; o
 /* Hold-to-enlarge affordance — content images are peekable, thumbnails are not */
 #app img { cursor: zoom-in; -webkit-user-drag: none; }
 #app .hero-proj img, #app .nav-proj-link img, #app .proj-footer-next img,
+#app .nav-playground img,
 #app .proj-hero-obj, #app .brick-title-logo img { cursor: pointer; }
 
 /* Nav — active project thumbnail (current page) is not interactive */

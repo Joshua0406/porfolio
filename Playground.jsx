@@ -5,18 +5,18 @@
 const PG_GROUPS = [
   {
     num: "01", title: "Spatial Design", note: "Interior & architecture — Year 1",
-    dir: "b1", ext: "png",
-    files: ["02", "03", "04", "05", "06", "07", "08", "09", "10"]
+    dir: "b1",
+    files: ["02.png", "03.png", "04.png", "05.png", "06.png", "07.png", "08.jpg", "09.jpg", "10.png"]
   },
   {
     num: "02", title: "Graphic & Type", note: "Editorial, posters, typography",
     dir: "b2",
-    files: ["01.jpg","02.jpg","03.jpg","04.jpg","05.jpg","06.png","07.jpg","08.jpg","09.jpg","10.jpg","11.jpg","12.png","13.png","14.png","15.png","16.jpg"]
+    files: ["01.jpg","02.jpg","03.jpg","04.jpg","05.jpg","06.jpg","07.jpg","08.jpg","09.jpg","10.jpg","11.jpg","12.png","13.png","14.png","15.png","16.jpg"]
   },
   {
     num: "03", title: "Motion & Image", note: "Animation, video, illustration",
     dir: "b3",
-    files: ["01.png", "02.jpg", "04.jpg"]
+    files: ["01.jpg", "02.jpg", "04.jpg"]
   },
   {
     num: "04", title: "Light & Performance", note: "Installation & performance lab",

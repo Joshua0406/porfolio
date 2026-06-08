@@ -15,6 +15,24 @@ article[data-screen-label="Case: Canvas"] .brick-strip { grid-template-columns: 
   article[data-screen-label="Case: Canvas"] .brick-strip { grid-template-columns: repeat(2, 1fr); }
 }
 
+/* Hero note — a quiet thesis line under the subtitle. Regular weight (never bold), magenta-keyed em-dash quote. */
+.cv-hero-note {
+  margin-top: 22px; max-width: 560px;
+  font-size: 19px; line-height: 1.5; font-weight: 400; font-style: italic;
+  letter-spacing: -0.005em; color: rgba(0,0,0,0.62);
+  padding-left: 18px; border-left: 2px solid var(--brick-accent); text-wrap: pretty;
+}
+@media (max-width: 640px) { .cv-hero-note { font-size: 17px; margin-top: 18px; } }
+
+/* Accessibility decision block — WCAG criteria stated as part of the redesign */
+.cv-a11y { margin-top: 8px; }
+.cv-a11y-row { display: grid; grid-template-columns: 1fr 1.7fr; gap: 24px; padding: 16px 0; border-top: 1px solid rgba(0,0,0,0.08); }
+.cv-a11y-row:last-child { border-bottom: 1px solid rgba(0,0,0,0.08); }
+.cv-a11y-crit { font-size: 16px; font-weight: 500; line-height: 1.4; }
+.cv-a11y-how { font-size: 15px; line-height: 1.55; color: rgba(0,0,0,0.72); text-wrap: pretty; }
+.cv-a11y-how b { color: var(--brick-accent); font-weight: 500; }
+@media (max-width: 640px) { .cv-a11y-row { grid-template-columns: 1fr; gap: 4px; padding: 14px 0; } }
+
 /* Display title — typeset CANVAS in magenta, a touch heavier than Brick's wordmark */
 .cv-title {
   font-size: clamp(64px, 9.5vw, 156px);

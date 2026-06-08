@@ -59,6 +59,7 @@ body:has(.hero) .hero { flex: 1; min-height: 0; }
 .nav-home.hidden { opacity: 0; transform: translateY(-12px); pointer-events: none; }
 .nav a { font-size: 17px; letter-spacing: 0.12em; text-transform: uppercase; transition: opacity 0.2s ease; white-space: nowrap; }
 .nav a:hover { opacity: 0.45; }
+.nav a.nav-playground:hover { opacity: 1; }
 .nav-projects { display: flex; gap: 12px; align-items: center; position: absolute; left: 50%; transform: translateX(-50%); }
 .nav-proj-link { display: flex; align-items: center; opacity: 0.35; transition: opacity 0.2s ease; cursor: pointer; }
 .nav-proj-link:hover, .nav-proj-link.active { opacity: 1; }
@@ -79,7 +80,6 @@ body:has(.hero) .hero { flex: 1; min-height: 0; }
   transition: transform 0.45s cubic-bezier(.22,1,.36,1);
   animation: pg-bob 3.4s ease-in-out infinite;
 }
-.nav-playground:hover img, .nav-playground:focus-visible img { transform: scale(1.12) rotate(-3deg); }
 .nav-playground:focus-visible { outline: 2px solid #000; outline-offset: 4px; }
 @keyframes pg-bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
 @media (prefers-reduced-motion: reduce) { .nav-playground img { animation: none; } }
@@ -316,14 +316,14 @@ body:has(.hero) .hero { flex: 1; min-height: 0; }
   .footer-contact { gap: 4px; }
   .site-footer .small { white-space: normal; }
   .project-info { display: none; }
-  .hero-grid { grid-template-columns: repeat(2, 1fr); gap: 16px 12px; padding: 0 20px 16px; }
+  .hero-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 1fr; align-content: stretch; gap: 16px 12px; padding: 0 20px 16px; }
   .hero-proj { gap: 4px; }
   .hero-proj .img-wrap { padding-bottom: 0; }
   .hero-grid:hover .hero-proj .img-wrap img, .hero-grid:hover .hero-proj .hero-proj-num { opacity: 1; transform: none; }
   .hero-proj-num { display: none; }
-  .hero-proj-label { display: flex; flex-direction: column; gap: 2px; align-items: center; text-align: center; padding: 0 4px; }
-  .hero-proj-label-title { font-size: 15px; font-weight: 500; letter-spacing: -0.01em; }
-  .hero-proj-label-tags { font-size: 11px; letter-spacing: 0.04em; opacity: 0.6; line-height: 1.4; }
+  .hero-proj-label { display: flex; flex-direction: column; gap: 2px; align-items: center; text-align: center; padding: 0 4px; flex-shrink: 0; }
+  .hero-proj-label-title { font-size: 14px; font-weight: 500; letter-spacing: -0.01em; }
+  .hero-proj-label-tags { display: none; }
 
   /* Nav */
   .nav { padding: 16px 20px; }

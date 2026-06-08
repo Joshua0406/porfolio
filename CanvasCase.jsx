@@ -113,6 +113,7 @@ function CanvasCase({ go }) {
           <div className="brick-eyebrow">UX Research · UI Design · Mobile Redesign</div>
           <h1 className="cv-title">Canvas</h1>
           <p className="brick-subtitle">A self-initiated 4-week case study redesigning Canvas mobile's list views to show submission state — bringing an existing Canvas web pattern across to the surface where students need it most.</p>
+          <p className="cv-hero-note">The fix already existed — on Canvas web. This project is about closing the gap, not inventing new ground.</p>
           <div className="cv-meta">
             {meta.map(([k, v]) =>
             <div className="cv-meta-cell" key={k}>
@@ -334,6 +335,23 @@ function CanvasCase({ go }) {
           </div>
           <p style={{ marginTop: 22 }}>Every pill is also a tap target. The pill is both a state indicator and a navigation affordance — scan → identify → act.</p>
 
+          <h4 className="brick-sublabel brick-sublabel-spaced">Accessibility</h4>
+          <p>State visibility only helps if it reaches every student, so the pill was specified against WCAG 2.2 from the start — not retrofitted onto the visuals afterward.</p>
+          <div className="cv-a11y">
+            <div className="cv-a11y-row">
+              <span className="cv-a11y-crit">Never colour alone</span>
+              <span className="cv-a11y-how">Every state carries a written label, and a <b>✓</b> or <b>⚠</b> glyph reinforces Submitted and Overdue — so the four states stay distinct for colour-blind users and in greyscale. <i>(1.4.1 Use of Color)</i></span>
+            </div>
+            <div className="cv-a11y-row">
+              <span className="cv-a11y-crit">Legible contrast</span>
+              <span className="cv-a11y-how">Pill label text is held above <b>4.5:1</b> against its fill and the pill boundary above <b>3:1</b> against the row — checked for each of the four states. <i>(1.4.3 / 1.4.11)</i></span>
+            </div>
+            <div className="cv-a11y-row">
+              <span className="cv-a11y-crit">A real touch target</span>
+              <span className="cv-a11y-how">Because the pill is the tap target, it's sized to the <b>44px</b> minimum and exposes an accessible name, so a screen reader announces “Submitted” or “Overdue,” not just “button.” <i>(2.5.5 / 4.1.2)</i></span>
+            </div>
+          </div>
+
           <h4 className="brick-sublabel brick-sublabel-spaced">Before / After — To-do tab</h4>
           <div className="cv-figure">
             <img className="cv-img" src="assets/canvas/ba-todo.png" alt="Before / after of the Canvas mobile To-do tab — the layout is unchanged; the right edge now carries Submitted, Submit and Overdue state pills." draggable="false" />
@@ -419,7 +437,7 @@ function CanvasCase({ go }) {
             </div>
             <div>
               <h4 className="brick-sublabel brick-sublabel-cased" style={{ fontSize: "22px", marginTop: 0 }}>What I'd do differently</h4>
-              <p style={{ fontSize: "16px", lineHeight: 1.6, color: "rgba(0,0,0,0.78)" }}>I wrote the protocol and personas before talking to anyone — that's backwards. A single pilot interview would have caught leading questions and tightened the central task. I'd also resist designing four states at once and validate the most common one first.</p>
+              <p style={{ fontSize: "16px", lineHeight: 1.6, color: "rgba(0,0,0,0.78)" }}>I wrote the protocol and personas before talking to anyone — that's backwards. A single pilot interview would have caught leading questions and tightened the central task. I'd also resist designing four states at once and validate the most common one first. To stop it recurring, I've made that a rule rather than a regret: no protocol or persona leaves draft until at least one unscripted pilot conversation has tested its assumptions — fieldwork first, artefacts second.</p>
             </div>
           </div>
 
