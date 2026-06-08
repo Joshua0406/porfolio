@@ -8,7 +8,7 @@
    state-only and avoid breaking relative asset paths. */
 const { useState, useEffect } = React;
 
-const CASE_IDS = ["brick", "desertification", "supermarket", "kns"];
+const CASE_IDS = ["brick", "desertification", "supermarket", "kns", "canvas"];
 const ROUTING_ENABLED =
   typeof document !== "undefined" &&
   !!document.querySelector('base[href="/"]');
@@ -18,6 +18,7 @@ function parseUrl() {
   const seg = (window.location.pathname || "/").replace(/^\/+|\/+$/g, "");
   if (!seg) return { view: "home", current: "brick" };
   if (seg === "about") return { view: "about", current: "brick" };
+  if (seg === "playground") return { view: "playground", current: "brick" };
   if (CASE_IDS.indexOf(seg) !== -1) return { view: "case", current: seg };
   return { view: "home", current: "brick" };
 }
@@ -25,6 +26,7 @@ function parseUrl() {
 function urlFor(view, current) {
   if (view === "home") return "/";
   if (view === "about") return "/about";
+  if (view === "playground") return "/playground";
   if (view === "case") return "/" + current;
   return "/";
 }
@@ -61,7 +63,9 @@ function App() {
       {view === "case" && current === "desertification" && <DesertCase go={go} />}
       {view === "case" && current === "supermarket" && <VRCase go={go} />}
       {view === "case" && current === "kns" && <KNSCase go={go} />}
+      {view === "case" && current === "canvas" && <CanvasCase go={go} />}
       {view === "about" && <About go={go} />}
+      {view === "playground" && <Playground go={go} />}
     </React.Fragment>
   );
 }

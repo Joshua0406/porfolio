@@ -5,7 +5,8 @@ const PROJECTS = [
 { id: "brick", src: "assets/projects/brick_main.png", title: "Brick", tags: "UX Research  ·  UI Design  ·  Usability Testing" },
 { id: "desertification", src: "assets/projects/desertification_main.png", title: "Into the Desert", tags: "Content Strategy  ·  Campaign Design  ·  Visual Communication" },
 { id: "supermarket", src: "assets/projects/supermarket_main.png", title: "VR Supermarket", tags: "VR Research  ·  Behavioural Science  ·  Statistical Analysis" },
-{ id: "kns", src: "assets/projects/kns_main.png", title: "Katana N' Samurai", tags: "Visual Design  ·  Branding  ·  Community Management" }];
+{ id: "kns", src: "assets/projects/kns_main.png", title: "Katana N' Samurai", tags: "Visual Design  ·  Branding  ·  Community Management" },
+{ id: "canvas", src: "assets/projects/canvas_main.png", title: "Canvas", tags: "LMS UX Research  ·  UI Design  ·  Usability Testing" }];
 
 
 
@@ -35,11 +36,15 @@ function Nav({ view, current, go }) {
     return (
       <nav className="nav">
         <a onClick={() => go("about")} style={{ cursor: "pointer" }}>ME</a>
+        <a className="nav-playground" onClick={(e) => { e.preventDefault(); go("playground"); }}
+           href="#" style={{ cursor: "pointer" }} aria-label="Playground — miscellaneous work" title="Playground">
+          <img src="assets/projects/playground_main.png" alt="" draggable="false" />
+        </a>
         <a href={"mailto:" + CONTACT}>CONTACT</a>
       </nav>);
 
   }
-  if (view === "about") {
+  if (view === "about" || view === "playground") {
     return (
       <nav className="nav">
         <a onClick={() => go("home")} style={{ cursor: "pointer" }}>← HOME</a>
@@ -66,7 +71,7 @@ function Nav({ view, current, go }) {
 
         })}
       </div>
-      <span className="proj-index mono">{String(idx).padStart(2, "0")} / 04</span>
+      <span className="proj-index mono">{String(idx).padStart(2, "0")} / {String(PROJECTS.length).padStart(2, "0")}</span>
     </nav>);
 
 }

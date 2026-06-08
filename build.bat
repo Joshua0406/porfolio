@@ -25,7 +25,7 @@ echo Step 1/2: Compiling JSX -^> JS with esbuild...
 echo.
 
 call npx --yes esbuild ^
-  app.jsx components.jsx Home.jsx About.jsx BrickCase.jsx OtherCases.jsx ^
+  app.jsx components.jsx Home.jsx About.jsx CaseStudy.jsx BrickCase.jsx OtherCases.jsx CanvasCase.jsx Playground.jsx ^
   --loader:.jsx=jsx ^
   --jsx-factory=React.createElement ^
   --jsx-fragment=React.Fragment ^

@@ -710,7 +710,7 @@ function KNSContribSlideshow({ images }) {
 }
 
 function KNSCase({ go }) {
-  const next = PROJECTS[0];
+  const next = PROJECTS[4]; // canvas
   const [peekIdx, setPeekIdx] = React.useState(null);
   const [peekPhase, setPeekPhase] = React.useState("closed");
   const openPeek = (i) => {

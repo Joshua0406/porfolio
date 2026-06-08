@@ -1,0 +1,218 @@
+/* ============================================================
+   CANVAS case study — additive styles on top of brick.css.
+   Same editorial / monochrome plane; magenta accent appears
+   only inside this case's content (per the design system).
+   ============================================================ */
+
+article[data-screen-label="Case: Canvas"] {
+  --brick-accent: #D81B79;   /* state pill / accent magenta */
+  --cv-amber: #C9740A;       /* overdue state */
+}
+
+/* Hero metrics — three stats space evenly across the strip */
+article[data-screen-label="Case: Canvas"] .brick-strip { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 640px) {
+  article[data-screen-label="Case: Canvas"] .brick-strip { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Display title — typeset CANVAS in magenta, a touch heavier than Brick's wordmark */
+.cv-title {
+  font-size: clamp(64px, 9.5vw, 156px);
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 0 0 6px;
+}
+.cv-title, .cv-title * { color: var(--brick-accent); }
+
+/* Hero phone placeholder fills the right rail */
+.cv-hero-phone {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  background: transparent;
+}
+.cv-hero-phone .ph { width: 100%; max-width: 320px; aspect-ratio: 9 / 18; }
+.cv-hero-img { width: 100%; max-width: 300px; height: auto; display: block; border-radius: 30px; box-shadow: 0 1px 0 rgba(0,0,0,0.04); }
+/* Hero phone: on mobile the shared brick-hero-right forces a 4/5 cover frame meant for photos — let the phone screenshot size naturally instead */
+@media (max-width: 900px) {
+  article[data-screen-label="Case: Canvas"] .brick-hero-right { aspect-ratio: auto !important; height: auto !important; padding: 4px 24px 8px; }
+  article[data-screen-label="Case: Canvas"] .cv-hero-phone { height: auto; justify-content: flex-start; padding: 0; }
+  .cv-hero-img { max-width: 260px; }
+}
+
+/* Meta block — 2-up grid instead of stacked rows */
+.cv-meta { margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 22px 32px; }
+.cv-meta-cell { display: flex; flex-direction: column; gap: 6px; }
+.cv-meta-key { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(0,0,0,0.5); }
+.cv-meta-val { font-size: 16px; line-height: 1.45; }
+@media (max-width: 640px) { .cv-meta { grid-template-columns: 1fr; gap: 16px; } }
+
+/* ── Image placeholders (user drops Figma exports in later) ── */
+.ph {
+  border: 1px dashed rgba(0,0,0,0.30);
+  background: rgba(0,0,0,0.012);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; gap: 12px;
+  padding: 32px;
+}
+.ph-name {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px; letter-spacing: 0.04em;
+  color: var(--brick-accent);
+}
+.ph-desc { font-size: 13px; line-height: 1.5; color: rgba(0,0,0,0.52); max-width: 440px; text-wrap: pretty; }
+.ph-wide { aspect-ratio: 16 / 9; }
+.ph-tall { aspect-ratio: 4 / 5; }
+.ph-phone { aspect-ratio: 9 / 18; }
+
+.cv-figure { margin: 26px 0 6px; }
+.cv-img { width: 100%; height: auto; display: block; border: 1px solid rgba(0,0,0,0.08); border-radius: 14px; }
+.cv-img-bare { border: none; border-radius: 0; }
+/* Ideation boards ship transparent (frame removed) — no figure border */
+.cv-step .cv-img { border: none; border-radius: 0; }
+/* User-flow diagram ships transparent (frame removed) — no figure border, white fill so it reads on the dark enlarge overlay */
+.cv-img[src*="userflow"] { border: none; border-radius: 0; background: #fff; }
+/* Before/after redesign figures — no outline */
+#cv-redesign .cv-figure .cv-img { border: none; border-radius: 0; }
+/* Fix hold-to-enlarge for wide images — preserve aspect ratio (page-scoped) */
+.brick-peek img { width: auto !important; height: auto !important; max-width: 92vw; max-height: 88vh; background: #fff; }
+.cv-two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 640px) { .cv-two { grid-template-columns: 1fr; } }
+.cv-caption { font-size: 14px; font-style: italic; line-height: 1.5; color: rgba(0,0,0,0.55); margin-top: 14px; text-wrap: pretty; }
+.cv-caption-lg { font-size: 20px; font-style: normal; color: #000; line-height: 1.4; text-wrap: balance; }
+.cv-caption-lg b { font-weight: 600; }
+
+/* ── Research quote grid (2×2) ── */
+.cv-quotegrid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 18px; }
+.cv-qcard { border: 1px solid rgba(0,0,0,0.08); padding: 22px; display: flex; flex-direction: column; gap: 14px; }
+.cv-qcard p { font-size: 18px; line-height: 1.45; font-style: italic; text-wrap: pretty; }
+.cv-qcard-src { font-size: 12px; letter-spacing: 0.06em; color: rgba(0,0,0,0.5); margin-top: auto; }
+@media (max-width: 640px) { .cv-quotegrid { grid-template-columns: 1fr; } }
+
+/* ── Personas — full-width magenta cards, italic quote front-and-centre ── */
+.cv-personas { display: flex; flex-direction: column; gap: 16px; margin-top: 22px; }
+.cv-persona { background: var(--brick-accent); padding: 30px 32px; }
+.cv-persona, .cv-persona * { color: #fff; }
+.cv-persona-head { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+.cv-persona-top { display: flex; align-items: center; gap: 20px; }
+.cv-persona-avatar {
+  width: 120px; height: 120px; flex-shrink: 0;
+  object-fit: contain; object-position: center top;
+  background: transparent;            /* art ships with a transparent bg */
+  -webkit-user-drag: none; user-select: none;
+}
+.cv-persona-headcol { min-width: 0; display: flex; flex-direction: column; }
+.cv-persona-name { font-size: 32px; letter-spacing: -0.015em; font-weight: 600; }
+.cv-persona-role { font-size: 19px; font-style: italic; color: rgba(255,255,255,0.82); }
+.cv-persona-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.cv-tag { border: 1px solid rgba(255,255,255,0.45); border-radius: 999px; padding: 5px 13px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+.cv-persona-quote { font-size: clamp(22px, 2.4vw, 28px); font-style: italic; line-height: 1.34; margin: 24px 0; text-wrap: balance; }
+.cv-persona-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 32px; }
+.cv-field-label { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.62); display: block; margin-bottom: 6px; }
+.cv-field p, .cv-field { font-size: 15px; line-height: 1.55; color: rgba(255,255,255,0.95); }
+@media (max-width: 640px) { .cv-persona-grid { grid-template-columns: 1fr; gap: 16px; } .cv-persona { padding: 24px; } .cv-persona-avatar { width: 96px; height: 96px; } .cv-persona-top { gap: 14px; } }
+
+/* Note block (who we're NOT designing for) */
+.cv-note { padding: 2px 0; margin-top: 32px; }
+.cv-note p { font-size: 16px; line-height: 1.6; color: rgba(0,0,0,0.78); text-wrap: pretty; }
+.cv-note b { font-weight: 600; }
+
+/* ── Ideation steps — vertical stack ── */
+.cv-steps { display: flex; flex-direction: column; gap: 44px; margin-top: 26px; }
+.cv-step-label { font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(0,0,0,0.6); margin-bottom: 16px; }
+.cv-step-label b { color: var(--brick-accent); font-weight: 600; margin-right: 4px; }
+.cv-step-cap { font-size: 15px; line-height: 1.6; color: rgba(0,0,0,0.72); margin-top: 16px; text-wrap: pretty; }
+
+/* ── Redesign — four-state table ── */
+.cv-states { border-top: 1px solid rgba(0,0,0,0.18); margin-top: 22px; }
+.cv-state-row { display: grid; grid-template-columns: 0.8fr 0.9fr 1.5fr; gap: 24px; align-items: center; padding: 18px 0; border-bottom: 1px solid rgba(0,0,0,0.1); }
+.cv-state-name { font-size: 16px; font-weight: 500; }
+.cv-state-mean { font-size: 15px; line-height: 1.5; color: rgba(0,0,0,0.7); }
+@media (max-width: 640px) {
+  .cv-state-row { grid-template-columns: 1fr 1fr; gap: 12px 16px; }
+  .cv-state-mean { grid-column: 1 / -1; }
+}
+
+/* State pills */
+.cv-pill { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 7px 15px; border-radius: 999px; font-size: 14px; font-weight: 500; letter-spacing: 0.01em; line-height: 1; white-space: nowrap; }
+/* In the redesign state table, all pills share one width so they align vertically */
+.cv-states .cv-pill { min-width: 132px; }
+.cv-pill-submitted { border: 1.5px solid var(--brick-accent); color: var(--brick-accent); background: transparent; }
+.cv-pill-submit { background: var(--brick-accent); color: #fff; border: 1.5px solid var(--brick-accent); }
+.cv-pill-submit, .cv-pill-submit * { color: #fff; }
+.cv-pill-overdue { border: 1.5px solid var(--cv-amber); color: var(--cv-amber); background: transparent; }
+.cv-dash { font-size: 22px; color: rgba(0,0,0,0.32); line-height: 1; }
+
+/* ── Generic hairline tables (test plan, cut log) ── */
+.cv-table { border-top: 1px solid rgba(0,0,0,0.18); margin-top: 22px; }
+.cv-table-row { display: grid; gap: 22px; padding: 16px 0; border-bottom: 1px solid rgba(0,0,0,0.1); align-items: baseline; }
+.cv-table-2 { grid-template-columns: 1fr 1fr; }
+.cv-table-3 { grid-template-columns: 1.2fr 1.5fr 0.6fr; }
+.cv-measure-row { grid-template-columns: 1.4fr 1.2fr 0.9fr; }
+.cv-measure-result { color: #000; font-weight: 500; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; white-space: nowrap; font-size: 17px !important; }
+.cv-measure-new { color: #D81B79; }
+/* Research — baseline figures in the left rail */
+.cv-baseline { margin-top: 40px; max-width: 300px; border-top: 1px solid rgba(0,0,0,0.18); font-weight: 400; letter-spacing: normal; text-transform: none; }
+.cv-baseline-eyebrow { display: block; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(0,0,0,0.5); padding: 14px 0 4px; }
+.cv-baseline-stat { display: flex; flex-direction: column; gap: 8px; padding: 18px 0; border-bottom: 1px solid rgba(0,0,0,0.1); }
+.cv-baseline-num { font-size: clamp(34px, 3.4vw, 48px); letter-spacing: -0.03em; line-height: 1; font-variant-numeric: tabular-nums; color: #D81B79; font-weight: 500; }
+.cv-baseline-lbl { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1.4; color: rgba(0,0,0,0.55); }
+@media (max-width: 900px) { .cv-baseline { margin-top: 24px; max-width: none; } }
+/* Horizontal baseline row (in body, above the voices grid) */
+.cv-baseline-row { max-width: none; margin-top: 28px; margin-bottom: 8px; border-top: none; }
+.cv-baseline-row .cv-baseline-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; border-top: none; padding-top: 0; }
+.cv-baseline-row .cv-baseline-stat { border-bottom: none; padding: 0; }
+@media (max-width: 560px) { .cv-baseline-row .cv-baseline-stats { grid-template-columns: 1fr; gap: 18px; } }
+/* Usability test — verdict summary */
+.cv-verdict { margin-top: 40px; }
+.cv-verdict-eyebrow { display: block; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(0,0,0,0.5); margin-bottom: 12px; }
+.cv-verdict-statement { font-size: clamp(24px, 2.6vw, 32px); line-height: 1.22; letter-spacing: -0.02em; font-weight: 400; text-wrap: balance; margin-bottom: 14px; }
+.cv-verdict-body { font-size: 16px; line-height: 1.6; color: rgba(0,0,0,0.72); max-width: 560px; text-wrap: pretty; }
+@media (max-width: 640px) { .cv-measure-row { grid-template-columns: 1fr; gap: 4px; padding: 14px 0; } .cv-measure-row .cv-table-head { display: none; } .cv-measure-result { font-size: 16px !important; } }
+.cv-table-head { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(0,0,0,0.5); }
+.cv-table-row > span { font-size: 15px; line-height: 1.5; }
+.cv-table-row .cv-cut-when { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(0,0,0,0.5); font-variant-numeric: tabular-nums; }
+.cv-table-row .cv-cut-name { font-weight: 500; }
+.cv-num-target { color: #000; font-weight: 500; }
+/* Test plan — expected outcomes list */
+.cv-outcomes { display: flex; flex-direction: column; margin-top: 12px; border-top: 1px solid rgba(0,0,0,0.08); }
+.cv-outcome { display: grid; grid-template-columns: 170px 1fr; gap: 24px; align-items: baseline; padding: 16px 0; border-bottom: 1px solid rgba(0,0,0,0.08); }
+.cv-outcome-num { font-size: clamp(22px, 2.4vw, 28px); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; color: var(--brick-accent); font-weight: 500; line-height: 1; white-space: nowrap; }
+.cv-outcome-label { font-size: 15px; line-height: 1.4; color: rgba(0,0,0,0.7); }
+@media (max-width: 640px) { .cv-outcome { grid-template-columns: 1fr; gap: 4px; } }
+@media (max-width: 640px) {
+  .cv-table-2, .cv-table-3 { grid-template-columns: 1fr; gap: 6px; }
+  .cv-table-head { display: none; }
+}
+
+/* ── Three-column callout grid (reflection) ── */
+.cv-cards3 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 24px; }
+.cv-card { background: rgba(0,0,0,0.025); padding: 26px 24px; }
+.cv-card h3 { font-size: 22px; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 12px; color: var(--brick-accent); text-wrap: balance; }
+.cv-card p { font-size: 14px; line-height: 1.6; color: rgba(0,0,0,0.72); text-wrap: pretty; }
+@media (max-width: 900px) { .cv-cards3 { grid-template-columns: 1fr; } }
+
+/* Future-work list */
+.cv-future { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 18px; }
+.cv-future li { font-size: 16px; line-height: 1.55; padding-left: 18px; position: relative; text-wrap: pretty; }
+.cv-future li::before { content: "·"; position: absolute; left: 2px; color: var(--brick-accent); font-weight: 700; }
+
+/* Closing statement */
+.cv-closing { max-width: 1200px; margin: 0 auto; padding: 64px 32px 24px; width: 100%; }
+.cv-closing-quote { font-size: clamp(30px, 4vw, 56px); line-height: 1.18; letter-spacing: -0.025em; font-style: italic; text-wrap: balance; max-width: 1000px; }
+.cv-closing-quote, .cv-closing-quote * { color: var(--brick-accent); }
+.cv-closing-sig { margin-top: 34px; font-size: 15px; line-height: 1.7; color: rgba(0,0,0,0.6); }
+@media (max-width: 640px) { .cv-closing { padding: 40px 24px 16px; } }
+
+/* Minimal standalone nav (no project switcher) */
+.cv-nav { position: sticky; top: 0; z-index: 50; display: flex; justify-content: space-between; align-items: center; padding: 22px 32px; background: rgba(255,255,255,0.85); backdrop-filter: none; }
+.cv-nav a, .cv-nav span { font-size: 15px; letter-spacing: 0.14em; text-transform: uppercase; transition: opacity 0.2s ease; }
+.cv-nav a:hover { opacity: 0.45; }
+.cv-nav .cv-nav-idx { color: rgba(0,0,0,0.4); font-variant-numeric: tabular-nums; }
+@media (max-width: 640px) { .cv-nav { padding: 16px 24px; } .cv-nav a, .cv-nav span { font-size: 13px; } }
