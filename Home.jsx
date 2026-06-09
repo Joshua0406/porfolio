@@ -121,7 +121,7 @@ function Home({ go }) {
         onMouseEnter={() => setHovered(p)} onMouseLeave={() => setHovered(null)}
         onFocus={() => setHovered(p)} onBlur={() => setHovered(null)}
         onClick={(e) => { e.preventDefault(); go("case", p.id); }}>
-            <div className="img-wrap"><img src={p.src} alt={p.title} draggable="false" /></div>
+            <div className="img-wrap"><img src={p.src} alt={p.title} width={p.w} height={p.h} draggable="false" /></div>
             <span className="hero-proj-num mono">({i + 1})</span>
             <span className="hero-proj-label" aria-hidden="true">
               <span className="hero-proj-label-title">{p.title}</span>

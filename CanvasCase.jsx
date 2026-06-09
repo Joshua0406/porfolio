@@ -1,4 +1,4 @@
-/* Canvas — self-initiated UX case study.
+﻿/* Canvas — self-initiated UX case study.
    Reuses the Brick case-study layout vocabulary (brick.css) plus
    canvas.css for personas, state pills, ideation steps, tables and
    image placeholders. Magenta accent lives only inside this article. */
@@ -41,7 +41,7 @@ function CanvasCase({ go }) {
 
   const personas = [
   {
-    name: "Sanne", role: "The Reactive Checker", avatar: "assets/canvas/persona-sanne.png",
+    name: "Sanne", role: "The Reactive Checker", avatar: "assets/canvas/persona-sanne.png", aw: 1500, ah: 1500,
     tags: ["BSc", "Phone-first", "Daily, in bursts"],
     quote: "I tap into every assignment to check if I submitted. It's exhausting.",
     fields: [
@@ -51,7 +51,7 @@ function CanvasCase({ go }) {
     ["Workaround", "Group chat as ground truth · Apple Reminders"]]
   },
   {
-    name: "Daan", role: "The Organised Externaliser", avatar: "assets/canvas/persona-daan.png",
+    name: "Daan", role: "The Organised Externaliser", avatar: "assets/canvas/persona-daan.png", aw: 1500, ah: 1500,
     tags: ["MSc", "Laptop-first", "Notion user"],
     quote: "I keep a Notion list because Canvas mobile doesn't tell me what's done.",
     fields: [
@@ -61,7 +61,7 @@ function CanvasCase({ go }) {
     ["Workaround", "Notion (Sunday sync) · Outlook calendar"]]
   },
   {
-    name: "Mei", role: "The Group-Project Juggler", avatar: "assets/canvas/persona-mei.png",
+    name: "Mei", role: "The Group-Project Juggler", avatar: "assets/canvas/persona-mei.png", aw: 1500, ah: 1500,
     tags: ["MSc", "International", "Group-heavy programme"],
     quote: "I check my own submissions and chase teammates separately. The list helps me with neither.",
     fields: [
@@ -74,16 +74,16 @@ function CanvasCase({ go }) {
   const ideation = [
   ["01", "Brainstorm", "anything goes", "Raw_ideas.png",
   "Sticky-note wall — scattered green notes, every idea welcome.",
-  "Bad ideas welcomed. Streak counters, AI assistants, calendar export, weight chips — all valid as starting points. The goal here is quantity, not quality.", "assets/canvas/ideation-raw.png"],
+  "Bad ideas welcomed. Streak counters, AI assistants, calendar export, weight chips — all valid as starting points. The goal here is quantity, not quality.", "assets/canvas/ideation-raw.png", 2200, 1857],
   ["02", "Categorize", "find the shape", "Categorization.png",
   "Same notes, now coloured by cluster: Add features (blue), Make state visible (green), Redesign the list (purple).",
-  "Three clusters emerge: features to add, state to make visible, list to restructure. The “Make state visible” cluster is already the densest — a clue.", "assets/canvas/ideation-categorize.png"],
+  "Three clusters emerge: features to add, state to make visible, list to restructure. The “Make state visible” cluster is already the densest — a clue.", "assets/canvas/ideation-categorize.png", 2200, 1857],
   ["03", "Critique", "reject with reasons", "Rejection.png",
   "Same notes, most X'd out with red labels below explaining why.",
-  "", "assets/canvas/ideation-reject.png"],
+  "", "assets/canvas/ideation-reject.png", 2200, 1857],
   ["04", "Converge", "what survived", "Final_ideas.png",
   "A clean grid of the remaining ideas.",
-  "The “Make state visible” cluster dominates. Three of those ideas combined into the final design.", "assets/canvas/ideation-final.png"]];
+  "The “Make state visible” cluster dominates. Three of those ideas combined into the final design.", "assets/canvas/ideation-final.png", 2200, 1159]];
 
   const states = [
   ["submitted", "Submitted", "Already submitted — tap to review"],
@@ -190,7 +190,7 @@ function CanvasCase({ go }) {
           <p className="brick-lead" style={{ fontSize: "30px" }}>Same data. Two surfaces. Different experiences.</p>
           <p>Canvas web's assignments list shows submission state per task — one glance answers <i>“what have I submitted?”</i>. Canvas mobile's equivalent list does not. The student is forced to tap into each item to check, then switch tabs and do it again to be sure.</p>
           <div className="cv-figure">
-            <img className="cv-img cv-img-bare" src="assets/canvas/audit-annotation.png" alt="Audit — Canvas web shows submission status per task; Canvas mobile (To-do and Calendar) shows no state, annotated with the gaps." draggable="false" />
+            <img className="cv-img cv-img-bare" src="assets/canvas/audit-annotation.png" alt="Audit — Canvas web shows submission status per task; Canvas mobile (To-do and Calendar) shows no state, annotated with the gaps." width={3600} height={1269} draggable="false" />
           </div>
         </div>
       </section>
@@ -250,7 +250,7 @@ function CanvasCase({ go }) {
             {personas.map((p) =>
             <div className="cv-persona" key={p.name}>
                 <div className="cv-persona-top">
-                  <img className="cv-persona-avatar" src={p.avatar} alt={p.name} draggable="false" />
+                  <img className="cv-persona-avatar" src={p.avatar} alt={p.name} width={p.aw} height={p.ah} draggable="false" />
                   <div className="cv-persona-headcol">
                     <div className="cv-persona-head">
                       <span className="cv-persona-name">{p.name}</span>
@@ -285,11 +285,11 @@ function CanvasCase({ go }) {
           <p>The redesign emerged from the ideation session. Twenty-plus ideas generated freely, then categorised, then critiqued. Each rejected idea earned a reason.</p>
 
           <div className="cv-steps">
-            {ideation.map(([num, title, sub, file, phdesc, cap, img]) =>
+            {ideation.map(([num, title, sub, file, phdesc, cap, img, iw, ih]) =>
             <React.Fragment key={num}>
               <div className="cv-step">
                 <div className="cv-step-label"><b>Step {num}</b> · {title} — {sub}</div>
-                <img className="cv-img" src={img} alt={title + " — " + sub} draggable="false" />
+                <img className="cv-img" src={img} alt={title + " — " + sub} width={iw} height={ih} draggable="false" />
                 {cap && <p className="cv-step-cap">{cap}</p>}
               </div>
               {num === "03" &&
@@ -377,19 +377,19 @@ function CanvasCase({ go }) {
 
           <h4 className="brick-sublabel brick-sublabel-spaced">Before / After — To-do tab</h4>
           <div className="cv-figure">
-            <img className="cv-img" src="assets/canvas/ba-todo.png" alt="Before / after of the Canvas mobile To-do tab — the layout is unchanged; the right edge now carries Submitted, Submit and Overdue state pills." draggable="false" />
+            <img className="cv-img" src="assets/canvas/ba-todo.png" alt="Before / after of the Canvas mobile To-do tab — the layout is unchanged; the right edge now carries Submitted, Submit and Overdue state pills." width={1600} height={1425} draggable="false" />
             <p className="cv-caption">Layout unchanged. Date column unchanged. Course icons, codes, titles, due times — all retained. The right edge now carries truth instead of a manual toggle.</p>
           </div>
 
           <h4 className="brick-sublabel brick-sublabel-spaced">Before / After — Calendar tab</h4>
           <div className="cv-figure">
-            <img className="cv-img" src="assets/canvas/ba-calendar.png" alt="Before / after of the Canvas mobile Calendar tab — the state pill sits on the left and a Score column is added on the right." draggable="false" />
+            <img className="cv-img" src="assets/canvas/ba-calendar.png" alt="Before / after of the Canvas mobile Calendar tab — the state pill sits on the left and a Score column is added on the right." width={1600} height={1432} draggable="false" />
             <p className="cv-caption">Same component, different row anatomy. The pill sits on the left where state earns visual priority. The Score column on the right brings a second Canvas web pattern across to mobile.</p>
           </div>
 
           <h4 className="brick-sublabel brick-sublabel-spaced">USER FLOW DIFFERENCE</h4>
           <div className="cv-figure">
-            <img className="cv-img" src="assets/canvas/userflow-diff.png" alt="User flow before/after — the current verification loop costs 2N taps and ends uncertain; the redesign is a linear 1-tap scan ending confident." draggable="false" />
+            <img className="cv-img" src="assets/canvas/userflow-diff.png" alt="User flow before/after — the current verification loop costs 2N taps and ends uncertain; the redesign is a linear 1-tap scan ending confident." width={3000} height={2283} draggable="false" />
             <p className="cv-caption cv-caption-lg"><b>Tap count: 2N → 1.</b> Where verifying N items used to cost 2N taps (open + back, repeated), the redesigned list answers the question in a single tab tap — every item's state visible at a glance.</p>
           </div>
         </div>
@@ -472,7 +472,7 @@ function CanvasCase({ go }) {
       <footer className="proj-footer">
         <a onClick={() => go("home")} style={{ cursor: "pointer" }}>← Home</a>
         <a className="proj-footer-next" onClick={() => go("case", next.id)} style={{ cursor: "pointer" }}>
-          <img src={next.src} alt={next.title} draggable="false" />
+          <img src={next.src} alt={next.title} width={next.w} height={next.h} draggable="false" />
           <span>{next.title}</span>
           <span aria-hidden="true">→</span>
         </a>
