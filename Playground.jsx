@@ -70,33 +70,23 @@ function Playground({ go }) {
     };
   }, []);
 
-  const total = PG_GROUPS.reduce((n, g) => n + g.files.length, 0);
+  const allItems = PG_GROUPS.flatMap((g) => g.files.map((f) => ({ g, f })));
 
   return (
     <div className="pg-page" data-screen-label="Playground">
       <header className="pg-head">
         <div className="pg-eyebrow">Miscellaneous · Off-cuts</div>
         <h1 className="pg-title">Playground</h1>
-        <p className="pg-lead">A working archive of the scraps — coursework, experiments, and one-offs that never grew into a full case study. <span className="pg-count mono">{total} pieces · 5 strands</span></p>
+        <p className="pg-lead">A working archive of the scraps — coursework, experiments, and one-offs that never grew into a full case study. <span className="pg-count mono">{allItems.length} pieces</span></p>
       </header>
 
-      {PG_GROUPS.map((g) => (
-        <section className="pg-group" key={g.dir} data-screen-label={"Playground: " + g.title}>
-          <div className="pg-group-head">
-            <span className="pg-group-num mono">{g.num}</span>
-            <h2 className="pg-group-title">{g.title}</h2>
-            <span className="pg-group-note">{g.note}</span>
-            <span className="pg-group-count mono">{String(g.files.length).padStart(2, "0")}</span>
-          </div>
-          <div className="pg-mason">
-            {g.files.map((f, i) => (
-              <figure className="pg-mi" key={f}>
-                <img src={srcFor(g, f)} alt={g.title + " — " + (i + 1)} draggable="false" loading="eager" />
-              </figure>
-            ))}
-          </div>
-        </section>
-      ))}
+      <div className="pg-mason">
+        {allItems.map(({ g, f }, i) => (
+          <figure className="pg-mi" key={g.dir + "/" + f}>
+            <img src={srcFor(g, f)} alt={"Playground — " + (i + 1)} draggable="false" loading="eager" />
+          </figure>
+        ))}
+      </div>
 
       <footer className="proj-footer">
         <a onClick={() => go("home")} style={{ cursor: "pointer" }}>← Home</a>
