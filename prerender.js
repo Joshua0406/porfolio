@@ -7,8 +7,9 @@
 const fs = require('fs');
 const path = require('path');
 
-const BASE_URL = 'https://plsxou.com';
+const BASE_URL = 'https://www.plsxou.com';
 const DEFAULT_IMAGE = BASE_URL + '/assets/og-cover.png';
+const AUTHOR = { '@type': 'Person', 'name': 'Joshua Lee', 'url': BASE_URL + '/' };
 const MARKER_START = '<!-- SEO:START -->';
 const MARKER_END   = '<!-- SEO:END -->';
 
@@ -33,6 +34,15 @@ const ROUTES = [
     description:   'UX research and usability testing for a merchant-first NFT loyalty platform: methods, findings, and design decisions.',
     ogTitle:       'Brick App — UX Research & Usability Testing · Joshua Lee',
     ogDescription: 'UX research and usability testing for a merchant-first NFT loyalty platform: methods, findings, and design decisions.',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'CreativeWork',
+      'name': 'Brick App — UX Research & Usability Testing',
+      'url': BASE_URL + '/brick',
+      'description': 'UX research and usability testing for a merchant-first NFT loyalty platform.',
+      'author': AUTHOR,
+      'keywords': 'UX Research, Usability Testing, NFT, Loyalty Platform, User Research',
+    },
   },
   {
     route: '/desertification',
@@ -40,6 +50,15 @@ const ROUTES = [
     description:   'A visual communication campaign on desertification — concept, art direction, and outcome.',
     ogTitle:       'Desertification — Campaign & Visual Communication · Joshua Lee',
     ogDescription: 'A visual communication campaign on desertification — concept, art direction, and outcome.',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'CreativeWork',
+      'name': 'Desertification — Campaign & Visual Communication',
+      'url': BASE_URL + '/desertification',
+      'description': 'A visual communication campaign on desertification — concept, art direction, and outcome.',
+      'author': AUTHOR,
+      'keywords': 'Visual Communication, Campaign Design, Art Direction, Desertification',
+    },
   },
   {
     route: '/supermarket',
@@ -47,20 +66,47 @@ const ROUTES = [
     description:   'A behavioural science study run in a virtual supermarket environment — design, stimuli, and results.',
     ogTitle:       'VR Supermarket — Behavioural Science Study · Joshua Lee',
     ogDescription: 'A behavioural science study run in a virtual supermarket environment — design, stimuli, and results.',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'CreativeWork',
+      'name': 'VR Supermarket — Behavioural Science Study',
+      'url': BASE_URL + '/supermarket',
+      'description': 'A behavioural science study run in a virtual supermarket environment.',
+      'author': AUTHOR,
+      'keywords': 'Behavioural Science, VR, Virtual Reality, Supermarket, User Study',
+    },
   },
   {
     route: '/kns',
-    title:         "Katana N’ Samurai — Brand & Visual Identity · Joshua Lee",
-    description:   "Visual identity and brand design for Katana N’ Samurai (KNS) — system, social, and launch assets.",
-    ogTitle:       "Katana N’ Samurai — Brand & Visual Identity · Joshua Lee",
-    ogDescription: "Visual identity and brand design for Katana N’ Samurai (KNS) — system, social, and launch assets.",
+    title:         "Katana N' Samurai — Brand & Visual Identity · Joshua Lee",
+    description:   "Visual identity and brand design for Katana N' Samurai (KNS) — system, social, and launch assets.",
+    ogTitle:       "Katana N' Samurai — Brand & Visual Identity · Joshua Lee",
+    ogDescription: "Visual identity and brand design for Katana N' Samurai (KNS) — system, social, and launch assets.",
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'CreativeWork',
+      'name': "Katana N' Samurai — Brand & Visual Identity",
+      'url': BASE_URL + '/kns',
+      'description': "Visual identity and brand design for Katana N' Samurai (KNS) — system, social, and launch assets.",
+      'author': AUTHOR,
+      'keywords': 'Brand Design, Visual Identity, Logo Design, Brand System',
+    },
   },
   {
     route: '/canvas',
     title:         'Canvas — UX Research & Mobile Redesign · Joshua Lee',
-    description:   "A self-initiated UX case study redesigning Canvas mobile’s assignment list to surface submission state — 6-participant research, Figma prototype, and usability test.",
+    description:   "A self-initiated UX case study redesigning Canvas mobile's assignment list to surface submission state — 6-participant research, Figma prototype, and usability test.",
     ogTitle:       'Canvas — UX Research & Mobile Redesign · Joshua Lee',
-    ogDescription: "A self-initiated UX case study redesigning Canvas mobile’s assignment list to surface submission state — research, prototype, and usability test.",
+    ogDescription: "A self-initiated UX case study redesigning Canvas mobile's assignment list to surface submission state — research, prototype, and usability test.",
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'CreativeWork',
+      'name': 'Canvas — UX Research & Mobile Redesign',
+      'url': BASE_URL + '/canvas',
+      'description': "A self-initiated UX case study redesigning Canvas mobile's assignment list to surface submission state.",
+      'author': AUTHOR,
+      'keywords': 'UX Research, Mobile Design, Canvas LMS, Usability Testing, UI Redesign',
+    },
   },
   {
     route: '/playground',
@@ -78,7 +124,7 @@ function esc(str) {
 function buildSeoBlock(r) {
   const url = BASE_URL + r.route;
   const img = r.image || DEFAULT_IMAGE;
-  return [
+  const lines = [
     MARKER_START,
     '  <title>' + esc(r.title) + '</title>',
     '  <meta name="description" content="' + esc(r.description) + '">',
@@ -94,8 +140,14 @@ function buildSeoBlock(r) {
     '  <meta name="twitter:description" content="' + esc(r.description) + '">',
     '  <meta name="twitter:image" content="' + img + '">',
     '  <meta name="twitter:image:alt" content="' + esc(r.ogTitle) + '">',
-    MARKER_END,
-  ].join('\n');
+  ];
+  if (r.jsonLd) {
+    lines.push('  <script type="application/ld+json">');
+    lines.push('  ' + JSON.stringify(r.jsonLd));
+    lines.push('  </script>');
+  }
+  lines.push(MARKER_END);
+  return lines.join('\n');
 }
 
 const template = fs.readFileSync('index.html', 'utf8');
@@ -115,12 +167,12 @@ for (const r of ROUTES) {
 
   if (r.route === '/') {
     fs.writeFileSync('index.html', html, 'utf8');
-    process.stdout.write('  /  → index.html\n');
+    process.stdout.write('  /  -> index.html\n');
   } else {
     const dir = r.route.slice(1);
     fs.mkdirSync(dir, { recursive: true });
     fs.writeFileSync(path.join(dir, 'index.html'), html, 'utf8');
-    process.stdout.write('  ' + r.route + '  → ' + dir + '/index.html\n');
+    process.stdout.write('  ' + r.route + '  -> ' + dir + '/index.html\n');
   }
   count++;
 }
