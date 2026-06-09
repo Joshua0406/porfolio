@@ -109,7 +109,7 @@ function Home({ go }) {
           go("case", p.id);
         }
       },
-      /* @__PURE__ */ React.createElement("div", { className: "img-wrap" }, /* @__PURE__ */ React.createElement("img", { src: p.src, alt: p.title, draggable: "false" })),
+      /* @__PURE__ */ React.createElement("div", { className: "img-wrap" }, /* @__PURE__ */ React.createElement("img", { src: p.src, alt: p.title, width: p.w, height: p.h, draggable: "false" })),
       /* @__PURE__ */ React.createElement("span", { className: "hero-proj-num mono" }, "(", i + 1, ")"),
       /* @__PURE__ */ React.createElement("span", { className: "hero-proj-label", "aria-hidden": "true" }, /* @__PURE__ */ React.createElement("span", { className: "hero-proj-label-title" }, p.title), /* @__PURE__ */ React.createElement("span", { className: "hero-proj-label-tags" }, p.tags)),
       /* @__PURE__ */ React.createElement("span", { className: "visually-hidden" }, p.title, " \u2014 ", p.tags)

@@ -100,7 +100,7 @@ function CaseStudy({ current, go }) {
           </div>
         </div>
         <div className="proj-hero-right">
-          <img className="proj-hero-obj" src={proj.src} alt={proj.title} />
+          <img className="proj-hero-obj" src={proj.src} alt={proj.title} width={proj.w} height={proj.h} />
         </div>
       </div>
 
