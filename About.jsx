@@ -6,7 +6,7 @@ function About({ go }) {
       <div className="about-top">
         <div className="about-bio-col">
           <p className="about-bio">Joshua Lee is a Communication Science student at the University of Twente, specialising in UX research and visual communication. He works at the intersection of data-driven design and strategic storytelling — conducting VR experiments in a lab, running think-aloud usability tests, and crafting visual identities for international communities. His work is defined by a commitment to rigour: every design decision is traceable to a research finding, and every finding is communicated in a form that non-specialists can act on.</p>
-          <a href="assets/CV_General.pdf" target="_blank" rel="noopener noreferrer" className="cv-btn">Resume</a>
+          <a href="assets/CV_General_2026.pdf" target="_blank" rel="noopener noreferrer" className="cv-btn">Resume</a>
         </div>
         <div className="portrait">
           <img src="assets/joshua_portrait.jpeg" alt="Joshua Lee" draggable="false" />
