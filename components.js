@@ -1,9 +1,9 @@
 const PROJECTS = [
-  { id: "brick", src: "assets/projects/brick_main.png", title: "Brick", tags: "UX Research  \xB7  UI Design  \xB7  Usability Testing" },
-  { id: "desertification", src: "assets/projects/desertification_main.png", title: "Into the Desert", tags: "Content Strategy  \xB7  Campaign Design  \xB7  Visual Communication" },
-  { id: "supermarket", src: "assets/projects/supermarket_main.png", title: "VR Supermarket", tags: "VR Research  \xB7  Behavioural Science  \xB7  Statistical Analysis" },
-  { id: "kns", src: "assets/projects/kns_main.png", title: "Katana N' Samurai", tags: "Visual Design  \xB7  Branding  \xB7  Community Management" },
-  { id: "canvas", src: "assets/projects/canvas_main.png", title: "Canvas", tags: "LMS  \xB7  UX Research  \xB7  UI Design  \xB7  Usability Testing" }
+  { id: "brick", src: "assets/projects/brick_main.webp", title: "Brick", tags: "UX Research  \xB7  UI Design  \xB7  Usability Testing" },
+  { id: "desertification", src: "assets/projects/desertification_main.webp", title: "Into the Desert", tags: "Content Strategy  \xB7  Campaign Design  \xB7  Visual Communication" },
+  { id: "supermarket", src: "assets/projects/supermarket_main.webp", title: "VR Supermarket", tags: "VR Research  \xB7  Behavioural Science  \xB7  Statistical Analysis" },
+  { id: "kns", src: "assets/projects/kns_main.webp", title: "Katana N' Samurai", tags: "Visual Design  \xB7  Branding  \xB7  Community Management" },
+  { id: "canvas", src: "assets/projects/canvas_main.webp", title: "Canvas", tags: "LMS  \xB7  UX Research  \xB7  UI Design  \xB7  Usability Testing" }
 ];
 const CONTACT_USER = "plsxou46";
 const CONTACT_DOM = "gmail.com";
@@ -37,7 +37,7 @@ function Nav({ view, current, go }) {
         "aria-label": "Playground \u2014 miscellaneous work",
         title: "Playground"
       },
-      /* @__PURE__ */ React.createElement("img", { src: "assets/projects/playground_main.png", alt: "", draggable: "false" })
+      /* @__PURE__ */ React.createElement("img", { src: "assets/projects/playground_main.webp", alt: "", draggable: "false" })
     ), /* @__PURE__ */ React.createElement("a", { href: "mailto:" + CONTACT }, "CONTACT"));
   }
   if (view === "about" || view === "playground") {
