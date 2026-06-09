@@ -125,7 +125,16 @@ function CanvasCase({ go }) {
         </div>
         <div className="brick-hero-right">
           <div className="cv-hero-phone">
-            <img className="cv-hero-img" src="assets/canvas/hero-todo-after.png" alt="Redesigned Canvas mobile To-do tab — each row shows a Submitted, Submit or Overdue pill on the right edge." draggable="false" />
+            <div className="cv-hero-embed">
+              <iframe
+                className="cv-figma"
+                title="Canvas redesign — interactive Figma prototype"
+                src="https://embed.figma.com/proto/Q13pzBIgQ9Y0PqALNNPPAc/Untitled?node-id=12-5&p=f&scaling=scale-down&content-scaling=fixed&starting-point-node-id=12%3A5&page-id=0%3A1&embed-host=share"
+                allowFullScreen
+                loading="lazy"
+              />
+            </div>
+            <span className="cv-hero-embed-label">Live prototype · tap to interact →</span>
           </div>
         </div>
       </div>
@@ -314,7 +323,21 @@ function CanvasCase({ go }) {
 
       {/* 06 — THE REDESIGN */}
       <section className="brick-section" id="cv-redesign">
-        <div className="brick-label">The redesign</div>
+        <div className="brick-label">
+          The redesign
+          <div className="cv-rail-embed">
+            <div className="cv-hero-embed">
+              <iframe
+                className="cv-figma"
+                title="Canvas redesign — interactive Figma prototype"
+                src="https://embed.figma.com/proto/Q13pzBIgQ9Y0PqALNNPPAc/Untitled?node-id=12-5&p=f&scaling=scale-down&content-scaling=fixed&starting-point-node-id=12%3A5&page-id=0%3A1&embed-host=share"
+                allowFullScreen
+                loading="lazy"
+              />
+            </div>
+            <span className="cv-hero-embed-label">Live prototype · tap to interact →</span>
+          </div>
+        </div>
         <div className="brick-body">
           <p className="brick-lead" style={{ fontSize: "30px" }}>One element changes. Everything else stays.</p>
           <p>Canvas mobile's existing list-item layout is preserved entirely. Only the right-edge element changes — from a manual checkbox decoupled from reality, to a labelled state pill bound to actual submission data. Four states cover every case.</p>

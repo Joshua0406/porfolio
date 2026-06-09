@@ -49,18 +49,59 @@ article[data-screen-label="Case: Canvas"] .brick-strip { grid-template-columns: 
   width: 100%;
   height: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 32px;
+  padding: 12px;
   background: transparent;
 }
 .cv-hero-phone .ph { width: 100%; max-width: 320px; aspect-ratio: 9 / 18; }
 .cv-hero-img { width: 100%; max-width: 300px; height: auto; display: block; border-radius: 30px; box-shadow: 0 1px 0 rgba(0,0,0,0.04); }
+/* Live Figma prototype embed — phone-proportioned, framed by a single hairline */
+.cv-hero-embed {
+  width: 100%;
+  max-width: 460px;
+  aspect-ratio: 9 / 18.6;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 24px;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+.cv-figma { width: 100%; height: 100%; border: 0; display: block; }
+.cv-hero-embed-label {
+  margin-top: 16px;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+/* Same prototype embedded in the redesign section's left meta rail — sticky so it
+   stays paired with the before/after figures while the body scrolls. */
+.cv-rail-embed {
+  margin-top: 28px;
+  position: sticky;
+  top: 88px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+}
+.cv-rail-embed .cv-hero-embed { max-width: 420px; }
+.cv-rail-embed .cv-hero-embed-label { text-align: left; align-self: stretch; }
+@media (max-width: 900px) {
+  .cv-rail-embed { position: static; margin-top: 16px; align-items: center; }
+  .cv-rail-embed .cv-hero-embed { max-width: 340px; }
+  .cv-rail-embed .cv-hero-embed-label { text-align: center; }
+}
 /* Hero phone: on mobile the shared brick-hero-right forces a 4/5 cover frame meant for photos — let the phone screenshot size naturally instead */
 @media (max-width: 900px) {
   article[data-screen-label="Case: Canvas"] .brick-hero-right { aspect-ratio: auto !important; height: auto !important; padding: 4px 24px 8px; }
   article[data-screen-label="Case: Canvas"] .cv-hero-phone { height: auto; justify-content: flex-start; padding: 0; }
   .cv-hero-img { max-width: 260px; }
+  .cv-hero-embed { max-width: 340px; }
 }
 
 /* Meta block — 2-up grid instead of stacked rows */
