@@ -400,8 +400,8 @@ function CanvasCase({ go }) {
         <div className="brick-label">
           USABILITY TEST
           <div className="brick-label-asset cv-usability-photos">
-            <img src="assets/canvas/usability-session-1.jpg" alt="Usability test session — researcher and participant reviewing Canvas on a phone" width="600" height="800" draggable="false" />
             <img src="assets/canvas/usability-session-2.jpg" alt="Usability test session — interview after the task" width="600" height="800" draggable="false" />
+            <img src="assets/canvas/usability-session-1.jpg" alt="Usability test session — researcher and participant reviewing Canvas on a phone" width="600" height="800" draggable="false" />
           </div>
         </div>
         <div className="brick-body">
