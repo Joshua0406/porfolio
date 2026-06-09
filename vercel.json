@@ -1,6 +1,6 @@
 {
   "outputDirectory": ".",
-  "buildCommand": "",
+  "buildCommand": "echo done",
   "cleanUrls": true,
   "rewrites": [
     {
