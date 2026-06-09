@@ -51,14 +51,14 @@ function BrickCase({ go }) {
   "A visually noisy app that fights distraction would be self-contradictory. Minimalism reduces cognitive load — the irony is the point."]];
 
   const screens = [
-  ["assets/brick/page_01.png", "01", "Splash", "First-run brand entry.", 585, 1266],
-  ["assets/brick/page_02.png", "02", "Onboarding", "Sign in — no commitments upfront.", 585, 1266],
-  ["assets/brick/page_03.png", "03", "Lobby", "Friends as bricks in a shared social space.", 585, 1266],
-  ["assets/brick/page_04.png", "04", "Profile", "Streak, rank, achievements — and the relocated App Block.", 585, 1266],
-  ["assets/brick/page_05.png", "05", "Shop", "Avatar cosmetics + real-world coupons.", 585, 1266],
-  ["assets/brick/rank.png", "06", "Rank", "Leaderboard — least screen time wins the week.", 390, 844],
-  ["assets/brick/page_07.png", "07", "Settings", "Notifications, themes, privacy.", 585, 1266],
-  ["assets/brick/page_08.png", "08", "App Block selection", "Choose categories of distracting apps to lock.", 585, 1266]];
+  ["assets/brick/page_01.png", "01", "Splash", "First-run brand entry."],
+  ["assets/brick/page_02.png", "02", "Onboarding", "Sign in — no commitments upfront."],
+  ["assets/brick/page_03.png", "03", "Lobby", "Friends as bricks in a shared social space."],
+  ["assets/brick/page_04.png", "04", "Profile", "Streak, rank, achievements — and the relocated App Block."],
+  ["assets/brick/page_05.png", "05", "Shop", "Avatar cosmetics + real-world coupons."],
+  ["assets/brick/rank.png", "06", "Rank", "Leaderboard — least screen time wins the week."],
+  ["assets/brick/page_07.png", "07", "Settings", "Notifications, themes, privacy."],
+  ["assets/brick/page_08.png", "08", "App Block selection", "Choose categories of distracting apps to lock."]];
 
   const categories = [
   ["Suggested Improvement", 19.1],
@@ -85,7 +85,7 @@ function BrickCase({ go }) {
           <div className="brick-eyebrow">01 · UX Research &amp; Design</div>
           <h1 className="brick-title brick-title-logo">
             <span className="visually-hidden">Brick — A Usability Study &amp; Redesign of a Gamified Screen-Time App</span>
-            <img src="assets/brick/brick_logo.png" alt="" width={375} height={75} draggable="false" />
+            <img src="assets/brick/brick_logo.png" alt="" draggable="false" />
           </h1>
           <p className="brick-subtitle">A 10-week usability study and redesign of a gamified screen-time app — surfacing the hidden primary action and yielding 14 prioritised recommendations.</p>
           <div className="brick-tags">UX Research  ·  UI Design  ·  Usability Testing</div>
@@ -256,7 +256,7 @@ function BrickCase({ go }) {
         </div>
       </section>
       <div className="brick-screens-grid brick-screens-swipe" aria-label="Brick app screens">
-        {screens.map(([src, num, name, body, w, h], i) =>
+        {screens.map(([src, num, name, body], i) =>
         <figure className="brick-screen-fig" key={i}>
             <div
             className="brick-screen"
@@ -268,8 +268,8 @@ function BrickCase({ go }) {
             onPointerUp={closePeek}
             onPointerCancel={closePeek}
             aria-label={`Hold to enlarge ${name}`}>
-
-              <img src={src} alt={`${name} — ${body}`} width={w} height={h} draggable="false" />
+            
+              <img src={src} alt={name} draggable="false" />
             </div>
             <figcaption className="brick-screen-cap">
               <span className="brick-screen-name">{name}</span>
@@ -364,13 +364,13 @@ function BrickCase({ go }) {
             <div className="brick-ba-pair">
             <div className="brick-ba-card">
               <span className="brick-ba-tag brick-ba-tag-before">Before</span>
-              <div className="brick-ba-media"><img src="assets/brick/before_1.png" alt="App Block buried in Profile — before" width={390} height={844} draggable="false" /></div>
+              <div className="brick-ba-media"><img src="assets/brick/before_1.png" alt="App Block buried in Profile — before" draggable="false" /></div>
               <h3 className="brick-ba-title">App Block buried in Profile</h3>
               <p>Users had to tap Profile → dismiss a notification banner → scroll → tap App Block. Average task time was high, and 3 of 6 participants needed prompting.</p>
             </div>
             <div className="brick-ba-card">
               <span className="brick-ba-tag brick-ba-tag-after">After</span>
-              <div className="brick-ba-media"><img src="assets/brick/after_1.png" alt="App Block elevated to Homepage — after" width={390} height={844} draggable="false" /></div>
+              <div className="brick-ba-media"><img src="assets/brick/after_1.png" alt="App Block elevated to Homepage — after" draggable="false" /></div>
               <h3 className="brick-ba-title">App Block elevated to Homepage</h3>
               <p>App Block becomes a primary action on the dashboard. The dismissable notification collapses by default. The core value of the product is now one tap away.</p>
             </div>
@@ -385,7 +385,7 @@ function BrickCase({ go }) {
             </div>
             <div className="brick-ba-card">
               <span className="brick-ba-tag brick-ba-tag-after">After</span>
-              <div className="brick-ba-media"><img src="assets/brick/after_2.png" alt="A 30-second cool-down before unblock — after" width={1560} height={3376} draggable="false" /></div>
+              <div className="brick-ba-media"><img src="assets/brick/after_2.png" alt="A 30-second cool-down before unblock — after" draggable="false" /></div>
               <h3 className="brick-ba-title">A 30-second cool-down before unblock</h3>
               <p>Directly suggested by Participant 2: &ldquo;You should add some features that you need to wait for a bit — if you can unblock easily, it&rsquo;s not stopping me.&rdquo; A visible countdown gates every unblock action: small enough not to feel punitive, large enough to interrupt impulse.</p>
             </div>
@@ -394,13 +394,13 @@ function BrickCase({ go }) {
             <div className="brick-ba-pair">
             <div className="brick-ba-card">
               <span className="brick-ba-tag brick-ba-tag-before">Before</span>
-              <div className="brick-ba-media"><img src="assets/brick/before_3.png" alt="First-time users dropped at Lobby — before" width={390} height={844} draggable="false" /></div>
+              <div className="brick-ba-media"><img src="assets/brick/before_3.png" alt="First-time users dropped at Lobby — before" draggable="false" /></div>
               <h3 className="brick-ba-title">First-time users dropped at Lobby</h3>
               <p>The isometric social space had no introduction. New users tapped around for a while before realising friends-as-bricks was the core social loop.</p>
             </div>
             <div className="brick-ba-card">
               <span className="brick-ba-tag brick-ba-tag-after">After</span>
-              <div className="brick-ba-media"><img src="assets/brick/after_3.png" alt="One-time tutorial overlay — after" width={390} height={844} draggable="false" /></div>
+              <div className="brick-ba-media"><img src="assets/brick/after_3.png" alt="One-time tutorial overlay — after" draggable="false" /></div>
               <h3 className="brick-ba-title">One-time tutorial overlay</h3>
               <p>A dismissable spotlight tour on first launch points at the App Block, the streak counter, and the friend lobby — then never reappears. No mandatory onboarding wall.</p>
             </div>
@@ -458,7 +458,7 @@ function BrickCase({ go }) {
       <footer className="proj-footer">
         <a onClick={() => go("home")} style={{ cursor: "pointer" }}>← Home</a>
         <a className="proj-footer-next" onClick={() => go("case", next.id)} style={{ cursor: "pointer" }}>
-          <img src={next.src} alt={next.title} width={next.w} height={next.h} draggable="false" />
+          <img src={next.src} alt={next.title} draggable="false" />
           <span>{next.title}</span>
           <span aria-hidden="true">→</span>
         </a>

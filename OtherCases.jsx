@@ -1,4 +1,4 @@
-﻿/* The other three case studies — Desertification, VR Supermarket, KNS.
+/* The other three case studies — Desertification, VR Supermarket, KNS.
    Reuse the .brick-* editorial classes; each tells its own story. */
 
 /* ─── 02 · DESERTIFICATION ─────────────────────────────────────────── */
@@ -26,15 +26,13 @@ function DesertCase({ go }) {
     portrait: "assets/desert/persona_sterre.jpg",
     name: "Sterre Janssen",
     meta: "30 · Journalist & activist · Receptive amplifier",
-    body: "High awareness, festival-goer, blogger. Yoga, photography, politics, veganism. Already cares — will share content the moment it lands. The audience that turns one post into ten.",
-    pw: 1200, ph: 1200
+    body: "High awareness, festival-goer, blogger. Yoga, photography, politics, veganism. Already cares — will share content the moment it lands. The audience that turns one post into ten."
   },
   {
     portrait: "assets/desert/persona_floris.jpg",
     name: "Floris van den Berg",
     meta: "21 · IBA student · Hard-to-reach",
-    body: "Low environmental awareness, right-leaning, outgoing. Football, beer, Viper at parties. Doesn't follow climate accounts. The audience the campaign was actually designed to break through to.",
-    pw: 800, ph: 1024
+    body: "Low environmental awareness, right-leaning, outgoing. Football, beer, Viper at parties. Doesn't follow climate accounts. The audience the campaign was actually designed to break through to."
   }];
 
 
@@ -64,14 +62,14 @@ function DesertCase({ go }) {
 
 
   const posts = [
-  ["assets/desert/post_who_cares.png", "Who Cares? — desertification awareness campaign post"],
-  ["assets/desert/post_dying.png", "The Land is Dying — desertification campaign post"],
-  ["assets/desert/post_spain_2050.png", "Spain 2050 — loss-framing campaign post"],
-  ["assets/desert/post_save_land.png", "Save the Land — campaign call-to-action post"],
-  ["assets/desert/post_friend.png", "Friend — social sharing campaign post"],
-  ["assets/desert/post_festival.png", "Into the Desert Benefit Festival — event announcement post"],
-  ["assets/desert/post_video.png", "Campaign video — desertification awareness"],
-  ["assets/desert/post_viper_cactus.png", "Viper × Cactus Edition — brand collaboration post"]];
+  "assets/desert/post_who_cares.png",
+  "assets/desert/post_dying.png",
+  "assets/desert/post_spain_2050.png",
+  "assets/desert/post_save_land.png",
+  "assets/desert/post_friend.png",
+  "assets/desert/post_festival.png",
+  "assets/desert/post_video.png",
+  "assets/desert/post_viper_cactus.png"];
 
 
   return (
@@ -81,7 +79,7 @@ function DesertCase({ go }) {
           <div className="brick-eyebrow">02 · Content Strategy &amp; Campaign Design</div>
           <h1 className="brick-title brick-title-logo">
             <span className="visually-hidden">Into the Desert — Content Strategy &amp; Campaign Design for a Desertification Awareness Project</span>
-            <img src="assets/desert/title_logo.png" alt="" width={1040} height={349} draggable="false" />
+            <img src="assets/desert/title_logo.png" alt="" draggable="false" />
           </h1>
           <p className="brick-subtitle">A theory-driven awareness campaign for Commonland × Viper — turning a slow climate crisis into a benefit festival Dutch 18–34s would actually attend.</p>
           <div className="brick-tags">Content Strategy  ·  Campaign Design  ·  Visual Communication</div>
@@ -101,7 +99,7 @@ function DesertCase({ go }) {
           </div>
         </div>
         <div className="brick-hero-right">
-          <img className="brick-hero-img" src="assets/desert/viper_cactus_hero.jpg" alt="Viper × Into the Desert — Cactus Edition" width={1080} height={1080} draggable="false" style={{ objectPosition: "top center", padding: 0 }} />
+          <img className="brick-hero-img" src="assets/desert/viper_cactus_hero.jpg" alt="Viper × Into the Desert — Cactus Edition" draggable="false" style={{ objectPosition: "top center", padding: 0 }} />
         </div>
       </div>
 
@@ -140,7 +138,7 @@ function DesertCase({ go }) {
       <section className="brick-section" id="desert-problem">
         <div className="brick-label">
           The Problem
-          <img className="brick-label-asset" src="assets/desert/sdg15.jpeg" alt="UN SDG 15 — Life on Land" width={1536} height={1536} style={{ width: "243px" }} />
+          <img className="brick-label-asset" src="assets/desert/sdg15.jpeg" alt="UN SDG 15 — Life on Land" style={{ width: "243px" }} />
         </div>
         <div className="brick-body">
           <p className="brick-lead">40% of Earth's land is degraded. The Sahara is creeping into southern Spain. The Dutch 18–34 cohort — the people whose generation will inherit the consequence — mostly couldn't tell you what desertification means.</p>
@@ -168,7 +166,7 @@ function DesertCase({ go }) {
             {personas.map((p) =>
             <div className="brick-persona" key={p.name}>
                 <div className="brick-persona-portrait">
-                  <img src={p.portrait} alt={p.name} width={p.pw} height={p.ph} draggable="false" />
+                  <img src={p.portrait} alt={p.name} draggable="false" />
                 </div>
                 <div className="brick-persona-name-lg">{p.name}</div>
                 <div className="brick-persona-meta">{p.meta}</div>
@@ -242,7 +240,7 @@ function DesertCase({ go }) {
         <div className="brick-body"></div>
       </section>
       <div className="brick-screens-grid" aria-label="Selected campaign posts">
-        {posts.map(([src, altText], i) =>
+        {posts.map((src, i) =>
         <figure className="brick-screen-fig" key={i}>
             <div
             className="brick-screen"
@@ -253,9 +251,9 @@ function DesertCase({ go }) {
             }}
             onPointerUp={closePeek}
             onPointerCancel={closePeek}
-            aria-label={`Hold to enlarge: ${altText}`}>
-
-              <img src={src} alt={altText} width={375} height={812} draggable="false" />
+            aria-label="Hold to enlarge campaign post">
+            
+              <img src={src} alt={"Campaign post " + (i + 1)} draggable="false" />
             </div>
           </figure>
         )}
@@ -268,7 +266,7 @@ function DesertCase({ go }) {
         </div>
       </section>
       <div className="desert-infographic-wrap">
-        <img className="desert-infographic" src="assets/desert/save_the_land_infographic.png" alt="Save the Land — desertification infographic" width={952} height={1347} draggable="false" />
+        <img className="desert-infographic" src="assets/desert/save_the_land_infographic.png" alt="Save the Land — desertification infographic" draggable="false" />
       </div>
 
       <section className="brick-section" id="desert-reflection">
@@ -329,7 +327,7 @@ function DesertCase({ go }) {
       <footer className="proj-footer">
         <a onClick={() => go("home")} style={{ cursor: "pointer" }}>← Home</a>
         <a className="proj-footer-next" onClick={() => go("case", next.id)} style={{ cursor: "pointer" }}>
-          <img src={next.src} alt={next.title} width={next.w} height={next.h} draggable="false" />
+          <img src={next.src} alt={next.title} draggable="false" />
           <span>{next.title}</span>
           <span aria-hidden="true">→</span>
         </a>
@@ -337,7 +335,7 @@ function DesertCase({ go }) {
 
       {peekIdx !== null &&
       <div className={"brick-peek brick-peek-" + peekPhase} aria-hidden="true">
-          <img src={posts[peekIdx][0]} alt="" draggable="false" />
+          <img src={posts[peekIdx]} alt="" draggable="false" />
         </div>
       }
     </article>);
@@ -377,14 +375,14 @@ function VRCase({ go }) {
 
 
   const stimuli = [
-  ["assets/vr/aisle_unhealthy.jpg", "Unhealthy aisle", "Snacks, sugary cereals, confectionery.", 1002, 766],
-  ["assets/vr/aisle_neutral.jpg", "Neutral aisle", "Milk, bread, breakfast staples.", 1112, 783],
-  ["assets/vr/aisle_healthy.jpg", "Healthy aisle", "Fresh produce, organic. The target aisle for the manipulation.", 1121, 787]];
+  ["assets/vr/aisle_unhealthy.jpg", "Unhealthy aisle", "Snacks, sugary cereals, confectionery."],
+  ["assets/vr/aisle_neutral.jpg", "Neutral aisle", "Milk, bread, breakfast staples."],
+  ["assets/vr/aisle_healthy.jpg", "Healthy aisle", "Fresh produce, organic. The target aisle for the manipulation."]];
 
 
   const conditions = [
-  ["assets/vr/cond_a.jpg", "Condition A · Experimental", "Healthy section populated with 5\u20137 static NPC avatars. Unhealthy section empty. Avatars positioned to function as a social-proof cue at the shelf edge.", 1123, 797],
-  ["assets/vr/cond_b.jpg", "Condition B · Control", "Supermarket empty except for one NPC walking across non-target aisles. Auditory and environmental factors held constant across both conditions.", 1123, 797]];
+  ["assets/vr/cond_a.jpg", "Condition A · Experimental", "Healthy section populated with 5\u20137 static NPC avatars. Unhealthy section empty. Avatars positioned to function as a social-proof cue at the shelf edge."],
+  ["assets/vr/cond_b.jpg", "Condition B · Control", "Supermarket empty except for one NPC walking across non-target aisles. Auditory and environmental factors held constant across both conditions."]];
 
 
   const results = [
@@ -423,7 +421,7 @@ function VRCase({ go }) {
           </div>
         </div>
         <div className="brick-hero-right">
-          <img className="brick-hero-img" src="assets/vr/store_cutaway.jpg" alt="3D cutaway of the VR supermarket environment" width={1122} height={795} draggable="false" style={{ objectPosition: "top center", padding: 0 }} />
+          <img className="brick-hero-img" src="assets/vr/store_cutaway.jpg" alt="3D cutaway of the VR supermarket environment" draggable="false" style={{ objectPosition: "top center", padding: 0 }} />
         </div>
       </div>
 
@@ -501,7 +499,7 @@ function VRCase({ go }) {
 
           <h4 className="brick-sublabel brick-sublabel-spaced">Research framework</h4>
           <div className="vr-framework">
-            <img src="assets/vr/framework.png" alt="Research framework: Social Density → Healthy Choices, moderated by SSI" width={951} height={286} draggable="false" />
+            <img src="assets/vr/framework.png" alt="Research framework: Social Density → Healthy Choices, moderated by SSI" draggable="false" />
           </div>
         </div>
       </section>
@@ -509,7 +507,7 @@ function VRCase({ go }) {
       <section className="brick-section" id="vr-method">
         <h2 className="brick-label">
           Method
-          <img className="brick-label-asset vr-method-photo" src="assets/vr/lab_session.jpeg" alt="Participant wearing a Meta Quest headset during a VR session at the BMS Lab" width={396} height={606} draggable="false" />
+          <img className="brick-label-asset vr-method-photo" src="assets/vr/lab_session.jpeg" alt="Participant wearing a Meta Quest headset during a VR session at the BMS Lab" draggable="false" />
         </h2>
         <div className="brick-body" style={{ paddingTop: 48 }}>
           <p className="brick-lead-sm" style={{ fontSize: "30px" }}>A 3D supermarket in Unity. Meta Quest. 50 participants. Two conditions.</p>
@@ -526,15 +524,15 @@ function VRCase({ go }) {
       </section>
 
       <div className="vr-stimuli-grid">
-        {stimuli.map(([src, name, body, w, h], i) =>
+        {stimuli.map(([src, name, body], i) =>
         <figure className="vr-stimulus" key={src}>
             <div
             className="vr-stimulus-img"
             onPointerDown={(e) => {if (window.matchMedia("(max-width: 640px)").matches) return; e.currentTarget.setPointerCapture(e.pointerId);openPeek(i);}}
             onPointerUp={closePeek}
             onPointerCancel={closePeek}>
-
-              <img src={src} alt={name} width={w} height={h} draggable="false" />
+            
+              <img src={src} alt={name} draggable="false" />
             </div>
             <figcaption className="vr-stimulus-cap">
               <span className="vr-stimulus-name">{name}</span>
@@ -547,7 +545,7 @@ function VRCase({ go }) {
       <section className="brick-section" style={{ paddingTop: 0 }}>
         <h2 className="brick-label">
           Store layout
-          <img className="brick-label-asset vr-method-photo" src="assets/vr/layout_top.jpg" alt="Top-down layout of the VR supermarket" width={607} height={708} draggable="false" />
+          <img className="brick-label-asset vr-method-photo" src="assets/vr/layout_top.jpg" alt="Top-down layout of the VR supermarket" draggable="false" />
         </h2>
         <div className="brick-body" style={{ paddingTop: 48 }}>
           <p>Top-down view of the Unity store. Participants entered through the right, encountered non-target aisles first, then traversed unhealthy → neutral → healthy sections.</p>
@@ -563,15 +561,15 @@ function VRCase({ go }) {
       </section>
 
       <div className="vr-cond-grid">
-        {conditions.map(([src, name, body, w, h], i) =>
+        {conditions.map(([src, name, body], i) =>
         <figure className="vr-cond" key={src}>
             <div
             className="vr-cond-img"
             onPointerDown={(e) => {if (window.matchMedia("(max-width: 640px)").matches) return; e.currentTarget.setPointerCapture(e.pointerId);openPeek(3 + i);}}
             onPointerUp={closePeek}
             onPointerCancel={closePeek}>
-
-              <img src={src} alt={name} width={w} height={h} draggable="false" />
+            
+              <img src={src} alt={name} draggable="false" />
             </div>
             <figcaption className="vr-cond-cap">
               <span className="vr-cond-name">{name}</span>
@@ -584,7 +582,7 @@ function VRCase({ go }) {
       <section className="brick-section" id="vr-results">
         <h2 className="brick-label">
           Results
-          <img className="brick-label-asset vr-results-plot" src="assets/vr/interaction_plot.png" alt="Interaction effect of SSI and condition on healthy product proportion" width={727} height={637} draggable="false" />
+          <img className="brick-label-asset vr-results-plot" src="assets/vr/interaction_plot.png" alt="Interaction effect of SSI and condition on healthy product proportion" draggable="false" />
         </h2>
         <div className="brick-body">
           <p>Independent samples t-tests on the primary outcomes; multiple linear regression for the moderation. All tests at α = .05, two-tailed.</p>
@@ -678,7 +676,7 @@ function VRCase({ go }) {
       <footer className="proj-footer">
         <a onClick={() => go("home")} style={{ cursor: "pointer" }}>← Home</a>
         <a className="proj-footer-next" onClick={() => go("case", next.id)} style={{ cursor: "pointer" }}>
-          <img src={next.src} alt={next.title} width={next.w} height={next.h} draggable="false" />
+          <img src={next.src} alt={next.title} draggable="false" />
           <span>{next.title}</span>
           <span aria-hidden="true">→</span>
         </a>
@@ -706,8 +704,8 @@ function KNSContribSlideshow({ images }) {
   }, [images.length]);
   return (
     <div className="kns-slideshow">
-      {images.map(([src, w, h], idx) =>
-      <img key={src} src={src} alt="" width={w} height={h} draggable="false"
+      {images.map((src, idx) =>
+      <img key={src} src={src} alt="" draggable="false"
       style={{ opacity: idx === i ? 1 : 0, transition: "opacity 0.6s ease" }} />
       )}
     </div>);
@@ -733,9 +731,9 @@ function KNSCase({ go }) {
   };
 
   const phases = [
-  ["01", "Merchant onboarding", "Partner Japanese-cuisine venues first, mechanics second. We onboarded 15+ stores (yakiniku, yakitori, izakaya, ramen, cafés, curry, tea) into the cultural map before any holder-facing occupation feature launched — stores needed to see a real audience before joining a token economy.", "assets/kns/merchant.jpg", 820, 1416],
-  ["02", "User research & community activation", "Ongoing community research, including the 4/15 town hall (里民大會) that surfaced what holders actually wanted versus what the team assumed. Activation ran through cross-NFT whitelist collaborations (Neocypher, 呢喃貓, RPF, Kaiju, Mepunk, Elysium DAO, Demi-human) and the food-scene partner network. Town-hall concerns — runway, second-wave pricing, physical utility — fed directly into the map roadmap.", "assets/kns/ama.jpg", 1043, 586],
-  ["03", "Occupation reward system", "Holders could claim partner shops with real-time leaderboards. Reward design favored repeat engagement over one-time hype — daily activity, contested territories, merchant-issued perks. Off-ramps (shop-wide discount drops, not just top-occupier rewards) gave casual holders a reason to stay.", "assets/kns/occupation.jpg", 820, 1416]];
+  ["01", "Merchant onboarding", "Partner Japanese-cuisine venues first, mechanics second. We onboarded 15+ stores (yakiniku, yakitori, izakaya, ramen, cafés, curry, tea) into the cultural map before any holder-facing occupation feature launched — stores needed to see a real audience before joining a token economy.", "assets/kns/merchant.jpg"],
+  ["02", "User research & community activation", "Ongoing community research, including the 4/15 town hall (里民大會) that surfaced what holders actually wanted versus what the team assumed. Activation ran through cross-NFT whitelist collaborations (Neocypher, 呢喃貓, RPF, Kaiju, Mepunk, Elysium DAO, Demi-human) and the food-scene partner network. Town-hall concerns — runway, second-wave pricing, physical utility — fed directly into the map roadmap.", "assets/kns/ama.jpg"],
+  ["03", "Occupation reward system", "Holders could claim partner shops with real-time leaderboards. Reward design favored repeat engagement over one-time hype — daily activity, contested territories, merchant-issued perks. Off-ramps (shop-wide discount drops, not just top-occupier rewards) gave casual holders a reason to stay.", "assets/kns/occupation.jpg"]];
 
 
 
@@ -751,20 +749,20 @@ function KNSCase({ go }) {
 
 
   const contribSlides = [
-  ["assets/kns/contrib_offline_1.jpeg", 2048, 1536],
-  ["assets/kns/contrib_voicechat.jpeg", 764, 1249],
-  ["assets/kns/contrib_instagram.jpeg", 946, 2048],
-  ["assets/kns/contrib_offline_2.jpeg", 2048, 1536],
-  ["assets/kns/contrib_planning.jpeg", 946, 2048]];
+  "assets/kns/contrib_offline_1.jpeg",
+  "assets/kns/contrib_voicechat.jpeg",
+  "assets/kns/contrib_instagram.jpeg",
+  "assets/kns/contrib_offline_2.jpeg",
+  "assets/kns/contrib_planning.jpeg"];
 
 
   const posts = [
-  ["assets/kns/post_event_3.jpg", 1400, 1400],
-  ["assets/kns/post_event.jpeg", 1440, 1440],
-  ["assets/kns/post_event_2.jpg", 1080, 1080],
-  ["assets/kns/post_launch.jpeg", 1600, 1600],
-  ["assets/kns/post_ramen_collab.png", 2048, 2048],
-  ["assets/kns/post_launch_2.jpeg", 1440, 1440]];
+  "assets/kns/post_event_3.jpg",
+  "assets/kns/post_event.jpeg",
+  "assets/kns/post_event_2.jpg",
+  "assets/kns/post_launch.jpeg",
+  "assets/kns/post_ramen_collab.png",
+  "assets/kns/post_launch_2.jpeg"];
 
 
   return (
@@ -791,7 +789,7 @@ function KNSCase({ go }) {
           </div>
         </div>
         <div className="brick-hero-right">
-          <img className="brick-hero-img" src="assets/kns/hero_artworks.jpeg" alt="Katana N' Samurai ukiyo-e characters" width={900} height={1600} draggable="false" style={{ objectPosition: "top center", padding: 0 }} />
+          <img className="brick-hero-img" src="assets/kns/hero_artworks.jpeg" alt="Katana N' Samurai ukiyo-e characters" draggable="false" style={{ objectPosition: "top center", padding: 0 }} />
         </div>
       </div>
 
@@ -831,7 +829,7 @@ function KNSCase({ go }) {
         <h2 className="brick-label kns-brief-label">
           <span>The Brief</span>
           <div className="kns-brief-media">
-            <img className="kns-brief-img" src="assets/kns/brief_samurai.jpeg" alt="Ukiyo-e samurai NFT artwork" width={1600} height={1599} draggable="false" />
+            <img className="kns-brief-img" src="assets/kns/brief_samurai.jpeg" alt="Ukiyo-e samurai NFT artwork" draggable="false" />
           </div>
         </h2>
         <div className="brick-body" style={{ paddingTop: 48 }}>
@@ -847,9 +845,9 @@ function KNSCase({ go }) {
         </h2>
         <div className="brick-body" style={{ paddingTop: 48 }}>
           <div className="brick-findings">
-            {phases.map(([num, h, p, img, iw, ih]) =>
+            {phases.map(([num, h, p, img]) =>
             <div className={"brick-finding" + (img ? " kns-phase-withimg" : "")} key={num}>
-                {img && <div className="kns-phase-imgwrap"><img src={img} alt={h} width={iw} height={ih} draggable="false" /></div>}
+                {img && <div className="kns-phase-imgwrap"><img src={img} alt={h} draggable="false" /></div>}
                 <div className="kns-phase-text">
                   <span className="brick-finding-num">{num}</span>
                   <h3 className="brick-finding-title">{h}</h3>
@@ -866,7 +864,7 @@ function KNSCase({ go }) {
           <span className="kns-contrib-heading">My Contribution</span>
           <div className="kns-contrib-media">
             <span className="brick-label-asset kns-contrib-asset"><KNSContribSlideshow images={contribSlides} /></span>
-            <img className="kns-contrib-team" src="assets/kns/team_onsite.jpg" alt="The KNS mod team on-site at the partner katana studio" width={1600} height={1200} draggable="false" />
+            <img className="kns-contrib-team" src="assets/kns/team_onsite.jpg" alt="The KNS mod team on-site at the partner katana studio" draggable="false" />
           </div>
         </h2>
         <div className="brick-body" style={{ paddingTop: 48 }}>
@@ -913,15 +911,15 @@ function KNSCase({ go }) {
         </h2>
         <div className="brick-body">
           <p>The cultural map was Phase 1's headline deliverable — a web app (<code>yamato.katanansamurai.art</code>) where holders could find, review, and eventually occupy partnered Japanese-cuisine venues across Taipei, co-built with 串燒小次郎 (@kojiroutaipei) as anchor merchant partner. I coordinated portions of the merchant onboarding pipeline, wrote launch copy and merchant-facing templates, and helped produce the launch visuals.</p>
-          <img className="kns-map-banner" src="assets/kns/collab_post.jpeg" alt="KNS × Kojirou collaboration banner" width={1600} height={408} draggable="false" style={{ height: "158px" }} />
+          <img className="kns-map-banner" src="assets/kns/collab_post.jpeg" alt="KNS × Kojirou collaboration banner" draggable="false" style={{ height: "158px" }} />
           <p>The map wasn't a directory. It was where the digital layer(NFTs, social media) and the IRL layer (real shops, real owners, real seats) met — so the visual language mattered. We chose a hand-drawn cultural-map aesthetic over generic map tiles because it needed to feel like something you'd save, not a tool you'd close after one use.</p>
           <div className="kns-map-tail">
             <div className="kns-map-grid">
-              <img src="assets/kns/ramenmap_0.jpeg" alt="Cultural map brand graphic" width={1440} height={1440} draggable="false" style={{ height: "148px", width: "148px" }} />
-              <img src="assets/kns/ramenmap_3.jpeg" alt="Cultural map — partner stores" width={1440} height={1440} draggable="false" style={{ objectFit: "fill", width: "148px", height: "148px" }} />
+              <img src="assets/kns/ramenmap_0.jpeg" alt="Cultural map brand graphic" draggable="false" style={{ height: "148px", width: "148px" }} />
+              <img src="assets/kns/ramenmap_3.jpeg" alt="Cultural map — partner stores" draggable="false" style={{ objectFit: "fill", width: "148px", height: "148px" }} />
             </div>
             <a className="kns-map-video" href="https://www.youtube.com/watch?v=_ObWZJ5_URM" target="_blank" rel="noopener noreferrer" aria-label="Watch cultural map walkthrough on YouTube" style={{ opacity: "1", height: "148px", width: "100%", maxWidth: "none", aspectRatio: "auto" }}>
-              <img src="https://img.youtube.com/vi/_ObWZJ5_URM/mqdefault.jpg" alt="Cultural map walkthrough — YouTube" width={320} height={180} draggable="false" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              <img src="https://img.youtube.com/vi/_ObWZJ5_URM/mqdefault.jpg" alt="Cultural map walkthrough — YouTube" draggable="false" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               <span className="kns-map-video-play" aria-hidden="true">▶</span>
               <span className="kns-map-video-label">Watch on YouTube ↗</span>
             </a>
@@ -936,7 +934,7 @@ function KNSCase({ go }) {
         </div>
       </section>
       <div className="brick-screens-grid brick-screens-swipe" aria-label="Selected campaign posts">
-        {posts.map(([src, w, h], i) =>
+        {posts.map((src, i) =>
         <figure className="brick-screen-fig" key={i}>
             <div
             className="brick-screen"
@@ -948,8 +946,8 @@ function KNSCase({ go }) {
             onPointerUp={closePeek}
             onPointerCancel={closePeek}
             aria-label="Hold to enlarge campaign post">
-
-              <img src={src} alt={"Campaign post " + (i + 1)} width={w} height={h} draggable="false" />
+            
+              <img src={src} alt={"Campaign post " + (i + 1)} draggable="false" />
             </div>
           </figure>
         )}
@@ -980,7 +978,7 @@ function KNSCase({ go }) {
       <footer className="proj-footer">
         <a onClick={() => go("home")} style={{ cursor: "pointer" }}>← Home</a>
         <a className="proj-footer-next" onClick={() => go("case", next.id)} style={{ cursor: "pointer" }}>
-          <img src={next.src} alt={next.title} width={next.w} height={next.h} draggable="false" />
+          <img src={next.src} alt={next.title} draggable="false" />
           <span>{next.title}</span>
           <span aria-hidden="true">→</span>
         </a>
@@ -988,7 +986,7 @@ function KNSCase({ go }) {
 
       {peekIdx !== null &&
       <div className={"brick-peek brick-peek-" + peekPhase} aria-hidden="true">
-          <img src={posts[peekIdx][0]} alt="" draggable="false" />
+          <img src={posts[peekIdx]} alt="" draggable="false" />
         </div>
       }
     </article>);

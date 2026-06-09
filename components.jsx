@@ -2,11 +2,11 @@
    Exports to window so other babel scripts can use them. */
 
 const PROJECTS = [
-{ id: "brick", src: "assets/projects/brick_main.png", w: 1608, h: 2022, title: "Brick", tags: "UX Research  ·  UI Design  ·  Usability Testing" },
-{ id: "desertification", src: "assets/projects/desertification_main.png", w: 2139, h: 2660, title: "Into the Desert", tags: "Content Strategy  ·  Campaign Design  ·  Visual Communication" },
-{ id: "supermarket", src: "assets/projects/supermarket_main.png", w: 7772, h: 5620, title: "VR Supermarket", tags: "VR Research  ·  Behavioural Science  ·  Statistical Analysis" },
-{ id: "kns", src: "assets/projects/kns_main.png", w: 1125, h: 465, title: "Katana N' Samurai", tags: "Visual Design  ·  Branding  ·  Community Management" },
-{ id: "canvas", src: "assets/projects/canvas_main.png", w: 1197, h: 1500, title: "Canvas", tags: "LMS  ·  UX Research  ·  UI Design  ·  Usability Testing" }];
+{ id: "brick", src: "assets/projects/brick_main.png", title: "Brick", tags: "UX Research  ·  UI Design  ·  Usability Testing" },
+{ id: "desertification", src: "assets/projects/desertification_main.png", title: "Into the Desert", tags: "Content Strategy  ·  Campaign Design  ·  Visual Communication" },
+{ id: "supermarket", src: "assets/projects/supermarket_main.png", title: "VR Supermarket", tags: "VR Research  ·  Behavioural Science  ·  Statistical Analysis" },
+{ id: "kns", src: "assets/projects/kns_main.png", title: "Katana N' Samurai", tags: "Visual Design  ·  Branding  ·  Community Management" },
+{ id: "canvas", src: "assets/projects/canvas_main.png", title: "Canvas", tags: "LMS  ·  UX Research  ·  UI Design  ·  Usability Testing" }];
 
 
 
@@ -38,7 +38,7 @@ function Nav({ view, current, go }) {
         <a onClick={() => go("about")} style={{ cursor: "pointer" }}>ME</a>
         <a className="nav-playground" onClick={(e) => { e.preventDefault(); go("playground"); }}
            href="#" style={{ cursor: "pointer" }} aria-label="Playground — miscellaneous work" title="Playground">
-          <img src="assets/projects/playground_main.png" alt="" width={466} height={347} draggable="false" />
+          <img src="assets/projects/playground_main.png" alt="" draggable="false" />
         </a>
         <a href={"mailto:" + CONTACT}>CONTACT</a>
       </nav>);
@@ -66,7 +66,7 @@ function Nav({ view, current, go }) {
               className={"nav-proj-link" + (isActive ? " active" : "")}
               onClick={isActive ? undefined : () => go("case", p.id)}
               style={isActive ? { pointerEvents: "none", cursor: "default" } : undefined}>
-              <img src={p.src} alt={p.title} width={p.w} height={p.h} draggable="false" />
+              <img src={p.src} alt={p.title} draggable="false" />
             </a>);
 
         })}
