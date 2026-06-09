@@ -183,12 +183,15 @@ let count = 0;
 for (const r of ROUTES) {
   let html = template.replace(templateBlock, function () { return buildSeoBlock(r); });
 
-  // Inject per-page static H1 for crawlers (idempotent: strip any prior injection first).
+  // Inject per-page static text node for crawlers — NOT an h1, so the React-rendered
+  // visual heading remains the sole <h1> on the page. Idempotent: strip prior injection first.
+  html = html.replace(/<p class="visually-hidden" aria-hidden="true">[^<]*<\/p>\n  /g, '');
+  // also clean up any old <h1 class="visually-hidden"> injections from a previous run
   html = html.replace(/<h1 class="visually-hidden" aria-hidden="true">[^<]*<\/h1>\n  /g, '');
   if (r.h1) {
     html = html.replace(
       '<div id="app"></div>',
-      '<h1 class="visually-hidden" aria-hidden="true">' + esc(r.h1) + '</h1>\n  <div id="app"></div>'
+      '<p class="visually-hidden" aria-hidden="true">' + esc(r.h1) + '</p>\n  <div id="app"></div>'
     );
   }
 
