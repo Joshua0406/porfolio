@@ -129,7 +129,7 @@ function CanvasCase({ go }) {
               <iframe
                 className="cv-figma"
                 title="Canvas redesign — interactive Figma prototype"
-                src="https://embed.figma.com/proto/Q13pzBIgQ9Y0PqALNNPPAc/Untitled?node-id=12-5&p=f&scaling=scale-down&content-scaling=fixed&starting-point-node-id=12%3A5&page-id=0%3A1&embed-host=share"
+                src="https://embed.figma.com/proto/Q13pzBIgQ9Y0PqALNNPPAc/Untitled?node-id=12-5&p=f&scaling=scale-down&content-scaling=fixed&starting-point-node-id=12%3A5&page-id=0%3A1&hide-ui=1&hotspot-hints=0&embed-host=share"
                 allowFullScreen
                 loading="lazy"
               />
@@ -330,7 +330,7 @@ function CanvasCase({ go }) {
               <iframe
                 className="cv-figma"
                 title="Canvas redesign — interactive Figma prototype"
-                src="https://embed.figma.com/proto/Q13pzBIgQ9Y0PqALNNPPAc/Untitled?node-id=12-5&p=f&scaling=scale-down&content-scaling=fixed&starting-point-node-id=12%3A5&page-id=0%3A1&embed-host=share"
+                src="https://embed.figma.com/proto/Q13pzBIgQ9Y0PqALNNPPAc/Untitled?node-id=12-5&p=f&scaling=scale-down&content-scaling=fixed&starting-point-node-id=12%3A5&page-id=0%3A1&hide-ui=1&hotspot-hints=0&embed-host=share"
                 allowFullScreen
                 loading="lazy"
               />

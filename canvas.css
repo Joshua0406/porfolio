@@ -57,17 +57,29 @@ article[data-screen-label="Case: Canvas"] .brick-strip { grid-template-columns: 
 }
 .cv-hero-phone .ph { width: 100%; max-width: 320px; aspect-ratio: 9 / 18; }
 .cv-hero-img { width: 100%; max-width: 300px; height: auto; display: block; border-radius: 30px; box-shadow: 0 1px 0 rgba(0,0,0,0.04); }
-/* Live Figma prototype embed — phone-proportioned, framed by a single hairline */
+/* Live Figma prototype embed — phone-proportioned, framed by a single hairline.
+   The iframe is oversized inside an overflow-hidden frame so Figma's fit-padding
+   and bottom chrome (toolbar + file bar) get cropped and the phone fills the box. */
 .cv-hero-embed {
+  position: relative;
   width: 100%;
-  max-width: 460px;
-  aspect-ratio: 9 / 18.6;
+  max-width: 340px;
+  aspect-ratio: 9 / 19;
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 24px;
   overflow: hidden;
   background: #0a0a0a;
 }
-.cv-figma { width: 100%; height: 100%; border: 0; display: block; }
+.cv-figma {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  transform: scale(1.36);
+  transform-origin: center center;
+}
 .cv-hero-embed-label {
   margin-top: 16px;
   font-size: 12px;
@@ -89,11 +101,11 @@ article[data-screen-label="Case: Canvas"] .brick-strip { grid-template-columns: 
   letter-spacing: normal;
   text-transform: none;
 }
-.cv-rail-embed .cv-hero-embed { max-width: 420px; }
+.cv-rail-embed .cv-hero-embed { max-width: 320px; }
 .cv-rail-embed .cv-hero-embed-label { text-align: left; align-self: stretch; }
 @media (max-width: 900px) {
   .cv-rail-embed { position: static; margin-top: 16px; align-items: center; }
-  .cv-rail-embed .cv-hero-embed { max-width: 340px; }
+  .cv-rail-embed .cv-hero-embed { max-width: 270px; }
   .cv-rail-embed .cv-hero-embed-label { text-align: center; }
 }
 /* Hero phone: on mobile the shared brick-hero-right forces a 4/5 cover frame meant for photos — let the phone screenshot size naturally instead */
@@ -101,7 +113,7 @@ article[data-screen-label="Case: Canvas"] .brick-strip { grid-template-columns: 
   article[data-screen-label="Case: Canvas"] .brick-hero-right { aspect-ratio: auto !important; height: auto !important; padding: 4px 24px 8px; }
   article[data-screen-label="Case: Canvas"] .cv-hero-phone { height: auto; justify-content: flex-start; padding: 0; }
   .cv-hero-img { max-width: 260px; }
-  .cv-hero-embed { max-width: 340px; }
+  .cv-hero-embed { max-width: 270px; }
 }
 
 /* Meta block — 2-up grid instead of stacked rows */
