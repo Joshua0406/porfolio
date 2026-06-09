@@ -84,36 +84,6 @@ const PG_IMAGES = [
   "\u672A\u547D\u540D\u7684\u4F5C\u54C1-2 2.png",
   "\u672A\u547D\u540D\u7684\u4F5C\u54C1-4 2.png"
 ];
-const TILES = [
-  { x1: 1, x2: 4, y1: 1, y2: 4 },
-  // 3×3
-  { x1: 4, x2: 6, y1: 1, y2: 3 },
-  // 2×2
-  { x1: 6, x2: 8, y1: 1, y2: 3 },
-  // 2×2
-  { x1: 8, x2: 10, y1: 1, y2: 3 },
-  // 2×2
-  { x1: 1, x2: 3, y1: 4, y2: 6 },
-  // 2×2
-  { x1: 3, x2: 6, y1: 4, y2: 7 },
-  // 3×3
-  { x1: 6, x2: 8, y1: 4, y2: 6 },
-  // 2×2
-  { x1: 8, x2: 10, y1: 3, y2: 6 },
-  // 2×3
-  { x1: 1, x2: 2, y1: 6, y2: 8 },
-  // 1×2
-  { x1: 2, x2: 4, y1: 6, y2: 8 },
-  // 2×2
-  { x1: 6, x2: 8, y1: 6, y2: 8 },
-  // 2×2
-  { x1: 8, x2: 10, y1: 6, y2: 9 },
-  // 2×3
-  { x1: 3, x2: 5, y1: 7, y2: 9 },
-  // 2×2
-  { x1: 5, x2: 7, y1: 7, y2: 9 }
-  // 2×2
-];
 function shuffle(arr) {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
@@ -123,28 +93,15 @@ function shuffle(arr) {
   return a;
 }
 function Playground({ go }) {
-  const displayed = React.useMemo(() => shuffle(PG_IMAGES).slice(0, TILES.length), []);
-  return /* @__PURE__ */ React.createElement("div", { className: "pg-scene", "data-screen-label": "Playground" }, /* @__PURE__ */ React.createElement("div", { className: "pg-head-overlay" }, /* @__PURE__ */ React.createElement("div", { className: "pg-eyebrow" }, "Miscellaneous \xB7 Off-cuts"), /* @__PURE__ */ React.createElement("h1", { className: "pg-title" }, "Playground")), /* @__PURE__ */ React.createElement("div", { className: "pg-mosaic-wrap" }, /* @__PURE__ */ React.createElement("ul", { className: "pg-tiles" }, displayed.map((f, i) => /* @__PURE__ */ React.createElement(
-    "li",
+  const items = React.useMemo(() => shuffle(PG_IMAGES), []);
+  return /* @__PURE__ */ React.createElement("div", { className: "pg-page", "data-screen-label": "Playground" }, /* @__PURE__ */ React.createElement("header", { className: "pg-head" }, /* @__PURE__ */ React.createElement("div", { className: "pg-eyebrow" }, "Miscellaneous \xB7 Off-cuts"), /* @__PURE__ */ React.createElement("h1", { className: "pg-title" }, "Playground"), /* @__PURE__ */ React.createElement("p", { className: "pg-lead" }, "A working archive of the scraps \u2014 coursework, experiments, and one-offs that never grew into a full case study.", " ", /* @__PURE__ */ React.createElement("span", { className: "pg-count mono" }, items.length, " pieces"))), /* @__PURE__ */ React.createElement("div", { className: "pg-mason" }, items.map((f, i) => /* @__PURE__ */ React.createElement("figure", { className: "pg-mi", key: f }, /* @__PURE__ */ React.createElement(
+    "img",
     {
-      className: "pg-tile",
-      key: f,
-      style: {
-        "--x1": TILES[i].x1,
-        "--x2": TILES[i].x2,
-        "--y1": TILES[i].y1,
-        "--y2": TILES[i].y2
-      }
-    },
-    /* @__PURE__ */ React.createElement(
-      "img",
-      {
-        src: "assets/pg/" + encodeURIComponent(f),
-        alt: "",
-        draggable: "false",
-        loading: "eager"
-      }
-    )
-  )))), /* @__PURE__ */ React.createElement("div", { className: "pg-nav-corners" }, /* @__PURE__ */ React.createElement("a", { onClick: () => go("home") }, "\u2190 Home"), /* @__PURE__ */ React.createElement("a", { onClick: () => go("about") }, "About \u2192")));
+      src: "assets/pg/" + encodeURIComponent(f),
+      alt: "Playground \u2014 " + (i + 1),
+      draggable: "false",
+      loading: "lazy"
+    }
+  )))), /* @__PURE__ */ React.createElement("footer", { className: "proj-footer" }, /* @__PURE__ */ React.createElement("a", { onClick: () => go("home"), style: { cursor: "pointer" } }, "\u2190 Home"), /* @__PURE__ */ React.createElement("a", { onClick: () => go("about"), style: { cursor: "pointer" } }, "About \u2192")));
 }
 Object.assign(window, { Playground });

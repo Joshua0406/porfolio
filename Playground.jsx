@@ -1,4 +1,4 @@
-/* Playground — scroll-driven mosaic. Tiles scale + rotate on scroll; images counter-rotate.
+/* Playground — Pinterest-style column masonry. Pure CSS, no JS layout calc.
    Drop images into assets/pg/ and list filenames in PG_IMAGES. */
 
 const PG_IMAGES = [
@@ -88,24 +88,6 @@ const PG_IMAGES = [
   "未命名的作品-4 2.png",
 ];
 
-// 14 mosaic slots in a 9×9 grid — mix of 1×2, 2×2, 2×3, and 3×3 tiles
-const TILES = [
-  { x1: 1, x2: 4, y1: 1, y2: 4 },   // 3×3
-  { x1: 4, x2: 6, y1: 1, y2: 3 },   // 2×2
-  { x1: 6, x2: 8, y1: 1, y2: 3 },   // 2×2
-  { x1: 8, x2: 10, y1: 1, y2: 3 },  // 2×2
-  { x1: 1, x2: 3, y1: 4, y2: 6 },   // 2×2
-  { x1: 3, x2: 6, y1: 4, y2: 7 },   // 3×3
-  { x1: 6, x2: 8, y1: 4, y2: 6 },   // 2×2
-  { x1: 8, x2: 10, y1: 3, y2: 6 },  // 2×3
-  { x1: 1, x2: 2, y1: 6, y2: 8 },   // 1×2
-  { x1: 2, x2: 4, y1: 6, y2: 8 },   // 2×2
-  { x1: 6, x2: 8, y1: 6, y2: 8 },   // 2×2
-  { x1: 8, x2: 10, y1: 6, y2: 9 },  // 2×3
-  { x1: 3, x2: 5, y1: 7, y2: 9 },   // 2×2
-  { x1: 5, x2: 7, y1: 7, y2: 9 },   // 2×2
-];
-
 function shuffle(arr) {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
@@ -116,43 +98,36 @@ function shuffle(arr) {
 }
 
 function Playground({ go }) {
-  const displayed = React.useMemo(() => shuffle(PG_IMAGES).slice(0, TILES.length), []);
+  const items = React.useMemo(() => shuffle(PG_IMAGES), []);
 
   return (
-    <div className="pg-scene" data-screen-label="Playground">
-      <div className="pg-head-overlay">
+    <div className="pg-page" data-screen-label="Playground">
+      <header className="pg-head">
         <div className="pg-eyebrow">Miscellaneous · Off-cuts</div>
         <h1 className="pg-title">Playground</h1>
+        <p className="pg-lead">
+          A working archive of the scraps — coursework, experiments, and one-offs that never grew into a full case study.{" "}
+          <span className="pg-count mono">{items.length} pieces</span>
+        </p>
+      </header>
+
+      <div className="pg-mason">
+        {items.map((f, i) => (
+          <figure className="pg-mi" key={f}>
+            <img
+              src={"assets/pg/" + encodeURIComponent(f)}
+              alt={"Playground — " + (i + 1)}
+              draggable="false"
+              loading="lazy"
+            />
+          </figure>
+        ))}
       </div>
 
-      <div className="pg-mosaic-wrap">
-        <ul className="pg-tiles">
-          {displayed.map((f, i) => (
-            <li
-              className="pg-tile"
-              key={f}
-              style={{
-                '--x1': TILES[i].x1,
-                '--x2': TILES[i].x2,
-                '--y1': TILES[i].y1,
-                '--y2': TILES[i].y2,
-              }}
-            >
-              <img
-                src={"assets/pg/" + encodeURIComponent(f)}
-                alt=""
-                draggable="false"
-                loading="eager"
-              />
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="pg-nav-corners">
-        <a onClick={() => go("home")}>← Home</a>
-        <a onClick={() => go("about")}>About →</a>
-      </div>
+      <footer className="proj-footer">
+        <a onClick={() => go("home")} style={{ cursor: "pointer" }}>← Home</a>
+        <a onClick={() => go("about")} style={{ cursor: "pointer" }}>About →</a>
+      </footer>
     </div>
   );
 }
