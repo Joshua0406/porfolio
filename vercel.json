@@ -1,6 +1,10 @@
 {
+  "cleanUrls": true,
   "rewrites": [
-    { "source": "/((?!assets|favicon\\.svg|robots\\.txt|sitemap\\.xml).*)", "destination": "/index.html" }
+    {
+      "source": "/((?!assets|favicon\\.svg|robots\\.txt|sitemap\\.xml|about|brick|desertification|supermarket|kns|canvas|playground).*)",
+      "destination": "/index.html"
+    }
   ],
   "headers": [
     {
