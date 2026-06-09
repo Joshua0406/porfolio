@@ -77,7 +77,10 @@ function DesertCase({ go }) {
       <div className="brick-hero">
         <div className="brick-hero-left">
           <div className="brick-eyebrow">02 · Content Strategy &amp; Campaign Design</div>
-          <h1 className="brick-title brick-title-logo"><img src="assets/desert/title_logo.png" alt="Into the Desert" draggable="false" /></h1>
+          <h1 className="brick-title brick-title-logo">
+            <span className="visually-hidden">Into the Desert — Content Strategy &amp; Campaign Design for a Desertification Awareness Project</span>
+            <img src="assets/desert/title_logo.png" alt="" draggable="false" />
+          </h1>
           <p className="brick-subtitle">A theory-driven awareness campaign for Commonland × Viper — turning a slow climate crisis into a benefit festival Dutch 18–34s would actually attend.</p>
           <div className="brick-tags">Content Strategy  ·  Campaign Design  ·  Visual Communication</div>
           <div className="brick-meta">
@@ -400,7 +403,7 @@ function VRCase({ go }) {
       <div className="brick-hero">
         <div className="brick-hero-left">
           <div className="brick-eyebrow">03 · VR Research &amp; Behavioural Science</div>
-          <h1 className="brick-title brick-title-red">VR<br />Supermarket</h1>
+          <h1 className="brick-title brick-title-red" aria-label="VR Supermarket — Behavioural Science Research in Virtual Reality">VR<br />Supermarket</h1>
           <p className="brick-subtitle">A between-subjects VR experiment (N = 50) testing whether virtual crowd presence in healthy aisles nudges food selection — and what a null result says about social realism in immersive retail.</p>
           <div className="brick-tags">VR Research  ·  Behavioural Science  ·  Statistical Analysis</div>
           <div className="brick-meta">
@@ -767,7 +770,7 @@ function KNSCase({ go }) {
       <div className="brick-hero">
         <div className="brick-hero-left">
           <div className="brick-eyebrow">04 · Community Strategy &amp; NFT Utility</div>
-          <h1 className="brick-title brick-title-red">Katana N'<br />Samurai</h1>
+          <h1 className="brick-title brick-title-red" aria-label="Katana N' Samurai — Visual Design, Branding &amp; Community Management">Katana N'<br />Samurai</h1>
           <p className="brick-subtitle">A six-month rescue mission for a 2,000-piece ukiyo-e NFT — turning the collectible into a key to Taipei's Japanese-food scene.</p>
           <div className="brick-tags">User Research  ·  Community Strategy  ·  KOL Partnerships</div>
           <div className="brick-meta">

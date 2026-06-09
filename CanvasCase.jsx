@@ -111,7 +111,7 @@ function CanvasCase({ go }) {
       <div className="brick-hero">
         <div className="brick-hero-left">
           <div className="brick-eyebrow">UX Research · UI Design · Mobile Redesign</div>
-          <h1 className="cv-title">Canvas</h1>
+          <h1 className="cv-title">Canvas<span className="visually-hidden"> LMS — UX Research &amp; UI Redesign with Usability Testing</span></h1>
           <p className="brick-subtitle">A self-initiated 4-week case study redesigning Canvas mobile's list views to show submission state — bringing an existing Canvas web pattern across to the surface where students need it most.</p>
           <p className="cv-hero-note">The fix already existed — on Canvas web. This project is about closing the gap, not inventing new ground.</p>
           <div className="cv-meta">

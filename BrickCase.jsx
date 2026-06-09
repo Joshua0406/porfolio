@@ -83,7 +83,10 @@ function BrickCase({ go }) {
       <div className="brick-hero">
         <div className="brick-hero-left">
           <div className="brick-eyebrow">01 · UX Research &amp; Design</div>
-          <h1 className="brick-title brick-title-logo"><img src="assets/brick/brick_logo.png" alt="Brick" draggable="false" /></h1>
+          <h1 className="brick-title brick-title-logo">
+            <span className="visually-hidden">Brick — A Usability Study &amp; Redesign of a Gamified Screen-Time App</span>
+            <img src="assets/brick/brick_logo.png" alt="" draggable="false" />
+          </h1>
           <p className="brick-subtitle">A 10-week usability study and redesign of a gamified screen-time app — surfacing the hidden primary action and yielding 14 prioritised recommendations.</p>
           <div className="brick-tags">UX Research  ·  UI Design  ·  Usability Testing</div>
           <div className="brick-meta">
