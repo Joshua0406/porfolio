@@ -32,7 +32,7 @@ body:has(.hero) .hero { flex: 1; min-height: 0; }
   display: flex; justify-content: space-between; align-items: center;
   padding: 22px 32px; z-index: 200; background: #fff;
 }
-.nav.nav-fixed { position: fixed; }
+.nav.nav-fixed { position: fixed; background: transparent; }
 .nav.transparent {
   position: fixed;
   background: transparent;
