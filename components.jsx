@@ -46,7 +46,7 @@ function Nav({ view, current, go }) {
   }
   if (view === "about" || view === "playground") {
     return (
-      <nav className="nav">
+      <nav className="nav nav-fixed">
         <a onClick={() => go("home")} style={{ cursor: "pointer" }}>← HOME</a>
         <a href={"mailto:" + CONTACT}>CONTACT</a>
       </nav>);

@@ -41,7 +41,7 @@ function Nav({ view, current, go }) {
     ), /* @__PURE__ */ React.createElement("a", { href: "mailto:" + CONTACT }, "CONTACT"));
   }
   if (view === "about" || view === "playground") {
-    return /* @__PURE__ */ React.createElement("nav", { className: "nav" }, /* @__PURE__ */ React.createElement("a", { onClick: () => go("home"), style: { cursor: "pointer" } }, "\u2190 HOME"), /* @__PURE__ */ React.createElement("a", { href: "mailto:" + CONTACT }, "CONTACT"));
+    return /* @__PURE__ */ React.createElement("nav", { className: "nav nav-fixed" }, /* @__PURE__ */ React.createElement("a", { onClick: () => go("home"), style: { cursor: "pointer" } }, "\u2190 HOME"), /* @__PURE__ */ React.createElement("a", { href: "mailto:" + CONTACT }, "CONTACT"));
   }
   const idx = PROJECTS.findIndex((p) => p.id === current) + 1;
   return /* @__PURE__ */ React.createElement("nav", { className: "nav transparent" }, /* @__PURE__ */ React.createElement("a", { className: "nav-home" + (hidden ? " hidden" : ""), onClick: () => go("home"), style: { cursor: "pointer" } }, "\u2190 Home"), /* @__PURE__ */ React.createElement("div", { className: "nav-projects" }, PROJECTS.map((p) => {
