@@ -287,3 +287,7 @@ article[data-screen-label="Case: Canvas"] .brick-strip { grid-template-columns: 
 .cv-nav a:hover { opacity: 0.45; }
 .cv-nav .cv-nav-idx { color: rgba(0,0,0,0.4); font-variant-numeric: tabular-nums; }
 @media (max-width: 640px) { .cv-nav { padding: 16px 24px; } .cv-nav a, .cv-nav span { font-size: 13px; } }
+
+/* Usability test session photos */
+.cv-usability-photos { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+.cv-usability-photos img { width: 100%; height: auto; border-radius: 4px; object-fit: cover; }
