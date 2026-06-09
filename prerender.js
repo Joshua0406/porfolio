@@ -3,6 +3,7 @@
 //
 // Replaces the block between <!-- SEO:START --> and <!-- SEO:END --> in index.html
 // and writes each route to <route>/index.html (cleanUrls-compatible).
+// Also injects a visually-hidden <h1> in the body for each route that has h1 set.
 
 const fs = require('fs');
 const path = require('path');
@@ -16,6 +17,7 @@ const MARKER_END   = '<!-- SEO:END -->';
 const ROUTES = [
   {
     route: '/',
+    h1:            'Joshua Lee',
     title:         'Joshua Lee — UX Researcher & Visual Designer · Portfolio',
     description:   'Portfolio of Joshua Lee, a UX researcher and visual designer at the University of Twente. UX research, usability testing, and visual design case studies.',
     ogTitle:       'Joshua Lee — UX Researcher & Visual Designer',
@@ -23,6 +25,7 @@ const ROUTES = [
   },
   {
     route: '/about',
+    h1:            null,
     title:         'About — Joshua Lee · UX Researcher & Visual Designer',
     description:   'Joshua Lee — BSc Communication Science (University of Twente). Background, education, skills, and contact. Available for a UX research or design internship from August 2026.',
     ogTitle:       'About — Joshua Lee · UX Researcher & Visual Designer',
@@ -30,9 +33,10 @@ const ROUTES = [
   },
   {
     route: '/brick',
-    title:         'Brick — A Usability Study & Redesign of a Gamified Screen-Time App · Joshua Lee',
+    h1:            'Brick',
+    title:         'Brick — UX Research & App Redesign · Joshua Lee',
     description:   'A 10-week UX research and usability study of Brick, a gamified screen-time app. Think-aloud testing with 6 users and 14 prioritised design recommendations.',
-    ogTitle:       'Brick — A Usability Study & Redesign of a Gamified Screen-Time App · Joshua Lee',
+    ogTitle:       'Brick — UX Research & App Redesign · Joshua Lee',
     ogDescription: 'A 10-week UX research and usability study of Brick, a gamified screen-time app. Think-aloud testing with 6 users and 14 prioritised design recommendations.',
     image:         BASE_URL + '/assets/og-brick.jpg',
     jsonLd: {
@@ -47,7 +51,8 @@ const ROUTES = [
   },
   {
     route: '/desertification',
-    title:         'Into the Desert — Content Strategy & Campaign Design for a Desertification Awareness Project · Joshua Lee',
+    h1:            'Into the Desert',
+    title:         'Into the Desert — Content Strategy & Campaign Design · Joshua Lee',
     description:   'Desertification awareness campaign by Joshua Lee — content strategy, art direction, and visual communication for Commonland × Viper, targeting Dutch 18–34s.',
     ogTitle:       'Into the Desert — Content Strategy & Campaign Design · Joshua Lee',
     ogDescription: 'Desertification awareness campaign by Joshua Lee — content strategy, art direction, and visual communication for Commonland × Viper, targeting Dutch 18–34s.',
@@ -64,9 +69,10 @@ const ROUTES = [
   },
   {
     route: '/supermarket',
-    title:         'VR Supermarket — Behavioural Science Research in Virtual Reality · Joshua Lee',
+    h1:            'VR Supermarket',
+    title:         'VR Supermarket — Behavioural Science Research · Joshua Lee',
     description:   'Between-subjects VR experiment testing social nudging in a Unity supermarket — behavioural science research, N=50, R statistical analysis by Joshua Lee.',
-    ogTitle:       'VR Supermarket — Behavioural Science Research in Virtual Reality · Joshua Lee',
+    ogTitle:       'VR Supermarket — Behavioural Science Research · Joshua Lee',
     ogDescription: 'Between-subjects VR experiment testing social nudging in a Unity supermarket — behavioural science research, N=50, R statistical analysis by Joshua Lee.',
     image:         BASE_URL + '/assets/og-supermarket.jpg',
     jsonLd: {
@@ -81,9 +87,10 @@ const ROUTES = [
   },
   {
     route: '/kns',
-    title:         "Katana N' Samurai — Visual Design, Branding & Community Management · Joshua Lee",
+    h1:            "Katana N' Samurai",
+    title:         "Katana N' Samurai — Visual Design & Branding · Joshua Lee",
     description:   "Visual identity and brand design for Katana N' Samurai — logo system, colour palette, social assets, and launch materials by visual designer Joshua Lee.",
-    ogTitle:       "Katana N' Samurai — Visual Design, Branding & Community Management · Joshua Lee",
+    ogTitle:       "Katana N' Samurai — Visual Design & Branding · Joshua Lee",
     ogDescription: "Visual identity and brand design for Katana N' Samurai — logo system, colour palette, social assets, and launch materials by visual designer Joshua Lee.",
     image:         BASE_URL + '/assets/og-kns.jpg',
     jsonLd: {
@@ -98,9 +105,10 @@ const ROUTES = [
   },
   {
     route: '/canvas',
-    title:         'Canvas LMS — UX Research & UI Redesign with Usability Testing · Joshua Lee',
+    h1:            'Canvas LMS',
+    title:         'Canvas LMS — UX Research & Usability Testing · Joshua Lee',
     description:   'Self-initiated UX case study redesigning Canvas LMS mobile to surface submission state — 6-participant research, Figma prototype, and usability testing.',
-    ogTitle:       'Canvas LMS — UX Research & UI Redesign with Usability Testing · Joshua Lee',
+    ogTitle:       'Canvas LMS — UX Research & Usability Testing · Joshua Lee',
     ogDescription: 'Self-initiated UX case study redesigning Canvas LMS mobile to surface submission state — 6-participant research, Figma prototype, and usability testing.',
     image:         BASE_URL + '/assets/og-canvas.jpg',
     jsonLd: {
@@ -115,6 +123,7 @@ const ROUTES = [
   },
   {
     route: '/playground',
+    h1:            null,
     title:         'Playground — Selected Work · Joshua Lee',
     description:   'Miscellaneous and experimental visual work by Joshua Lee — motion, illustration, and design explorations.',
     ogTitle:       'Playground — Selected Work · Joshua Lee',
@@ -172,7 +181,16 @@ const templateBlock = template.slice(startIdx, endIdx);
 let count = 0;
 
 for (const r of ROUTES) {
-  const html = template.replace(templateBlock, function () { return buildSeoBlock(r); });
+  let html = template.replace(templateBlock, function () { return buildSeoBlock(r); });
+
+  // Inject per-page static H1 for crawlers (idempotent: strip any prior injection first).
+  html = html.replace(/<h1 class="visually-hidden" aria-hidden="true">[^<]*<\/h1>\n  /g, '');
+  if (r.h1) {
+    html = html.replace(
+      '<div id="app"></div>',
+      '<h1 class="visually-hidden" aria-hidden="true">' + esc(r.h1) + '</h1>\n  <div id="app"></div>'
+    );
+  }
 
   if (r.route === '/') {
     fs.writeFileSync('index.html', html, 'utf8');
