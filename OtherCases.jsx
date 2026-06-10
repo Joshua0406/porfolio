@@ -23,18 +23,18 @@ function DesertCase({ go }) {
 
   const personas = [
   {
-    portrait: "assets/desert/persona_sterre.webp",
+    portrait: "assets/desert/persona_sterre.jpg",
     name: "Sterre Janssen",
     meta: "30 · Journalist & activist · Receptive amplifier",
     body: "High awareness, festival-goer, blogger. Yoga, photography, politics, veganism. Already cares — will share content the moment it lands. The audience that turns one post into ten.",
     pw: 1200, ph: 1200
   },
   {
-    portrait: "assets/desert/persona_floris.webp",
+    portrait: "assets/desert/persona_floris.jpg",
     name: "Floris van den Berg",
     meta: "21 · IBA student · Hard-to-reach",
     body: "Low environmental awareness, right-leaning, outgoing. Football, beer, Viper at parties. Doesn't follow climate accounts. The audience the campaign was actually designed to break through to.",
-    pw: 1200, ph: 1200
+    pw: 800, ph: 1024
   }];
 
 
