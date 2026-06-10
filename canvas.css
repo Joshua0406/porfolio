@@ -289,5 +289,8 @@ article[data-screen-label="Case: Canvas"] .brick-strip { grid-template-columns: 
 @media (max-width: 640px) { .cv-nav { padding: 16px 24px; } .cv-nav a, .cv-nav span { font-size: 13px; } }
 
 /* Usability test session photos */
-.cv-usability-photos { display: flex; flex-direction: row; gap: 12px; margin-top: 20px; }
-.cv-usability-photos img { width: 50%; height: auto; border-radius: 4px; object-fit: cover; }
+.cv-usability-photos { display: flex; flex-direction: row; gap: 12px; margin-top: 20px; width: 100%; overflow: hidden; padding-right: 32px; box-sizing: border-box; }
+.cv-usability-photos img { width: 50%; height: auto; border-radius: 4px; object-fit: cover; min-width: 0; }
+@media (max-width: 640px) {
+  .cv-usability-photos { max-width: 100% !important; padding-right: 0; }
+}
