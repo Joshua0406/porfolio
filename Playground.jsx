@@ -50,15 +50,28 @@ function shuffle(arr) {
 }
 
 function Strip({ images, dir, paused, onEnter, onLeave }) {
+  const [go, setGo] = React.useState(false);
+  const loaded = React.useRef(0);
   const loop = [...images, ...images];
+
+  React.useEffect(() => {
+    const t = setTimeout(() => setGo(true), 1200);
+    return () => clearTimeout(t);
+  }, []);
+
+  const tick = () => {
+    loaded.current += 1;
+    if (loaded.current >= images.length) setGo(true);
+  };
+
   return (
     <div className={"pg-strip pg-strip--" + dir}>
-      <div className="pg-track" style={{ animationPlayState: paused ? "paused" : "running" }}>
+      <div className="pg-track" style={{ animationPlayState: (!go || paused) ? "paused" : "running" }}>
         {loop.map((f, i) => (
           <figure
             className="pg-strip-item"
             key={f + i}
-            onMouseEnter={() => onEnter("assets/pg/" + encodeURIComponent(f))}
+            onMouseEnter={() => onEnter(f)}
             onMouseLeave={onLeave}
           >
             <img
@@ -66,7 +79,8 @@ function Strip({ images, dir, paused, onEnter, onLeave }) {
               alt=""
               draggable="false"
               loading="eager"
-              onError={(e) => { e.target.closest(".pg-strip-item").style.display = "none"; }}
+              onLoad={tick}
+              onError={(e) => { e.target.closest(".pg-strip-item").style.display = "none"; tick(); }}
             />
           </figure>
         ))}
@@ -77,53 +91,51 @@ function Strip({ images, dir, paused, onEnter, onLeave }) {
 
 function Playground({ go }) {
   const [paused, setPaused] = React.useState(false);
-  const [zoomed, setZoomed] = React.useState(null);
+  const [previewImg, setPreviewImg] = React.useState(null);
+  const [previewActive, setPreviewActive] = React.useState(false);
   const timer = React.useRef(null);
 
-  const { top, bottom } = React.useMemo(() => {
+  const { top, mid, bottom } = React.useMemo(() => {
     const s = shuffle(PG_IMAGES);
-    const half = Math.ceil(s.length / 2);
-    return { top: s.slice(0, half), bottom: s.slice(half) };
+    const third = Math.ceil(s.length / 3);
+    return { top: s.slice(0, third), mid: s.slice(third, third * 2), bottom: s.slice(third * 2) };
   }, []);
 
-  const onEnter = (src) => {
+  const onEnter = (img) => {
     clearTimeout(timer.current);
     setPaused(true);
-    setZoomed(src);
+    setPreviewImg(img);
+    setPreviewActive(true);
   };
   const onLeave = () => {
     timer.current = setTimeout(() => {
       setPaused(false);
-      setZoomed(null);
+      setPreviewActive(false);
     }, 120);
   };
-  const cancelLeave = () => clearTimeout(timer.current);
 
   return (
     <div className="pg-marquee-page" data-screen-label="Playground">
       <header className="pg-marquee-head">
-        <div className="pg-eyebrow">Miscellaneous · Off-cuts</div>
         <h1 className="pg-title">Playground</h1>
+        <p className="pg-subtitle">Some ideas, some works, some experiments.</p>
       </header>
 
       <Strip images={top} dir="top" paused={paused} onEnter={onEnter} onLeave={onLeave} />
 
       <div className="pg-marquee-center" />
 
+      <Strip images={mid} dir="mid" paused={paused} onEnter={onEnter} onLeave={onLeave} />
+
       <Strip images={bottom} dir="bottom" paused={paused} onEnter={onEnter} onLeave={onLeave} />
 
-      <footer className="proj-footer">
-        <a onClick={() => go("home")} style={{ cursor: "pointer" }}>← Home</a>
-        <a onClick={() => go("about")} style={{ cursor: "pointer" }}>About →</a>
-      </footer>
-
-      <div
-        className={"pg-lightbox" + (zoomed ? " active" : "")}
-        onMouseEnter={cancelLeave}
-        onMouseLeave={onLeave}
-      >
-        {zoomed && <img src={zoomed} alt="" draggable="false" />}
+      <div className={"pg-preview" + (previewActive ? " active" : "")}>
+        {previewImg && <img src={"assets/pg/" + encodeURIComponent(previewImg)} alt="" draggable="false" />}
       </div>
+
+      <footer className="proj-footer">
+        <a onClick={() => go("about")} style={{ cursor: "pointer" }}>About</a>
+      </footer>
     </div>
   );
 }

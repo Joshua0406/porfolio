@@ -93,13 +93,23 @@ function shuffle(arr) {
   return a;
 }
 function Strip({ images, dir, paused, onEnter, onLeave }) {
+  const [go, setGo] = React.useState(false);
+  const loaded = React.useRef(0);
   const loop = [...images, ...images];
-  return /* @__PURE__ */ React.createElement("div", { className: "pg-strip pg-strip--" + dir }, /* @__PURE__ */ React.createElement("div", { className: "pg-track", style: { animationPlayState: paused ? "paused" : "running" } }, loop.map((f, i) => /* @__PURE__ */ React.createElement(
+  React.useEffect(() => {
+    const t = setTimeout(() => setGo(true), 1200);
+    return () => clearTimeout(t);
+  }, []);
+  const tick = () => {
+    loaded.current += 1;
+    if (loaded.current >= images.length) setGo(true);
+  };
+  return /* @__PURE__ */ React.createElement("div", { className: "pg-strip pg-strip--" + dir }, /* @__PURE__ */ React.createElement("div", { className: "pg-track", style: { animationPlayState: !go || paused ? "paused" : "running" } }, loop.map((f, i) => /* @__PURE__ */ React.createElement(
     "figure",
     {
       className: "pg-strip-item",
       key: f + i,
-      onMouseEnter: () => onEnter("assets/pg/" + encodeURIComponent(f)),
+      onMouseEnter: () => onEnter(f),
       onMouseLeave: onLeave
     },
     /* @__PURE__ */ React.createElement(
@@ -109,8 +119,10 @@ function Strip({ images, dir, paused, onEnter, onLeave }) {
         alt: "",
         draggable: "false",
         loading: "eager",
+        onLoad: tick,
         onError: (e) => {
           e.target.closest(".pg-strip-item").style.display = "none";
+          tick();
         }
       }
     )
@@ -118,33 +130,26 @@ function Strip({ images, dir, paused, onEnter, onLeave }) {
 }
 function Playground({ go }) {
   const [paused, setPaused] = React.useState(false);
-  const [zoomed, setZoomed] = React.useState(null);
+  const [previewImg, setPreviewImg] = React.useState(null);
+  const [previewActive, setPreviewActive] = React.useState(false);
   const timer = React.useRef(null);
-  const { top, bottom } = React.useMemo(() => {
+  const { top, mid, bottom } = React.useMemo(() => {
     const s = shuffle(PG_IMAGES);
-    const half = Math.ceil(s.length / 2);
-    return { top: s.slice(0, half), bottom: s.slice(half) };
+    const third = Math.ceil(s.length / 3);
+    return { top: s.slice(0, third), mid: s.slice(third, third * 2), bottom: s.slice(third * 2) };
   }, []);
-  const onEnter = (src) => {
+  const onEnter = (img) => {
     clearTimeout(timer.current);
     setPaused(true);
-    setZoomed(src);
+    setPreviewImg(img);
+    setPreviewActive(true);
   };
   const onLeave = () => {
     timer.current = setTimeout(() => {
       setPaused(false);
-      setZoomed(null);
+      setPreviewActive(false);
     }, 120);
   };
-  const cancelLeave = () => clearTimeout(timer.current);
-  return /* @__PURE__ */ React.createElement("div", { className: "pg-marquee-page", "data-screen-label": "Playground" }, /* @__PURE__ */ React.createElement("header", { className: "pg-marquee-head" }, /* @__PURE__ */ React.createElement("div", { className: "pg-eyebrow" }, "Miscellaneous \xB7 Off-cuts"), /* @__PURE__ */ React.createElement("h1", { className: "pg-title" }, "Playground")), /* @__PURE__ */ React.createElement(Strip, { images: top, dir: "top", paused, onEnter, onLeave }), /* @__PURE__ */ React.createElement("div", { className: "pg-marquee-center" }), /* @__PURE__ */ React.createElement(Strip, { images: bottom, dir: "bottom", paused, onEnter, onLeave }), /* @__PURE__ */ React.createElement("footer", { className: "proj-footer" }, /* @__PURE__ */ React.createElement("a", { onClick: () => go("home"), style: { cursor: "pointer" } }, "\u2190 Home"), /* @__PURE__ */ React.createElement("a", { onClick: () => go("about"), style: { cursor: "pointer" } }, "About \u2192")), /* @__PURE__ */ React.createElement(
-    "div",
-    {
-      className: "pg-lightbox" + (zoomed ? " active" : ""),
-      onMouseEnter: cancelLeave,
-      onMouseLeave: onLeave
-    },
-    zoomed && /* @__PURE__ */ React.createElement("img", { src: zoomed, alt: "", draggable: "false" })
-  ));
+  return /* @__PURE__ */ React.createElement("div", { className: "pg-marquee-page", "data-screen-label": "Playground" }, /* @__PURE__ */ React.createElement("header", { className: "pg-marquee-head" }, /* @__PURE__ */ React.createElement("h1", { className: "pg-title" }, "Playground"), /* @__PURE__ */ React.createElement("p", { className: "pg-subtitle" }, "Some ideas, some works, some experiments.")), /* @__PURE__ */ React.createElement(Strip, { images: top, dir: "top", paused, onEnter, onLeave }), /* @__PURE__ */ React.createElement("div", { className: "pg-marquee-center" }), /* @__PURE__ */ React.createElement(Strip, { images: mid, dir: "mid", paused, onEnter, onLeave }), /* @__PURE__ */ React.createElement(Strip, { images: bottom, dir: "bottom", paused, onEnter, onLeave }), /* @__PURE__ */ React.createElement("div", { className: "pg-preview" + (previewActive ? " active" : "") }, previewImg && /* @__PURE__ */ React.createElement("img", { src: "assets/pg/" + encodeURIComponent(previewImg), alt: "", draggable: "false" })), /* @__PURE__ */ React.createElement("footer", { className: "proj-footer" }, /* @__PURE__ */ React.createElement("a", { onClick: () => go("about"), style: { cursor: "pointer" } }, "About")));
 }
 Object.assign(window, { Playground });
