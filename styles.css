@@ -141,7 +141,6 @@ body:has(.pg-marquee-page) .pg-marquee-page { flex: 1; min-height: 0; height: au
 .hero-grid:hover .hero-proj .hero-proj-num { opacity: 0.4; }
 .hero-grid:hover .hero-proj:hover .hero-proj-num,
 .hero-grid:focus-within .hero-proj:focus-within .hero-proj-num { opacity: 1; }
-.hero-proj-pg-mobile { display: none; }
 
 .site-footer { display: flex; justify-content: space-between; align-items: center; padding: 14px 32px 18px; flex-shrink: 0; }
 .site-footer a { font-size: 17px; letter-spacing: 0.06em; transition: opacity 0.2s ease; }
@@ -330,8 +329,6 @@ body:has(.pg-marquee-page) .pg-marquee-page { flex: 1; min-height: 0; height: au
   .hero-proj-label { display: flex; flex-direction: column; gap: 2px; align-items: center; text-align: center; padding: 0 4px; flex-shrink: 0; }
   .hero-proj-label-title { font-size: 14px; font-weight: 500; letter-spacing: -0.01em; }
   .hero-proj-label-tags { display: none; }
-  .hero-proj-pg-mobile { display: flex; }
-  .nav-playground { display: none; }
 
   /* Nav */
   .nav { padding: 16px 20px; }
