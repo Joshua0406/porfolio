@@ -335,9 +335,7 @@ body:has(.hero) .hero { flex: 1; min-height: 0; }
   .nav.transparent ~ article { padding-top: 72px; }
 
   /* Playground */
-  .pg-page { padding: 16px 20px 0; }
-  .pg-title { font-size: 14vw; }
-  .pg-lead { font-size: 16px; }
+  .pg-strip-item { height: 120px; }
   /* About page */
   .about-page { padding: 72px 20px 60px; }
   .about-top .portrait { max-width: 240px; }
@@ -349,38 +347,90 @@ body:has(.hero) .hero { flex: 1; min-height: 0; }
   .cv-entry .role, .cv-entry .place, .cv-entry .year { font-size: 15px; }
 }
 
-/* ── PLAYGROUND — Pinterest column layout ── */
-.pg-page { padding: 24px 32px 0; max-width: 1400px; margin: 0 auto; }
-.pg-head { padding: 24px 0 28px; }
-.pg-eyebrow { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(0,0,0,0.4); margin-bottom: 18px; }
-.pg-title { font-size: 9vw; line-height: 0.86; letter-spacing: -0.03em; text-transform: uppercase; }
-.pg-lead { font-size: 21px; line-height: 1.5; max-width: 680px; margin-top: 22px; color: rgba(0,0,0,0.78); }
-.pg-count { font-size: 13px; letter-spacing: 0.06em; color: rgba(0,0,0,0.4); margin-left: 6px; }
-
-.pg-mason {
-  columns: 5 160px;
-  column-gap: 12px;
-  padding-bottom: 64px;
-}
-
-.pg-mi {
-  break-inside: avoid;
-  margin-bottom: 12px;
-  border-radius: 6px;
+/* ── PLAYGROUND — marquee layout ── */
+.pg-marquee-page {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 68px);
   overflow: hidden;
-  background: rgba(0,0,0,0.04);
+  position: relative;
 }
 
-.pg-mi img {
+/* top / bottom strips */
+.pg-strip { overflow: hidden; width: 100%; flex-shrink: 0; }
+
+.pg-track {
+  display: flex;
+  gap: 12px;
+  padding: 12px 0;
+  width: max-content;      /* must be explicit — translateX(-50%) uses own width */
+  will-change: transform;
+  animation: pg-left 45s linear infinite;
+}
+
+.pg-strip--bottom .pg-track { animation-name: pg-right; }
+
+/* pause via inline style (animationPlayState) — no class toggle needed */
+
+@keyframes pg-left  { 0% { transform: translateX(0); }    100% { transform: translateX(-50%); } }
+@keyframes pg-right { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); }    }
+
+.pg-strip-item {
+  /* fixed dimensions = container width is known from frame 0 */
+  width: 280px;
+  height: 200px;
+  flex-shrink: 0;
+  cursor: pointer;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.pg-strip-item img {
   width: 100%;
+  height: 100%;
+  object-fit: contain;   /* full image visible, no cropping */
   display: block;
-  transition: opacity 0.2s ease, transform 0.4s cubic-bezier(.19,1,.22,1);
+  pointer-events: none;
+  user-select: none;
 }
 
-.pg-mason:hover .pg-mi img { opacity: 0.5; }
-.pg-mason .pg-mi:hover img { opacity: 1; transform: scale(1.02); }
+/* header above top strip */
+.pg-marquee-head {
+  padding: 24px 32px 20px;
+  flex-shrink: 0;
+}
+.pg-eyebrow { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(0,0,0,0.38); margin-bottom: 8px; }
+.pg-title   { font-size: 8vw; line-height: 0.88; letter-spacing: -0.03em; text-transform: uppercase; }
 
-@media (max-width: 1100px) { .pg-mason { columns: 4 160px; } }
-@media (max-width: 820px)  { .pg-mason { columns: 3 140px; } }
-@media (max-width: 540px)  { .pg-mason { columns: 2 120px; column-gap: 8px; } .pg-mi { margin-bottom: 8px; } }
-@media (hover: none) { .pg-mason:hover .pg-mi img { opacity: 1; } }
+/* 60% centre gap — empty space between strips */
+.pg-marquee-center { flex: 1; }
+
+/* lightbox */
+.pg-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+.pg-lightbox.active { opacity: 1; pointer-events: auto; }
+.pg-lightbox img {
+  max-width: 82vw;
+  max-height: 82vh;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.12);
+}
+
+/* footer nav inside marquee page */
+.pg-marquee-page .proj-footer { flex-shrink: 0; }
+
+@media (max-width: 540px) {
+  .pg-strip-item { height: 140px; }
+  .pg-title { font-size: 14vw; }
+}
