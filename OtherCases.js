@@ -33,8 +33,8 @@ function DesertCase({ go }) {
       name: "Floris van den Berg",
       meta: "21 \xB7 IBA student \xB7 Hard-to-reach",
       body: "Low environmental awareness, right-leaning, outgoing. Football, beer, Viper at parties. Doesn't follow climate accounts. The audience the campaign was actually designed to break through to.",
-      pw: 800,
-      ph: 1024
+      pw: 1200,
+      ph: 1200
     }
   ];
   const theories = [

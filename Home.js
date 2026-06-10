@@ -114,6 +114,19 @@ function Home({ go }) {
       /* @__PURE__ */ React.createElement("span", { className: "hero-proj-label", "aria-hidden": "true" }, /* @__PURE__ */ React.createElement("span", { className: "hero-proj-label-title" }, p.title), /* @__PURE__ */ React.createElement("span", { className: "hero-proj-label-tags" }, p.tags)),
       /* @__PURE__ */ React.createElement("span", { className: "visually-hidden" }, p.title, " \u2014 ", p.tags)
     )
+  ), /* @__PURE__ */ React.createElement(
+    "a",
+    {
+      className: "hero-proj hero-proj-pg-mobile",
+      href: "/playground",
+      onClick: (e) => {
+        e.preventDefault();
+        go("playground");
+      }
+    },
+    /* @__PURE__ */ React.createElement("div", { className: "img-wrap" }, /* @__PURE__ */ React.createElement("img", { src: "assets/projects/playground_main.webp", alt: "Playground", width: 466, height: 347, draggable: "false" })),
+    /* @__PURE__ */ React.createElement("span", { className: "hero-proj-label", "aria-hidden": "true" }, /* @__PURE__ */ React.createElement("span", { className: "hero-proj-label-title" }, "Playground")),
+    /* @__PURE__ */ React.createElement("span", { className: "visually-hidden" }, "Playground")
   )), /* @__PURE__ */ React.createElement("footer", { className: "site-footer" }, /* @__PURE__ */ React.createElement("div", { className: "footer-contact" }, /* @__PURE__ */ React.createElement("span", { className: "footer-available" }, "Available for internship \u2014 Aug 2026")), /* @__PURE__ */ React.createElement("a", { className: "small", href: "https://www.utwente.nl/en/education/bachelor/programmes/communication-science/", target: "_blank", rel: "noopener noreferrer" }, "BSc Communication Science \xA0\xB7\xA0 University of Twente")));
 }
 Object.assign(window, { Home });
