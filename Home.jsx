@@ -130,6 +130,14 @@ function Home({ go }) {
             <span className="visually-hidden">{p.title} — {p.tags}</span>
           </a>
         )}
+        <a className="hero-proj hero-proj-pg-mobile" href="/playground"
+          onClick={(e) => { e.preventDefault(); go("playground"); }}>
+          <div className="img-wrap"><img src="assets/projects/playground_main.webp" alt="Playground" width={466} height={347} draggable="false" /></div>
+          <span className="hero-proj-label" aria-hidden="true">
+            <span className="hero-proj-label-title">Playground</span>
+          </span>
+          <span className="visually-hidden">Playground</span>
+        </a>
       </div>
 
       <footer className="site-footer">
