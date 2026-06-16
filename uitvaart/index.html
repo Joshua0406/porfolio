@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>De Uitvaart van het Logo</title>
+<meta property="og:title" content="De Uitvaart van het Logo">
+<meta property="og:description" content="Geboren op Instagram, gestorven per e-mail. — De rouwdienst voor het logo van Studio Plakband.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://plsxou.com/uitvaart/">
+<meta property="og:image" content="https://plsxou.com/uitvaart/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="nl_NL">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="De Uitvaart van het Logo">
+<meta name="twitter:description" content="Geboren op Instagram, gestorven per e-mail.">
+<meta name="twitter:image" content="https://plsxou.com/uitvaart/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --zwart:#000;
+    --rouw:#111110;
+    --wit:#F5F1E8;
+    --inkt:#1A1916;
+    --goud:#B49B5E;
+    --grijs:#8C887E;
+    --lijn:rgba(245,241,232,.28);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    background:var(--zwart);color:var(--wit);
+    font-family:'General Sans',-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:18px;line-height:1.5;
+    -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden;
+  }
+  body.locked{overflow:hidden}
+  body.fase2-open{overflow:hidden}
+  #scrollspace{width:1px}
+
+  #viewport{position:fixed;inset:0;overflow:hidden;background:var(--zwart)}
+  #track{
+    display:flex;height:100%;width:400vw;
+    will-change:transform;
+  }
+  .panel{
+    width:100vw;height:100%;flex:none;position:relative;
+    display:flex;align-items:center;justify-content:center;
+  }
+
+  .klein{
+    font-size:11px;letter-spacing:.34em;text-transform:uppercase;
+    font-weight:500;color:var(--grijs);
+  }
+
+  /* ============ P1 — rouwkaart (zwart-wit, in de stijl van plsxou.com) ============ */
+  #p1{
+    flex-direction:column;gap:34px;
+    font-family:'General Sans',-apple-system,system-ui,"Segoe UI",sans-serif;
+  }
+  .kaartscene{perspective:1600px;width:min(560px,90vw)}
+  .kaart{
+    position:relative;width:100%;aspect-ratio:1/1;
+    transform-style:preserve-3d;transition:transform 1s cubic-bezier(.4,0,.2,1);
+  }
+  .kaart.geflipt{transform:rotateY(180deg)}
+  .vlak{
+    position:absolute;inset:0;backface-visibility:hidden;
+    background:transparent;border:1px solid #fff;
+    padding:40px 38px;display:flex;flex-direction:column;
+    align-items:center;text-align:center;
+  }
+  .vlak.achter{transform:rotateY(180deg)}
+  .vlak .klein{margin-bottom:auto}
+  .vlak .klein.onder{margin-top:auto;margin-bottom:0}
+  #p1 .klein{color:rgba(255,255,255,.5)}
+  .aanhef{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.55);font-weight:500}
+  .kaart h1{
+    font-weight:500;font-size:clamp(26px,3.4vw,38px);line-height:1.04;
+    letter-spacing:-.02em;text-transform:uppercase;margin:16px 0 8px;color:#fff;
+  }
+  .jaartal{font-size:14px;letter-spacing:.02em;color:rgba(255,255,255,.5);margin-bottom:18px}
+  .kaart p.tekst{font-size:16px;line-height:1.55;max-width:34ch;color:rgba(255,255,255,.78)}
+  .kaart p.tekst em{font-style:normal;color:#fff;text-decoration:underline;text-underline-offset:3px}
+  .citaat{margin-top:16px;font-size:14.5px;color:rgba(255,255,255,.6)}
+  .draai{
+    margin-top:22px;cursor:pointer;background:none;border:none;
+    font-family:inherit;font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+    color:#fff;border-bottom:1px solid rgba(255,255,255,.4);padding-bottom:4px;
+    transition:opacity .2s;
+  }
+  .draai:hover{opacity:.5}
+
+  .achter h2{font-weight:500;font-size:22px;letter-spacing:-.01em;text-transform:uppercase;margin-bottom:12px;color:#fff}
+  .achter p.tekst{font-size:15px;color:rgba(255,255,255,.7);max-width:32ch;margin:0 auto}
+  #poortvorm{margin:28px auto 0;display:flex;flex-direction:column;align-items:center;gap:14px;width:100%;max-width:300px}
+  #wachtwoord{
+    width:100%;background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,.4);
+    color:#fff;font-family:'IBM Plex Mono',monospace;font-size:16px;
+    letter-spacing:.3em;text-align:center;padding:10px 4px;outline:none;
+    text-transform:uppercase;
+  }
+  #wachtwoord::placeholder{letter-spacing:.12em;text-transform:none;color:rgba(255,255,255,.35);font-size:13px}
+  #wachtwoord:focus{border-color:#fff}
+  #poortvorm button{
+    cursor:pointer;background:none;border:1px solid rgba(255,255,255,.4);color:#fff;
+    font-family:inherit;font-size:12px;letter-spacing:.26em;text-transform:uppercase;
+    padding:13px 22px;transition:background .2s,color .2s;
+  }
+  #poortvorm button:hover{background:#fff;color:#000}
+  #fout{min-height:22px;font-size:14px;color:rgba(255,255,255,.8);opacity:0;transition:opacity .3s}
+  #fout.zichtbaar{opacity:1}
+  .kaart.schud{animation:schud .4s}
+  @keyframes schud{
+    0%,100%{transform:rotateY(180deg) translateX(0)}
+    25%{transform:rotateY(180deg) translateX(8px)}
+    50%{transform:rotateY(180deg) translateX(-8px)}
+    75%{transform:rotateY(180deg) translateX(5px)}
+  }
+
+  /* ============ P2 — de kist ============ */
+  #p2{gap:0;padding:0 7vw;z-index:3}
+  .kistkolom{
+    max-width:380px;margin-right:6vw;overflow:hidden;
+    transition:max-width .9s cubic-bezier(.4,0,.2,1),
+               margin-right .9s cubic-bezier(.4,0,.2,1),
+               opacity .45s ease;
+  }
+  #p2.gesloten .kistkolom{max-width:0;margin-right:0;opacity:0;pointer-events:none}
+  .kop{
+    font-weight:600;font-size:clamp(30px,3.6vw,42px);
+    line-height:1.08;letter-spacing:-.01em;text-transform:uppercase;margin:14px 0 14px;
+  }
+  .uitlegtekst{font-size:16px;color:#BDB8AB;max-width:38ch}
+  .gaven{margin:26px 0 20px;display:flex;flex-direction:column;gap:13px}
+  .gave{
+    display:flex;align-items:center;gap:14px;cursor:pointer;
+    border:1px solid var(--lijn);padding:13px 18px;user-select:none;
+    transition:border-color .2s,background .2s;font-size:16.5px;
+  }
+  .gave:hover{border-color:var(--goud)}
+  .gave input{display:none}
+  .gave .vink{
+    width:18px;height:18px;border:1px solid var(--grijs);flex:none;
+    display:flex;align-items:center;justify-content:center;
+    font-size:13px;color:var(--goud);
+  }
+  .gave .vink::after{content:"";opacity:0;transition:opacity .15s}
+  .gave input:checked ~ .vink::after{content:"✕";opacity:1}
+  .gave input:checked ~ .naam{color:var(--wit)}
+  .gave .naam{color:#BDB8AB}
+  .gave .naam i{color:var(--grijs);font-size:14px;font-style:normal}
+  #sluitkist{
+    cursor:pointer;background:var(--wit);color:var(--zwart);border:none;
+    font-family:inherit;font-size:13px;letter-spacing:.28em;text-transform:uppercase;
+    padding:16px 30px;transition:background .2s;
+  }
+  #sluitkist:hover{background:var(--goud)}
+
+  .kistpodium{position:relative;width:min(560px,46vw);will-change:transform,opacity;z-index:2}
+  .kistfotos{position:relative;width:100%;aspect-ratio:11/6}
+  .kistfotos img{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:contain;
+    opacity:0;transition:opacity .5s ease;
+  }
+  .kistfotos img.actief{opacity:1}
+  .bloemen{position:absolute;inset:-40px 0 0;pointer-events:none;overflow:visible}
+  .bloemen span{
+    position:absolute;font-size:22px;opacity:0;
+    animation:zweef 7s ease-in-out infinite;
+  }
+  .bloemen span:nth-child(1){left:8%;animation-delay:.5s}
+  .bloemen span:nth-child(2){left:50%;animation-delay:2.8s}
+  .bloemen span:nth-child(3){left:86%;animation-delay:5s}
+  @keyframes zweef{
+    0%{transform:translateY(30px);opacity:0}
+    18%{opacity:.85}
+    60%{opacity:.5}
+    100%{transform:translateY(-130px) rotate(14deg);opacity:0}
+  }
+
+  /* gesloten kist (placeholder tot de echte foto er is) */
+  #dichtekist{display:none;position:relative}
+  #dichtekist svg,#dichtekist img{width:100%;height:auto;display:block}
+  #verzendlabel{
+    position:absolute;left:0;top:50%;
+    width:clamp(220px,28vw,380px);
+    background:#FBF8F0;color:#23211C;
+    font-family:'IBM Plex Mono',monospace;font-size:clamp(9px,0.9vw,14px);
+    line-height:1.6;padding:3.8% 4.2%;
+    box-shadow:0 8px 28px rgba(0,0,0,.6);
+    opacity:0;will-change:transform,opacity;
+    pointer-events:none;
+  }
+  #verzendlabel b{font-weight:600}
+  #verzendlabel .streep{border-top:1px dashed #999;margin:5px 0}
+  .fotonoot{margin-top:12px;font-size:13px;color:var(--grijs);text-align:center}
+  #kistnoot{transition:opacity .35s ease}
+
+  /* na het sluiten: niets meer te wijzigen */
+  #p2.gesloten .gaven,#p2.gesloten #sluitkist{pointer-events:none}
+  /* kistkolom fade + verwijdering na de JS-animatie */
+  .kistkolom.weg{opacity:0!important;pointer-events:none;transition:opacity .6s ease!important}
+  .kistkolom.verdwenen{display:none!important}
+
+  /* ============ saluut — schuift met de scroll van rechts binnen (was paneel 3) ============ */
+  #saluut{
+    position:absolute;left:0;bottom:0;height:100%;width:100%;
+    display:flex;align-items:flex-end;justify-content:center;
+    opacity:0;pointer-events:none;
+    will-change:transform,opacity;z-index:1;
+  }
+  #saluut img{height:min(115vh,1150px);width:auto;display:block}
+
+  /* ============ P4 — het licht ============ */
+  #p4{flex-direction:column;position:relative;z-index:1}
+  /* grid: één cel → container past aan content, #logodot zweeft absoluut */
+  #nieuwlogo{
+    display:grid;position:relative;max-width:92vw;
+    transform:translateY(-65vh);will-change:transform,opacity;
+  }
+  .logo-donker{
+    grid-area:1/1;
+    display:flex;align-items:center;
+    gap:clamp(4px,0.8vw,10px);
+  }
+  .logo-mark{height:min(120px,15vw);width:auto;display:block;filter:drop-shadow(0 14px 28px rgba(0,0,0,.22))}
+  .logo-tekst{height:min(110px,13.5vw);width:auto;display:block}
+  /* na klik: mark wisselt via JS, tekst wordt wit via CSS */
+  #nieuwlogo.wit .logo-tekst{filter:brightness(0) invert(1)}
+  #nieuwlogo.klikbaar{cursor:pointer}
+
+  /* blauwe stip — pulseert na landing, verdwijnt bij klik */
+  #logodot{
+    position:absolute;bottom:-28px;left:50%;
+    width:13px;height:13px;border-radius:50%;
+    background:#44CCFF;
+    animation:pulseer 1.6s ease-in-out infinite;
+    pointer-events:none;opacity:0;
+    will-change:transform,opacity;
+    box-shadow:0 0 8px rgba(68,204,255,.6);
+  }
+  #nieuwlogo.klikbaar #logodot{pointer-events:auto}
+  @keyframes pulseer{
+    0%,100%{transform:translateX(-50%) scale(1)}
+    50%{transform:translateX(-50%) scale(1.5)}
+  }
+
+  /* video achtergrond — fades in bij klik, popped eruit bij scrollen */
+  #logobg{
+    position:absolute;inset:0;
+    width:100%;height:100%;
+    object-fit:cover;
+    opacity:0;pointer-events:none;
+    transition:opacity .9s ease;
+    will-change:opacity,transform;
+  }
+
+  /* ============ FASE 2 — vertikaal scrollen na logo-klik ============ */
+  #fase2{
+    position:fixed;inset:0;overflow-y:auto;
+    background:transparent;color:#fff;
+    opacity:0;pointer-events:none;
+    overscroll-behavior:none;
+    z-index:10;
+    -webkit-overflow-scrolling:touch;
+    touch-action:pan-y;
+  }
+  #fase2.actief{opacity:1;pointer-events:auto}
+
+  /* terug-pijl fase 2 — wit, linksboven, zichtbaar na logo-klik */
+  #fase2-terug{
+    position:fixed;top:28px;left:34px;z-index:20;
+    background:none;border:none;cursor:pointer;font-family:inherit;
+    font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#fff;
+    display:inline-flex;align-items:center;gap:6px;padding:6px 0;
+    opacity:0;pointer-events:none;transition:opacity .35s;
+  }
+  #fase2-terug.zichtbaar{opacity:.7;pointer-events:auto}
+  #fase2-terug:hover{opacity:1}
+  /* spacers rondom het logo: logo start gecentreerd */
+  #fase2-hero-top{height:44vh;pointer-events:none}
+  #fase2-hero-bottom{height:44vh;pointer-events:none}
+  #fase2-logobalk{
+    margin:0 auto;
+    display:flex;align-items:center;
+    gap:clamp(4px,0.8vw,10px);
+  }
+  #fase2-logobalk .logo-mark-wit{height:min(120px,15vw);width:auto;display:block}
+  #fase2-logobalk .logo-tekst-wit{height:min(110px,13.5vw);width:auto;display:block;filter:brightness(0) invert(1)}
+
+  /* kleine topbalk — verschijnt als held-logo gescrolled is */
+  /* na scrollen in fase2: alleen het mark blijft, gecentreerd in beeld */
+  #fase2-center-mark{
+    position:fixed;top:16px;left:50%;
+    transform:translateX(-50%);
+    z-index:20;
+    opacity:0;pointer-events:none;
+    transition:opacity .3s ease;
+  }
+  #fase2-center-mark img{height:min(38px,5vw);width:auto;display:block}
+  #fase2-center-mark.zichtbaar{opacity:1}
+
+  /* ── logo pulse + hover-to-center ── */
+  @keyframes pulseLogo{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+  #fase2.actief #fase2-logobalk img{
+    transition:transform .26s cubic-bezier(.25,0,.2,1),opacity .26s ease;
+  }
+  #fase2.actief #fase2-logobalk .logo-mark-wit{
+    animation:pulseLogo 2.1s ease-in-out infinite;cursor:pointer}
+  #fase2.actief #fase2-logobalk .logo-tekst-wit{
+    animation:pulseLogo 2.7s ease-in-out infinite 1.1s;cursor:pointer}
+  /* hovered → viewport center + enlarge */
+  #fase2.actief #fase2-logobalk.hover-mark .logo-mark-wit,
+  #fase2.actief #fase2-logobalk.hover-text .logo-tekst-wit{
+    animation:none;transform:translateX(var(--tx,0)) scale(1.65);
+  }
+  /* other → shrink + push outward */
+  #fase2.actief #fase2-logobalk.hover-mark .logo-tekst-wit,
+  #fase2.actief #fase2-logobalk.hover-text .logo-mark-wit{
+    animation:none;transform:translateX(var(--tx-other,0)) scale(0.42);opacity:0.25;
+  }
+  /* aangeklikte logos: pulse stopt definitief */
+  #fase2.actief #fase2-logobalk .logo-mark-wit.gezien,
+  #fase2.actief #fase2-logobalk .logo-tekst-wit.gezien{animation:none!important}
+  /* scrollen geblokkeerd tot beide logo's gezien zijn */
+  #fase2:not(.logos-gezien){overflow-y:hidden}
+  /* scroll-hint onderaan: verschijnt na beide klikken */
+  #fase2-scroll-wenk{
+    position:fixed;bottom:36px;left:0;right:0;
+    display:flex;flex-direction:column;align-items:center;gap:4px;
+    color:#fff;font-size:clamp(11px,1.2vw,14px);letter-spacing:.12em;text-transform:uppercase;
+    opacity:0;pointer-events:none;transition:opacity .5s ease .15s;z-index:12;
+  }
+  #fase2-scroll-wenk .fase2-wenk-pijl{font-size:1.4em;letter-spacing:0;line-height:1}
+  #fase2.logos-gezien #fase2-scroll-wenk{opacity:1}
+  #fase2.fase2-onderaan #fase2-scroll-wenk{opacity:0}
+
+  #sketch-peek{
+    position:fixed;inset:0;z-index:200;
+    background:rgba(0,0,0,.92);
+    display:flex;align-items:center;justify-content:center;
+    opacity:0;pointer-events:none;
+    cursor:pointer;
+    transition:opacity .18s ease;
+  }
+  #sketch-peek.actief{opacity:1;pointer-events:auto}
+  #sketch-peek .sp-wrap{position:relative}
+  #sketch-peek .sp-main{height:100vh;width:auto;display:block;user-select:none;-webkit-user-drag:none}
+  #sketch-peek .sp-left{display:flex;flex-direction:column}
+  #sketch-peek .sp-logo-groot{display:none;user-select:none;-webkit-user-drag:none}
+  #sketch-peek .sp-gif-column{display:none}
+  #sketch-peek .sp-gif-wrap{display:none}
+  #sketch-peek .sp-gif{display:none;pointer-events:none}
+
+  /* groot: toon het afgewerkte logo groot en volop scherm */
+  #sketch-peek.groot .sp-main{
+    width:90vmin;height:90vmin;object-fit:contain;
+  }
+
+  /* met-gif: links boven = afgewerkt logo, links onder = schets, rechts = 3 GIF-cirkels */
+  #sketch-peek.met-gif .sp-wrap{
+    display:flex;align-items:center;
+    gap:clamp(24px,3vw,56px);position:static;
+  }
+  #sketch-peek.met-gif .sp-left{
+    display:flex;flex-direction:column;align-items:flex-start;
+    gap:clamp(12px,2vh,24px);
+  }
+  #sketch-peek.met-gif .sp-logo-groot{
+    display:block;
+    height:30vh;width:auto;
+    object-fit:contain;
+    filter:invert(1);
+  }
+  #sketch-peek.met-gif .sp-main{height:44vh;width:auto;flex:0 0 auto}
+  #sketch-peek.met-gif .sp-gif-column{
+    display:flex;flex-direction:column;
+    gap:0;
+    flex:0 0 auto;align-items:center;
+  }
+  #sketch-peek.met-gif .sp-gif-wrap{
+    display:flex;align-items:center;justify-content:center;
+    width:clamp(143px,18.2vw,241px);height:clamp(143px,18.2vw,241px);
+    border-radius:50%;overflow:hidden;flex:0 0 auto;
+    transition:transform .3s ease, opacity .3s ease;
+  }
+  #sketch-peek.met-gif .sp-gif-wrap+.sp-gif-wrap{margin-top:-22%}
+  #sketch-peek.met-gif .sp-gif{
+    position:static;width:100%;height:100%;
+    object-fit:contain;filter:invert(1);display:block;
+  }
+
+  /* ============ P5 — geboortekaartje ============ */
+  #p5{display:flex;align-items:center;justify-content:center;padding:80px 6vw;min-height:100vh}
+  .geboortescene{width:min(560px,80vw)}
+  /* ============ P5B — het concept ============ */
+  #p5b{padding:0;margin:0}
+  .geboortekaart{
+    background:none;border:none;
+    padding:40px 48px;display:flex;flex-direction:column;align-items:center;text-align:center;
+    position:relative;
+  }
+  .geboortekaart::before{display:none}
+  .geboortekaart .klein{color:rgba(255,255,255,.5);font-size:12px}
+  .geboortekaart h2{font-weight:600;font-size:26px;letter-spacing:-.01em;text-transform:uppercase;line-height:1.08;margin:10px 0 6px;color:#fff}
+  .geboortekaart .ondertitel{font-size:15px;color:rgba(255,255,255,.65);margin-bottom:6px}
+  .geboortekaart .babyfoto{width:64%;height:auto;margin:14px 0 16px;display:block}
+  /* ─── logo marquee — container als placeholder, imgs worden via JS op body gezet ─── */
+  .babyfoto-marquee{
+    width:64%;aspect-ratio:1/1;
+    margin:14px 0 16px;
+  }
+  .gegevens{width:100%;max-width:340px;text-align:left;font-size:15px;margin-top:6px}
+  .gegevens div{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px dashed rgba(255,255,255,.2)}
+  .gegevens dt{color:rgba(255,255,255,.5);font-size:11px;letter-spacing:.18em;text-transform:uppercase;align-self:center}
+  .gegevens dd{font-weight:500;color:#fff}
+  .geboortekaart .voetje{margin-top:auto;font-size:11px;color:rgba(255,255,255,.45)}
+
+  .mockup-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+  .mockup-grid img{width:100%;height:100%;object-fit:cover;display:block}
+
+  /* ============ P6 — koffietafel ============ */
+  #p6{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;text-align:center;padding:80px 8vw 0}
+  #p6 .reus{
+    font-weight:600;font-size:clamp(90px,16vw,210px);line-height:1;
+    letter-spacing:-.02em;
+  }
+  #p6 .reus sup{font-size:.35em;font-weight:500}
+  #p6 .stat{font-size:17px;max-width:52ch;color:rgba(255,255,255,.65);margin-top:14px}
+  #p6 .belofte{
+    font-weight:500;font-size:clamp(22px,2.6vw,30px);line-height:1.25;margin-top:44px;max-width:30ch;
+  }
+  #p6 .contact{margin-top:40px;display:flex;gap:34px;flex-wrap:wrap;justify-content:center}
+  #p6 .contact a{
+    color:#fff;text-decoration:none;font-size:15px;letter-spacing:.06em;
+    border-bottom:1px solid rgba(255,255,255,.45);padding-bottom:3px;
+  }
+  #p6 .contact a:hover{border-color:#fff}
+  #p6 .wetje{
+    position:absolute;bottom:40px;left:0;right:0;
+    font-size:11.5px;color:rgba(255,255,255,.4);
+  }
+
+  /* ============ navigatie ============ */
+  #stippen{
+    position:fixed;bottom:30px;left:50%;transform:translateX(-50%);
+    display:flex;gap:12px;z-index:10;opacity:0;transition:opacity .5s;
+    pointer-events:none;
+  }
+  body:not(.locked) #stippen{opacity:1;pointer-events:auto}
+  #stippen button{
+    width:8px;height:8px;border-radius:50%;border:1px solid currentColor;
+    background:transparent;cursor:pointer;padding:0;color:var(--wit);
+    transition:background .25s,color .25s,transform .25s;
+  }
+  #stippen.donkerop button{color:var(--inkt)}
+  #stippen button.actief{background:currentColor;transform:scale(1.3)}
+  #wenk{
+    position:fixed;bottom:26px;right:34px;z-index:10;
+    font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--grijs);
+    opacity:0;transition:opacity .5s;pointer-events:none;
+  }
+  body:not(.locked) #wenk{opacity:.8}
+  #terug{
+    position:fixed;bottom:24px;left:34px;z-index:10;
+    background:none;border:none;cursor:pointer;font-family:inherit;
+    font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--grijs);
+    display:inline-flex;align-items:center;gap:8px;padding:6px 2px;
+    opacity:0;transition:opacity .35s,color .25s;pointer-events:none;
+  }
+  #terug.zichtbaar{opacity:.7;pointer-events:auto}
+  #terug:hover{opacity:1}
+  #terug.donkerop{color:var(--inkt)}
+
+  @media (max-width:900px){
+    #p2{flex-direction:column;gap:24px;padding:6vh 7vw;justify-content:center}
+    .kistkolom{max-width:100%;margin-right:0}
+    #p5{flex-direction:column;gap:30px;padding:6vh 8vw;align-items:flex-start}
+    .kistpodium{width:88vw}
+    .geboortescene{width:min(340px,82vw)}
+    .mockup-grid img{height:40vw}
+    #fase2-logobalk{width:min(340px,84vw)}
+  }
+
+  @media (max-width:600px){
+    /* ── P1 rouwkaart ── */
+    .vlak{padding:22px 18px}
+    .kaart p.tekst{font-size:14px}
+    .citaat{font-size:13px;margin-top:10px}
+    #poortvorm{margin-top:16px;gap:10px}
+
+    /* ── P2 kist ── */
+    #p2{padding:4vh 5vw;gap:16px}
+    .kop{font-size:clamp(22px,7vw,32px)}
+    .uitlegtekst{font-size:14px}
+    .gaven{gap:9px;margin:18px 0 14px}
+    .gave{padding:10px 13px;font-size:15px}
+    #sluitkist{padding:14px 24px}
+
+    /* ── P4 logo: grotere minimummaat ── */
+    .logo-mark{height:clamp(72px,19vw,120px)}
+    .logo-tekst{height:clamp(64px,17vw,110px)}
+    .logo-donker{gap:clamp(6px,2vw,10px)}
+
+    /* ── fase2 logobalk ── */
+    #fase2-logobalk{width:90vw;gap:clamp(6px,2vw,10px)}
+    #fase2-logobalk .logo-mark-wit{height:clamp(72px,19vw,120px)}
+    #fase2-logobalk .logo-tekst-wit{height:clamp(64px,17vw,110px)}
+    #fase2-hero-top,#fase2-hero-bottom{height:36vh}
+    #fase2-scroll-wenk{font-size:13px;bottom:28px}
+
+    /* ── saluut: kleiner op mobiel ── */
+    #saluut img{height:min(68vh,68vw)}
+
+    /* ── sketch-peek: verticaal stapelen ── */
+    #sketch-peek .sp-main{height:auto;width:86vw;max-height:52vh}
+    #sketch-peek.met-gif .sp-wrap{flex-direction:column;align-items:center;gap:14px}
+    #sketch-peek.met-gif .sp-left{align-items:center;gap:8px}
+    #sketch-peek.met-gif .sp-logo-groot{height:16vh;width:auto}
+    #sketch-peek.met-gif .sp-main{height:auto;width:78vw;max-height:30vh}
+    /* GIF cirkels: rij naast elkaar, geen overlap */
+    #sketch-peek.met-gif .sp-gif-column{flex-direction:row;gap:10px}
+    #sketch-peek.met-gif .sp-gif-wrap{
+      width:clamp(96px,27vw,120px);height:clamp(96px,27vw,120px);
+    }
+    #sketch-peek.met-gif .sp-gif-wrap+.sp-gif-wrap{margin-top:0;margin-left:0}
+
+    /* ── mockup-grid: 1 kolom, vierkant, geen snap ── */
+    #fase2{-webkit-overflow-scrolling:auto;scroll-snap-type:none}
+    .mockup-grid{grid-template-columns:1fr;gap:10px;padding:0 8vw;scroll-snap-type:none}
+    .mockup-grid img{width:100%;aspect-ratio:1/1;height:auto;scroll-snap-align:none;-webkit-touch-callout:none;pointer-events:none;user-select:none}
+
+    /* ── P5 geboortekaartje ── */
+    #p5{padding:44px 5vw}
+    .geboortescene{width:92vw}
+    .geboortekaart{padding:24px 16px}
+    .babyfoto-marquee{width:40%}
+    .gegevens{font-size:14px}
+
+    /* ── P6 koffietafel ── */
+    #p6{padding:56px 6vw 0}
+    #p6 .reus{font-size:clamp(68px,18vw,140px)}
+    #p6 .belofte{font-size:clamp(18px,5vw,26px);margin-top:28px}
+    #p6 .contact{gap:16px;margin-top:28px}
+    #p6 .stat{font-size:15px}
+
+    /* ── navigatiebalken ── */
+    #wenk{right:16px;bottom:18px}
+    #terug{left:16px;bottom:16px}
+    #stippen{bottom:20px}
+    #fase2-terug{left:16px;top:18px}
+  }
+
+  /* ── DVD easter egg — zweeft boven alles, laat klikken door ── */
+  #dvd-overlay{
+    position:fixed;inset:0;z-index:11;
+    background:transparent;
+    opacity:0;pointer-events:none;
+    transition:opacity .4s ease;
+  }
+  #dvd-overlay.actief{opacity:1}
+  #dvd-img{
+    position:absolute;top:0;left:0;
+    width:clamp(80px,12vw,140px);height:auto;
+    pointer-events:none;user-select:none;
+    will-change:transform,filter;
+    -webkit-user-drag:none;
+  }
+
+  /* de stoet blijft (scroll stuurt de horizontale beweging), maar het versierwerk
+     — zwevende bloemen, schud, lange overgangen — wordt rustiger voor wie dat wil */
+  @media (prefers-reduced-motion: reduce){
+    .kaart{transition-duration:.001ms}
+    .kistkolom{transition-duration:.001ms}
+    .kistfotos img{transition-duration:.001ms}
+    .bloemen span{animation:none;opacity:0}
+    .kaart.schud{animation:none}
+  }
+</style>
+</head>
+<body class="locked">
+
+<div id="viewport">
+<video id="logobg" src="fotos/video_bg.mp4" loop muted playsinline preload="auto"></video>
+<div id="track">
+
+  <!-- ========== 1 · ROUWKAART ========== -->
+  <section class="panel" id="p1">
+    <div class="kaartscene">
+      <div class="kaart" id="kaart">
+        <div class="vlak voor">
+          <span class="klein">Rouwkaart</span>
+          <div>
+            <div class="aanhef">Geheel onverwacht</div>
+            <h1>het logo van<br>Studio Plakband</h1>
+            <div class="jaartal">★ augustus 2025, Instagram &nbsp;—&nbsp; ✝ juni 2026, e-mail</div>
+            <p class="tekst">is, midden in zijn werkzame leven, van ons heengegaan.
+            In een interne e-mail werd het publiekelijk <em>lelijk</em> genoemd.
+            Het werd tien maanden oud.</p>
+            <p class="citaat">«&nbsp;Geboren op Instagram, gestorven per e-mail.&nbsp;»</p>
+            <button class="draai" id="draaiknop" type="button">draai de kaart om&nbsp;&nbsp;→</button>
+          </div>
+          <span class="klein onder">De nabestaanden: John&nbsp;·&nbsp;Rieuwerd&nbsp;·&nbsp;Joey</span>
+        </div>
+        <div class="vlak achter">
+          <span class="klein">Praktische informatie</span>
+          <div style="width:100%">
+            <h2>De dienst is besloten.</h2>
+            <p class="tekst" style="margin:0 auto">Toegang uitsluitend voor genodigden.
+            Het wachtwoord werd u persoonlijk aangezegd.</p>
+            <form id="poortvorm" autocomplete="off">
+              <input id="wachtwoord" type="text" placeholder="zie rouwkaart" autocomplete="off" spellcheck="false">
+              <button type="submit">Betreed de dienst</button>
+              <div id="fout">U staat niet op de gastenlijst.</div>
+            </form>
+          </div>
+          <span class="klein onder">Leed aangezegd, zoals het hoort</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 2 · DE KIST ========== -->
+  <section class="panel" id="p2">
+    <div class="kistkolom">
+      <span class="klein">De kist</span>
+      <h2 class="kop">Wat geven we het mee?</h2>
+      <p class="uitlegtekst">Tien maanden hard gewerkt: elke dag op de homepage, nooit geklaagd.
+      Kies wat het logo meekrijgt voor onderweg.</p>
+      <div class="gaven">
+        <label class="gave"><input type="checkbox" id="g-sigaret"><span class="vink"></span><span class="naam">Een pakje rooie Marlboro <i>— voor onderweg</i></span></label>
+        <label class="gave"><input type="checkbox" id="g-bloem"><span class="vink"></span><span class="naam">Eén bloem <i>— meer was niet nodig</i></span></label>
+        <label class="gave"><input type="checkbox" id="g-bier"><span class="vink"></span><span class="naam">Een krat bier <i>— voor de aankomst</i></span></label>
+      </div>
+      <button id="sluitkist" type="button">Sluit de kist</button>
+    </div>
+    <div class="kistpodium">
+      <div class="bloemen" aria-hidden="true"><span>🤍</span><span>🕊️</span><span>🌼</span></div>
+      <div class="kistfotos" id="kistfotos">
+        <!-- 1 = sigaret · 2 = bier · 3 = bloem -->
+        <img src="fotos/0.webp" alt="open kist met de losse letters van het logo" class="actief" data-staat="0" fetchpriority="high">
+        <img src="fotos/1.webp" alt="open kist met sigaretten" data-staat="1">
+        <img src="fotos/2.webp" alt="open kist met bier" data-staat="2">
+        <img src="fotos/3.webp" alt="open kist met bloem" data-staat="3">
+        <img src="fotos/1+2.webp" alt="open kist met sigaretten en bier" data-staat="1+2">
+        <img src="fotos/1+3.webp" alt="open kist met sigaretten en bloem" data-staat="1+3">
+        <img src="fotos/2+3.webp" alt="open kist met bier en bloem" data-staat="2+3">
+        <img src="fotos/1+2+3.webp" alt="open kist met sigaretten, bier en bloem" data-staat="1+2+3">
+        <img src="fotos/closed.webp" alt="de gesloten, dichtgetapete kist" data-staat="dicht">
+      </div>
+      <div id="dichtekist" style="display:none"></div>
+      <p class="fotonoot" id="kistnoot">de kist staat nog open — neem rustig afscheid</p>
+    </div>
+    <!-- saluut: schuift na het sluiten met de scroll van rechts binnen -->
+    <div id="saluut" aria-hidden="true">
+      <img src="fotos/IMG_4745.webp" alt="een laatste saluut" loading="lazy">
+    </div>
+    <!-- verzendlabel: verschijnt links terwijl de saluut binnenkomt -->
+    <div id="verzendlabel">
+      <b>AAN:</b> DE EEUWIGHEID<br>
+      <b>T.A.V.:</b> AFDELING OUDE LOGO'S<br>
+      <div class="streep"></div>
+      <b>INHOUD:</b><br><span id="inhoudlijst">— 1× logo (2025–2026), demontabel</span>
+      <div class="streep"></div>
+      <b>BREEKBAAR:</b> NEE, WAS AL KAPOT<br>
+      <b>RETOUR:</b> UITGESLOTEN
+    </div>
+  </section>
+
+  <!-- ========== 3 · HET LICHT ========== -->
+  <section class="panel" id="p4">
+    <div id="nieuwlogo" role="button" tabindex="0" aria-label="klik om het logo te onthullen">
+      <div class="logo-donker">
+        <img class="logo-mark" src="fotos/new_logo.webp" alt="studio Plakband mark">
+        <img class="logo-tekst" src="fotos/new_logo_text.webp" alt="Plakband">
+      </div>
+      <div id="logodot" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- ========== 4 · STILTE (het logo blijft even hangen) ========== -->
+  <section class="panel" id="p-houd"></section>
+
+</div>
+</div>
+
+<!-- ========== FASE 2 — vertikaal scrollen na logo-klik ========== -->
+<div id="fase2">
+
+  <!-- ruimte boven logo → logo start gecentreerd -->
+  <div id="fase2-hero-top"></div>
+
+  <!-- logo: centerstuk in de hero -->
+  <div id="fase2-logobalk">
+    <img class="logo-mark-wit" src="fotos/new_logo_white.webp" alt="">
+    <img class="logo-tekst-wit" src="fotos/new_logo_text.webp" alt="Plakband">
+  </div>
+
+  <!-- ruimte onder logo → samen ≈ 1 scherm hoog hero -->
+  <div id="fase2-hero-bottom"></div>
+
+  <!-- scroll-hint: verschijnt zodra beide logo's zijn aangeklikt -->
+  <div id="fase2-scroll-wenk">
+    <span>scroll</span>
+    <span class="fase2-wenk-pijl">↓</span>
+  </div>
+
+  <!-- 5 · geboortekaartje -->
+  <section id="p5">
+    <div class="geboortescene">
+      <div class="geboortekaart">
+        <span class="klein">Geboortekaartje</span>
+        <h2>Hoera! Het is een logo.</h2>
+        <div class="ondertitel">Met grote vreugde geven wij kennis van de geboorte.</div>
+        <div class="babyfoto-marquee">
+          <img src="fotos/logo_show_7.webp" alt="">
+          <img src="fotos/logo_show_1.webp" alt="">
+          <img src="fotos/logo_show_2.webp" alt="">
+          <img src="fotos/logo_show_3.webp" alt="">
+          <img src="fotos/logo_show_4.webp" alt="">
+          <img src="fotos/logo_show_5.webp" alt="">
+          <img src="fotos/logo_show_6.webp" alt="">
+        </div>
+        <dl class="gegevens">
+          <div><dt>Naam</dt><dd>Plakband</dd></div>
+          <div><dt>Geboren</dt><dd>juni 2026, Groningen</dd></div>
+          <div><dt>Gewicht</dt><dd>109 KB</dd></div>
+          <div><dt>Ouders</dt><dd>Studio Plakband</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5b · mockup fotos 2×2 -->
+  <section id="p5b">
+    <div class="mockup-grid">
+      <img src="fotos/mockup1.webp" alt="">
+      <img src="fotos/mockup2.webp" alt="">
+      <img src="fotos/mockup3.webp" alt="">
+      <img src="fotos/mockup4.webp" alt="">
+    </div>
+  </section>
+
+  <!-- 6 · koffietafel -->
+  <section id="p6">
+    <span class="klein" style="color:rgba(255,255,255,.5)">De koffietafel</span>
+    <div class="reus">67,3<sup>%</sup></div>
+    <p class="stat">van de Groningers wil na de uitvaart koffie met cake.
+    Het hoogste percentage van Nederland. Aan tradities tornen wij niet.</p>
+    <p class="belofte">De koffie zetten jullie.<br>De cake neem ik mee — naar het gesprek.</p>
+    <div class="contact">
+      <a href="mailto:plsxou46@gmail.com">plsxou46@gmail.com</a>
+      <a href="https://plsxou.com" target="_blank" rel="noopener">plsxou.com</a>
+    </div>
+  </section>
+
+</div>
+
+<nav id="stippen" aria-label="voortgang"></nav>
+<button id="terug" type="button" aria-label="een stap terug">←&nbsp;terug</button>
+<button id="fase2-terug" type="button" aria-label="terug naar het begin">←&nbsp;terug</button>
+<div id="fase2-center-mark" aria-hidden="true">
+  <img src="fotos/new_logo_white.webp" alt="">
+</div>
+
+<div id="sketch-peek" aria-hidden="true">
+  <div class="sp-wrap">
+    <div class="sp-left">
+      <img class="sp-logo-groot" src="" alt="" id="sp-logo-groot">
+      <img class="sp-main" src="" alt="" id="sp-main">
+    </div>
+    <div class="sp-gif-column">
+      <div class="sp-gif-wrap"><img class="sp-gif" src="" alt=""></div>
+      <div class="sp-gif-wrap"><img class="sp-gif" src="" alt=""></div>
+      <div class="sp-gif-wrap"><img class="sp-gif" src="" alt=""></div>
+    </div>
+  </div>
+</div>
+
+<div id="wenk">scroll →</div>
+
+<!-- DVD easter egg — zweeft transparant boven de pagina na klik op blauwe stip -->
+<div id="dvd-overlay" aria-hidden="true">
+  <img id="dvd-img" src="fotos/ST.png" alt="" draggable="false">
+</div>
+
+<script>
+(function(){
+  const PANELEN = 4;
+  const HASH = '74f27c9d6d8e7d36e8d72543edaf552b504a7bae45921e4d13bb25f8ca49879f';
+  const track = document.getElementById('track');
+  const viewport = document.getElementById('viewport');
+  const stippen = document.getElementById('stippen');
+  const terug = document.getElementById('terug');
+  const saluut = document.getElementById('saluut');
+  const podium    = document.querySelector('.kistpodium');
+  const kistkolom = document.querySelector('.kistkolom');
+  const label = document.getElementById('verzendlabel');
+  const kistnoot = document.getElementById('kistnoot');
+  const nieuwlogo  = document.getElementById('nieuwlogo');
+  const logobg     = document.getElementById('logobg');
+  const logodot    = document.getElementById('logodot');
+  const fase2Terug = document.getElementById('fase2-terug');
+  const fase2CenterMark = document.getElementById('fase2-center-mark');
+  const wenk = document.getElementById('wenk');
+  const body = document.body;
+  let spacer = null;
+  let kistDicht = false;   /* pas na het sluiten begint de ceremonie */
+  let kistnootFadeStart = null;  /* timestamp voor fade-out van de kistnoot-tekst */
+  let podiumSlideAnim = null;    /* {start,from,dur} – JS-animatie van kist naar midden */
+  let opgelost = false;    /* wachtwoord goed: het slot komt niet meer terug */
+  let logoDicht = false;   /* logo aangeklikt: video loopt, scrollen naar p5 mag */
+  let markGezien = false;  /* mark-img al aangeklikt in fase2 */
+  let tekstGezien = false; /* tekst-img al aangeklikt in fase2 */
+  let fase2HeroTop = 0;    /* r.top van het nieuwlogo bij logo-klik, voor topbalk-drempel */
+
+  /* center-mark: verschijnt als het held-logo gescrolled is */
+  document.getElementById('fase2').addEventListener('scroll', function(){
+    if(!fase2CenterMark) return;
+    const lb = document.getElementById('fase2-logobalk');
+    const thr = fase2HeroTop + (lb ? lb.offsetHeight * 0.8 : 90);
+    fase2CenterMark.classList.toggle('zichtbaar', this.scrollTop > thr);
+    this.classList.toggle('fase2-onderaan', this.scrollTop + this.clientHeight >= this.scrollHeight - 20);
+  }, {passive:true});
+
+  /* ---------- horizontale stoet ----------
+     één paneel = één schermhoogte scrollen. de bereikbare grens (capF) is
+     1 zolang de kist niet dicht is: je kunt dus NIET voorbij de kist naar
+     rechts. zodra de kist dicht is, gaat de hele stoet open. */
+  let override = null;   /* ?panel=N debug: vaste f tot de eerste echte scroll */
+  function paneelPx(){ return innerHeight || 1; }
+  function capF(){
+    if(!kistDicht) return 1;
+    if(!logoDicht) return 3.0;   /* wacht op klik voordat stoet verder loopt */
+    return PANELEN-1;
+  }
+  function progressF(){
+    if(override !== null) return override;
+    return Math.min(capF(), Math.max(0, scrollY / paneelPx()));
+  }
+  function updateSpacer(){
+    if(spacer) spacer.style.height = ((capF()+1)*100) + 'vh';
+  }
+  function wisOverride(){
+    if(override === null) return;
+    scrollTo(0, override * paneelPx());
+    override = null;
+  }
+  addEventListener('wheel', wisOverride, {passive:true});
+  addEventListener('touchstart', wisOverride, {passive:true});
+
+  /* achtergrond: zwart (p1–2) → wit (p4–5), overgang richting 'het licht' (paneel 3) */
+  const ZWART = [0,0,0], WIT = [255,255,255], INKT = [26,25,22];
+  const clamp = v => Math.min(1, Math.max(0, v));
+  function lerp(a,b,t){ return a.map((v,i)=>Math.round(v+(b[i]-v)*t)); }
+  function teken(){
+    const f = progressF();              // 0..5, paneelpositie (= schermen gescrold)
+    track.style.transform = 'translateX(' + (-f*100) + 'vw)';
+
+    /* JS-animatie kist naar midden:
+       podiumExtra gaat van 0 (huidige CSS-positie) → movement (negatief = naar links)
+       zodat het podium vloeiend naar het viewport-midden schuift. */
+    let podiumExtra = 0, podiumExtraY = 0;
+    if(podiumSlideAnim){
+      const {start, movement, movementY, dur} = podiumSlideAnim;
+      const t = Math.min((performance.now()-start)/dur, 1);
+      const e = t<.5 ? 2*t*t : -1+(4-2*t)*t;
+      podiumExtra  = movement          * e;
+      podiumExtraY = (movementY||0)    * e;
+      /* NIET null-zetten hier: de setTimeout op 950ms doet dat synchroon
+         met verdwenen + kistDicht zodat er geen tussenkader is waarbij
+         podiumExtra=0 maar kistkolom nog in de layout zit. */
+    }
+
+    /* === de ceremonie (alleen nadat de kist gesloten is) ===
+       de kist blijft pal in het midden; alleen het briefje, de saluut
+       en daarna de hemelvaart bewegen mee met de scroll.
+       pin = tegenbeweging die de track precies opheft → vast in beeld. */
+    const pin = (f-1)*100;
+    if(kistDicht){
+      /* het scroll-zinnetje vervaagt zodra de stoet vertrekt;
+         bij tekst-wissel tijdelijk overgenomen door de fade-timer */
+      if(kistnootFadeStart !== null){
+        const p = Math.min((performance.now()-kistnootFadeStart)/350, 1);
+        kistnoot.style.opacity = 1-p;
+      } else {
+        kistnoot.style.opacity = 1-clamp((f-1.05)/0.12);
+      }
+      /* verzendlabel: op desktop links naast de kist; op mobiel van boven centraal */
+      if(window.innerWidth < 600){
+        const lw = Math.min(220, window.innerWidth * 0.82);
+        const cx = (window.innerWidth - lw) / 2;
+        const drop = clamp((f-1.22)/0.33); /* synchroon met saluut: beide arriveren op f=1.55 */
+        const ly = -48 + 10 * drop; /* daalt van -48vh naar -38vh (label eindigt in bovenste kwart) */
+        label.style.transform = 'translateX(calc('+pin+'vw + '+cx+'px)) translateY('+ly+'vh) rotate(-2deg)';
+      } else {
+        label.style.transform = 'translateX('+(pin+22)+'vw) translateY(-50%) rotate(-2deg)';
+      }
+      label.style.opacity = clamp((f-1.22)/0.35) * (1-clamp((f-1.92)/0.14));
+      /* ... daarna loopt de saluut van rechts binnen, STAAT STIL voor de kist
+         (een moment van eerbied), en verlaat dán pas links het beeld */
+      let sx;
+      if(f < 1.55)      sx = 25 + 50 * (1 - clamp((f-1.22)/0.33)); // binnenkomst: img-center 125vw → 75vw
+      else if(f < 1.90) sx = 25;                                    // stil staan:  rechts (75vw)
+      else              sx = 25 - 120 * clamp((f-1.90)/0.25);       // vertrek:     75vw → -45vw
+      saluut.style.transform = 'translateX('+(pin+sx)+'vw)';
+      saluut.style.opacity = clamp((f-1.22)/0.14) * (1-clamp((f-1.92)/0.14));
+      /* PAS nadat de saluut weg is, stijgt de kist ten hemel */
+      const stijg = clamp((f-2.05)/(2.45-2.05));          // hemelvaart: rustig omhoog
+      const eStijg = stijg*stijg;                         // ease-in: hangt eerst, zweeft dan weg
+      const zicht = clamp((f-0.8)/0.12) * (1-clamp((f-2.20)/0.25));  // dooft uit terwijl hij stijgt
+      podium.style.transform = 'translateX(calc('+pin+'vw + '+podiumExtra+'px)) translateY('+(eStijg*-130)+'vh)';
+      podium.style.opacity = zicht;
+    } else {
+      podium.style.transform = (podiumExtra||podiumExtraY)
+        ? 'translateX('+podiumExtra+'px) translateY('+podiumExtraY+'px)' : '';
+      podium.style.opacity='';
+      label.style.opacity='0'; label.style.transform='';
+      kistnoot.style.opacity=''; saluut.style.opacity=0;
+    }
+
+    /* achtergrond zwart → wit, pas nadat de kist ten hemel is gestegen */
+    let t = clamp((f-2.25)/(2.60-2.25));
+    viewport.style.background = 'rgb(' + lerp(ZWART, WIT, t).join(',') + ')';
+    stippen.classList.toggle('donkerop', t > .55);
+    terug.classList.toggle('donkerop', t > .55);
+    wenk.style.color = t > .55 ? 'rgba(26,25,22,.6)' : '';
+    wenk.style.opacity = f > 2.8 ? '0' : '';   /* stoet nadert einde: pijl vervaagt */
+
+    /* het beeld is nu helemaal wit en LEEG — een tel stilte (kist weg ~2.45,
+       logo komt pas bij 2.80) — en PAS daarna daalt het nieuwe logo recht
+       van boven in, en landt precies op de rustplek van paneel 'stilte' (f=3),
+       waar het blijft hangen tot vlak vóór het geboortekaartje.
+       lpin houdt het exact gecentreerd terwijl de track verder schuift. */
+    const lpin = (f-2)*100;
+    const d = clamp((f-2.80)/(3.00-2.80));               // dalen begint ná de stilte, landt op f=3
+    const ease = d*d*(3-2*d);                            // smoothstep: zacht starten én landen
+    nieuwlogo.style.transform = 'translateX('+lpin+'vw) translateY(' + ((-65)+(65*ease)) + 'vh)';
+    const logoAlpha = clamp((f-2.76)/0.12) * (1-clamp((f-3.85)/0.15));
+    nieuwlogo.style.opacity = logoAlpha;
+    /* stip & video */
+    if(!logoDicht){
+      const dotVis = clamp((f-2.95)/0.07);
+      logodot.style.opacity = String(dotVis);
+      nieuwlogo.classList.toggle('klikbaar', f >= 2.92);
+      logobg.style.opacity = '0';
+    } else {
+      logodot.style.opacity = '0';
+      /* fase2 dekt de viewport af — video blijft, geen pop-out */
+    }
+
+    /* terug-pijl: zichtbaar zodra je voorbij paneel 1 bent */
+    terug.classList.toggle('zichtbaar', !body.classList.contains('locked') && f > 0.4);
+    [...stippen.children].forEach((s,i)=>s.classList.toggle('actief', Math.round(f)===i));
+    requestAnimationFrame(teken);
+  }
+  requestAnimationFrame(teken);
+
+  for(let i=0;i<PANELEN;i++){
+    const b = document.createElement('button');
+    b.type='button'; b.setAttribute('aria-label','paneel '+(i+1));
+    b.addEventListener('click',()=>naarPaneel(i,true));
+    stippen.appendChild(b);
+  }
+  function ontgrendel(){
+    if(spacer) return;
+    spacer = document.createElement('div');
+    spacer.id='scrollspace';
+    body.appendChild(spacer);
+    updateSpacer();
+    body.classList.remove('locked');
+  }
+  function naarPaneel(i, vloeiend){
+    ontgrendel();
+    i = Math.min(capF(), Math.max(0, i));
+    scrollTo({ top: i * paneelPx(), behavior: vloeiend ? 'smooth' : 'auto' });
+  }
+  addEventListener('keydown', e=>{
+    if(body.classList.contains('locked')) return;
+    const f = Math.round(progressF());
+    if(e.key==='ArrowRight') naarPaneel(Math.min(capF(), f+1), true);
+    if(e.key==='ArrowLeft')  naarPaneel(Math.max(0, f-1), true);
+  });
+  /* ---------- logo klik: video onthulling, daarna fase2 omhoog ---------- */
+  function onLogoKlik(){
+    if(logoDicht) return;
+    logoDicht = true;
+    nieuwlogo.classList.remove('klikbaar');
+    nieuwlogo.classList.add('wit');  // CSS: .logo-tekst wordt wit via filter
+    /* mark wisselt naar witte versie */
+    const logoMark = nieuwlogo.querySelector('.logo-mark');
+    if(logoMark) logoMark.src = 'fotos/new_logo_white.webp';
+    logodot.style.opacity = '0';
+    logobg.play().catch(()=>{});
+    logobg.style.opacity = '1';
+    /* na de video-fade-in schuift fase2 over de viewport */
+    setTimeout(()=>{
+      /* sync fase2-logobalk exact op de positie van het zichtbare nieuwlogo */
+      const r  = nieuwlogo.getBoundingClientRect();
+      const ht = document.getElementById('fase2-hero-top');
+      const hb = document.getElementById('fase2-hero-bottom');
+      const lb = document.getElementById('fase2-logobalk');
+      if(ht) ht.style.height = r.top + 'px';
+      if(hb) hb.style.height = r.top + 'px';
+      if(lb) { lb.style.width = r.width + 'px'; lb.style.height = r.height + 'px'; }
+      fase2HeroTop = r.top;
+      /* verberg origineel logo + toon fase2 in één frame (geen fade-animatie) */
+      nieuwlogo.style.display = 'none';
+      const f2 = document.getElementById('fase2');
+      f2.style.transition = 'none';   // instant, geen fade
+      f2.classList.add('actief');
+      body.classList.add('fase2-open');
+      stippen.style.display  = 'none';
+      terug.style.display    = 'none';
+      wenk.style.display     = 'none';
+    }, 900);
+  }
+  nieuwlogo.addEventListener('click', onLogoKlik);
+  nieuwlogo.addEventListener('keydown', e=>{
+    if(e.key==='Enter'||e.key===' '){ e.preventDefault(); onLogoKlik(); }
+  });
+
+  /* ───── DVD easter egg ───── */
+  (function(){
+    const overlay = document.getElementById('dvd-overlay');
+    const img     = document.getElementById('dvd-img');
+    if(!overlay || !img) return;
+
+    const NEONS = [
+      { hue:320, hex:'#FF2D78' }, // neon roze
+      { hue:190, hex:'#00E5FF' }, // elektrisch blauw
+      { hue:115, hex:'#39FF14' }, // neon groen
+      { hue:270, hex:'#BF00FF' }, // neon paars
+      { hue: 20, hex:'#FF6500' }, // neon oranje
+      { hue: 55, hex:'#FFEE00' }, // neon geel
+      { hue:175, hex:'#00FFCA' }, // neon cyaan
+      { hue:210, hex:'#4488FF' }, // elektrisch blauw-wit
+    ];
+
+    let active=false, rafId=null;
+    let x=0,y=0,vx=0,vy=0;
+    const SPEED = 2.8;
+    let cidx=0, hueNow=NEONS[0].hue, hueTarget=NEONS[1].hue;
+
+    function pickNext(){
+      let ni; do{ ni=Math.floor(Math.random()*NEONS.length); }while(ni===cidx);
+      cidx=ni; hueTarget=NEONS[ni].hue;
+    }
+    function shortDiff(a,b){ let d=((b-a)%360+360)%360; return d>180?d-360:d; }
+    function applyFilter(){
+      const h=Math.round((hueNow%360+360)%360);
+      // glow-kleur synchroon met hue: sepia-basis zit op ~35°, shift mee
+      const gc='hsl('+((h+35)%360)+',100%,62%)';
+      img.style.filter=
+        'brightness(0) invert(1) sepia(1) saturate(12) hue-rotate('+h+'deg) brightness(1.6) '+
+        'drop-shadow(0 0 24px '+gc+') drop-shadow(0 0 8px '+gc+') drop-shadow(0 0 2px #fff)';
+    }
+    function step(){
+      if(!active) return;
+      const W=window.innerWidth, H=window.innerHeight;
+      const w=img.offsetWidth||120, h=img.offsetHeight||120;
+      x+=vx; y+=vy;
+      let hit=false;
+      if(x<=0){x=0;vx=Math.abs(vx);hit=true;}
+      if(x+w>=W){x=W-w;vx=-Math.abs(vx);hit=true;}
+      if(y<=0){y=0;vy=Math.abs(vy);hit=true;}
+      if(y+h>=H){y=H-h;vy=-Math.abs(vy);hit=true;}
+      if(hit){ hueNow=hueTarget; pickNext(); }
+      hueNow=(hueNow+shortDiff(hueNow,hueTarget)*0.05+360)%360;
+      applyFilter();
+      img.style.transform='translate('+x+'px,'+y+'px)';
+      rafId=requestAnimationFrame(step);
+    }
+
+    function start(){
+      const W=window.innerWidth, H=window.innerHeight;
+      x=W*0.3; y=H*0.25;
+      const sign=()=>Math.random()<.5?1:-1;
+      vx=SPEED*sign(); vy=SPEED*sign();
+      cidx=0; hueNow=NEONS[0].hue; pickNext();
+      applyFilter();
+      img.style.transform='translate('+x+'px,'+y+'px)';
+      active=true;
+      overlay.classList.add('actief');
+      rafId=requestAnimationFrame(step);
+    }
+
+    function stop(){
+      active=false;
+      if(rafId){cancelAnimationFrame(rafId);rafId=null;}
+      overlay.classList.remove('actief');
+    }
+
+    // Start DVD mee met de normale logo-klik flow, geen stopPropagation
+    logodot.addEventListener('click', start);
+
+    // Expose stop zodat terugNaarHorizontaal het kan resetten
+    window._dvdStop = stop;
+  })();
+
+  /* fase2-terug: sluit fase2, reset staat, ga terug naar vóór de hemelvaart */
+  function terugNaarHorizontaal(){
+    if(window._dvdStop) window._dvdStop();
+    const f2 = document.getElementById('fase2');
+    /* reset fase2 (instant, geen fade) */
+    f2.classList.remove('actief');
+    body.classList.remove('fase2-open');
+    f2.scrollTop = 0;
+    fase2Terug.classList.remove('zichtbaar');
+    if(fase2CenterMark) fase2CenterMark.classList.remove('zichtbaar');
+    /* herstel video */
+    logobg.style.transition = 'none';
+    logobg.style.opacity    = '0';
+    logobg.pause();
+    setTimeout(()=>{ logobg.style.transition = ''; }, 50);
+    /* herstel logo */
+    nieuwlogo.classList.remove('wit');
+    const logoMark = nieuwlogo.querySelector('.logo-mark');
+    if(logoMark) logoMark.src = 'fotos/new_logo.webp';
+    nieuwlogo.style.display = '';
+    /* herstel UI */
+    stippen.style.display = '';
+    terug.style.display   = '';
+    wenk.style.display    = '';
+    /* reset logoDicht zodat de stoet verder kan */
+    logoDicht = false;
+    /* reset logo-gezien staat */
+    markGezien = false;
+    tekstGezien = false;
+    const lb2 = document.getElementById('fase2-logobalk');
+    if(lb2){
+      lb2.querySelector('.logo-mark-wit').classList.remove('gezien');
+      lb2.querySelector('.logo-tekst-wit').classList.remove('gezien');
+    }
+    document.getElementById('fase2').classList.remove('logos-gezien', 'fase2-onderaan');
+    /* spring terug naar het logo met blauwe stip (f = 3, de cap vóór logo-klik) */
+    scrollTo({ top: 3 * paneelPx(), behavior: 'instant' });
+  }
+  fase2Terug.addEventListener('click', terugNaarHorizontaal);
+
+  /* ---------- babyfoto marquee: belt-methode, 1 RAF-lus, geen BCR per frame ---------- */
+  (function(){
+    const wrap = document.querySelector('.babyfoto-marquee');
+    if(!wrap) return;
+    const imgs = Array.from(wrap.querySelectorAll('img'));
+    if(!imgs.length) return;
+    const N     = imgs.length;  /* 7 */
+    const SLOTS = window.innerWidth < 600 ? 3 : 5;  /* mobiel: 3 zichtbaar */
+    const speed = window.innerWidth < 600 ? 0.08 : 0.22; /* mobiel trager */
+
+    imgs.forEach(img=>{
+      document.body.appendChild(img);
+      img.style.cssText='position:fixed;left:0;object-fit:contain;pointer-events:none;z-index:15;will-change:transform';
+    });
+
+    /* BCR alleen lezen bij scroll/resize, niet per frame */
+    let cachedTop=0, cachedW=0, cachedH=0;
+    function sync(){
+      const r = wrap.getBoundingClientRect();
+      cachedTop=r.top; cachedW=r.width; cachedH=r.height;
+      imgs.forEach(img=>{
+        img.style.width  = cachedW+'px';
+        img.style.height = cachedH+'px';
+        img.style.top    = cachedTop+'px';
+      });
+    }
+    sync();
+    const f2 = document.getElementById('fase2');
+    if(f2) f2.addEventListener('scroll', sync, {passive:true});
+    window.addEventListener('resize', sync);
+
+    /* enkelvoudige RAF-lus: spacing = (screenW + imgW) / SLOTS → precies 5 in beeld */
+    let t0 = null;
+    (function tick(now){
+      if(!t0) t0 = now;
+      const screenW = window.innerWidth;
+      const spacing = (screenW + cachedW) / SLOTS;
+      const total   = N * spacing;
+      const dist    = speed * (now - t0);
+
+      imgs.forEach(function(img, i){
+        const x = ((i * spacing + dist) % total + total) % total - cachedW;
+        img.style.transform = 'translateX('+x+'px)';
+      });
+      requestAnimationFrame(tick);
+    })(performance.now());
+  })();
+
+  /* ---------- p5b snap: rij 1 + rij 2, alleen naar beneden, blokkeer input ---------- */
+  (function(){
+    const f2  = document.getElementById('fase2');
+    const p5b = document.getElementById('p5b');
+    if(!f2 || !p5b) return;
+    let snapping = false;
+    let lastSt   = 0;
+
+    function blokkeer(e){ if(snapping) e.preventDefault(); }
+    f2.addEventListener('wheel',     blokkeer, {passive:false});
+    f2.addEventListener('touchmove', blokkeer, {passive:false});
+
+    function snapNaar(doel){
+      snapping = true;
+      const start    = f2.scrollTop;
+      const afstand  = doel - start;
+      const duur     = 900;   /* ms — pas hier aan voor snelheid */
+      let begin      = null;
+      function ease(t){ return t<.5 ? 2*t*t : -1+(4-2*t)*t; }  /* ease-in-out */
+      function stap(ts){
+        if(!begin) begin = ts;
+        const t = Math.min((ts-begin)/duur, 1);
+        f2.scrollTop = start + afstand * ease(t);
+        if(t < 1){ requestAnimationFrame(stap); }
+        else { snapping = false; }
+      }
+      requestAnimationFrame(stap);
+    }
+
+    f2.addEventListener('scroll', function(){
+      const st = f2.scrollTop;
+      const scrolltNaarBeneden = st > lastSt;
+      lastSt = st;
+      if(snapping || !scrolltNaarBeneden) return;  /* alleen bij naar-beneden-scrollen */
+
+      const vh     = f2.clientHeight;
+      const rij1   = p5b.offsetTop;
+      const rij2   = rij1 + p5b.offsetHeight / 2;
+
+      /* rij 1: snap zodra p5b-top binnen onderste 25% viewport komt */
+      if(st >= rij1 - vh * 0.25 && st < rij1){ snapNaar(rij1); return; }
+
+      /* rij 2: snap zodra het midden van p5b binnen onderste 25% viewport komt */
+      if(st >= rij2 - vh * 0.25 && st < rij2){ snapNaar(rij2); return; }
+    }, {passive:true});
+  })();
+
+  /* terug-pijl: één stap terug in de stoet */
+  terug.addEventListener('click', ()=>{
+    naarPaneel(Math.max(0, Math.round(progressF())-1), true);
+  });
+
+  /* ---------- p1: kaart + poort ---------- */
+  const kaart = document.getElementById('kaart');
+  document.getElementById('draaiknop').addEventListener('click', ()=>{
+    kaart.classList.add('geflipt');
+    setTimeout(()=>document.getElementById('wachtwoord').focus(), 950);
+  });
+  async function sha256(s){
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s));
+    return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join('');
+  }
+  document.getElementById('poortvorm').addEventListener('submit', async e=>{
+    e.preventDefault();
+    const inv = document.getElementById('wachtwoord').value.trim().toUpperCase();
+    const fout = document.getElementById('fout');
+    let ok = false;
+    try { ok = (await sha256(inv)) === HASH; } catch(_){ ok = false; }
+    if(ok){
+      fout.classList.remove('zichtbaar');
+      opgelost = true;
+      /* het slot komt niet meer terug: kaart draait naar de voorkant,
+         de draai-knop verdwijnt → het wachtwoordscherm is onbereikbaar */
+      document.getElementById('draaiknop').style.display = 'none';
+      kaart.classList.remove('geflipt');
+      /* eerst ontgrendelen + laten herberekenen, dán pas vloeiend naar de kist schuiven */
+      ontgrendel();
+      requestAnimationFrame(()=>requestAnimationFrame(()=>naarPaneel(1, true)));
+    } else {
+      fout.classList.add('zichtbaar');
+      kaart.classList.remove('schud'); void kaart.offsetWidth;
+      kaart.classList.add('schud');
+    }
+  });
+
+  /* ---------- p2: grafgaven ---------- */
+  /* fotomapping: 1 = sigaret · 2 = bier · 3 = bloem (0 = lege kist)
+     elke combinatie heeft een eigen foto: 0,1,2,3,1+2,1+3,2+3,1+2+3 */
+  const fotos = document.querySelectorAll('#kistfotos img');
+  const gBloem = document.getElementById('g-bloem');
+  const gBier = document.getElementById('g-bier');
+  const gSig = document.getElementById('g-sigaret');
+  function toonKist(){
+    const onderdelen = [];
+    if(gSig.checked) onderdelen.push(1);    // sigaret
+    if(gBier.checked) onderdelen.push(2);   // bier
+    if(gBloem.checked) onderdelen.push(3);  // bloem
+    const staat = onderdelen.length ? onderdelen.join('+') : '0';
+    fotos.forEach(f=>f.classList.toggle('actief', f.dataset.staat === staat));
+  }
+  [gBloem,gBier,gSig].forEach(g=>g.addEventListener('change', toonKist));
+
+  document.getElementById('sluitkist').addEventListener('click', ()=>{
+    if(kistDicht) return;
+    const lijst = ['— 1× logo (2025–2026), demontabel'];
+    if(gSig.checked) lijst.push('— 1× Marlboro rood (vol)');
+    if(gBloem.checked) lijst.push('— 1× bloem (vers)');
+    if(gBier.checked) lijst.push('— 1× krat bier (24 st.)');
+    document.getElementById('inhoudlijst').innerHTML = lijst.join('<br>');
+    /* gesloten kist in dezelfde container → zelfde positie en afmeting als open foto */
+    fotos.forEach(f=>f.classList.toggle('actief', f.dataset.staat==='dicht'));
+    document.querySelector('.bloemen').style.display='none';
+    document.getElementById('sluitkist').style.display='none';
+    [gSig,gBier,gBloem].forEach(g=>g.disabled=true);
+
+    /* JS-animatie: meet voor én na kistkolom-verwijdering om exacte verplaatsing te weten.
+       Op mobiel schuift de kist ook omhoog (flex-column); dit vangt beide richtingen. */
+    const podRect0 = podium.getBoundingClientRect();
+    kistkolom.classList.add('verdwenen');          /* tijdelijk display:none voor meting */
+    const podRect1 = podium.getBoundingClientRect();
+    kistkolom.classList.remove('verdwenen');       /* direct terugzetten, geen visuele flash */
+    const movement  = podRect1.left - podRect0.left;
+    const movementY = podRect1.top  - podRect0.top;
+    podiumSlideAnim = { start: performance.now(), movement, movementY, dur: 900 };
+
+    /* kistkolom: alleen opacity fade, geen layout-animatie */
+    kistkolom.classList.add('weg');
+
+    /* na de animatie: kistkolom weg uit layout, JS neemt het roer over */
+    setTimeout(()=>{
+      podiumSlideAnim = null;       /* nu pas wissen: synchroon met verdwenen + kistDicht */
+      kistkolom.classList.add('verdwenen');
+      kistDicht = true;
+      updateSpacer();
+      setTimeout(()=>{
+        kistnootFadeStart = performance.now();
+        setTimeout(()=>{
+          document.getElementById('kistnoot').textContent='verzegeld en verzendklaar — de stoet kan vertrekken →';
+          kistnootFadeStart = null;
+        }, 350);
+      }, 100);
+    }, 950);
+  });
+
+  /* ---------- schets-peek: click-toggle ---------- */
+  const sketchPeek  = document.getElementById('sketch-peek');
+  const spMain      = document.getElementById('sp-main');
+  const spLogoGroot = document.getElementById('sp-logo-groot');
+
+  function toonSchets(src, metGif, groot, logoGrootSrc){
+    spMain.src = src;
+    if(spLogoGroot) spLogoGroot.src = logoGrootSrc || '';
+    sketchPeek.classList.toggle('met-gif', !!metGif);
+    sketchPeek.classList.toggle('groot', !!groot);
+    sketchPeek.classList.add('actief');
+    if(metGif){
+      const gifs  = sketchPeek.querySelectorAll('.sp-gif');
+      const wraps = sketchPeek.querySelectorAll('.sp-gif-wrap');
+      /* willekeurige scheve rotatie per cirkel (−10° … +10°) */
+      wraps.forEach(w=>{
+        const a = (Math.random()*20 - 10).toFixed(1);
+        w.style.transform = 'rotate('+a+'deg)';
+      });
+      /* gespreide starttijden: iedere GIF begint op een ander moment */
+      gifs.forEach((g,i)=>{
+        const wrap = g.closest('.sp-gif-wrap');
+        g.src = '';
+        if(wrap) wrap.style.opacity = '0';
+        const delay = i === 0 ? 0 : Math.round(300 + Math.random()*700) * i;
+        setTimeout(()=>{
+          g.onload = ()=>{ if(wrap) wrap.style.opacity = '1'; };
+          g.src = 'fotos/logo_sketches.gif?t='+(Date.now()+i);
+        }, delay);
+      });
+    }
+  }
+  function verbergSchets(){
+    sketchPeek.classList.remove('actief','groot');
+    if(spLogoGroot){ spLogoGroot.src=''; }
+    sketchPeek.querySelectorAll('.sp-gif').forEach(g=>{
+      g.src='';
+      g.onload=null;
+      const wrap=g.closest('.sp-gif-wrap');
+      if(wrap) wrap.style.opacity='';
+    });
+  }
+
+  function markeerGezien(isMarkImg){
+    const lb = document.getElementById('fase2-logobalk');
+    if(isMarkImg && !markGezien){
+      markGezien = true;
+      lb.querySelector('.logo-mark-wit').classList.add('gezien');
+    } else if(!isMarkImg && !tekstGezien){
+      tekstGezien = true;
+      lb.querySelector('.logo-tekst-wit').classList.add('gezien');
+    }
+    if(markGezien && tekstGezien){
+      document.getElementById('fase2').classList.add('logos-gezien');
+      fase2Terug.classList.add('zichtbaar');
+    }
+  }
+
+  function addPeek(sel, src, metGif, groot, logoGrootSrc, onKlik){
+    const el = document.querySelector(sel);
+    if(!el) return;
+    el.addEventListener('click', e=>{
+      e.stopPropagation();
+      if(onKlik) onKlik();
+      sketchPeek.classList.contains('actief') ? verbergSchets() : toonSchets(src, metGif, groot, logoGrootSrc);
+    });
+  }
+  addPeek('#fase2-logobalk .logo-mark-wit',  'fotos/logo_sketeches.png',       false, false, '', ()=>markeerGezien(true));
+  addPeek('#fase2-logobalk .logo-tekst-wit', 'fotos/logo_text_sketches_2.png', true,  false, 'fotos/new_logo_text.webp', ()=>markeerGezien(false));
+  sketchPeek.addEventListener('click', verbergSchets);
+
+  /* hover: cache originele rects — geen jitter door getBCR op getransformeerde elementen */
+  (function(){
+    const f2 = document.getElementById('fase2');
+    const lb = document.getElementById('fase2-logobalk');
+    const mw = lb ? lb.querySelector('.logo-mark-wit')  : null;
+    const tw = lb ? lb.querySelector('.logo-tekst-wit') : null;
+    if(!f2||!lb||!mw||!tw) return;
+    let curHov = null;
+    let mwR = null, twR = null;
+    const PAD = 110; /* px extra detectieruimte rondom elk logo */
+
+    function hov(hoverEl, otherEl, hR, oR, cls){
+      if(curHov===cls) return;
+      curHov = cls;
+      const vw = innerWidth;
+      /* gebruik gecachede rect (originele positie, niet getransformeerd) */
+      hoverEl.style.setProperty('--tx',((vw/2)-(hR.left+hR.width/2))+'px');
+      const oDir = Math.sign((oR.left+oR.width/2)-(vw/2))||1;
+      otherEl.style.setProperty('--tx-other',(oDir*90)+'px');
+      lb.classList.remove('hover-mark','hover-text');
+      lb.classList.add(cls);
+    }
+    function uit(){
+      if(curHov===null) return;
+      curHov = null;
+      lb.classList.remove('hover-mark','hover-text');
+    }
+    function isNear(r,x,y){
+      return x>=r.left-PAD && x<=r.right+PAD && y>=r.top-PAD && y<=r.bottom+PAD;
+    }
+    f2.addEventListener('mousemove',function(e){
+      if(!f2.classList.contains('actief')) return;
+      const cx=e.clientX, cy=e.clientY;
+
+      if(curHov===null){
+        /* neutraal: update cached rects en beslis of hover start */
+        mwR = mw.getBoundingClientRect();
+        twR = tw.getBoundingClientRect();
+        if(!mwR||!twR) return;
+        const nearM=isNear(mwR,cx,cy), nearT=isNear(twR,cx,cy);
+        if(nearM&&nearT){
+          const dM=Math.hypot(cx-(mwR.left+mwR.width/2),cy-(mwR.top+mwR.height/2));
+          const dT=Math.hypot(cx-(twR.left+twR.width/2),cy-(twR.top+twR.height/2));
+          dM<=dT ? hov(mw,tw,mwR,twR,'hover-mark') : hov(tw,mw,twR,mwR,'hover-text');
+        } else if(nearM) hov(mw,tw,mwR,twR,'hover-mark');
+        else if(nearT)   hov(tw,mw,twR,mwR,'hover-text');
+      } else {
+        /* hover actief: blijf hangen als muis bij ORIGINELE óf HUIDIGE (vergroot/gecentreerd) positie is */
+        const isM  = curHov==='hover-mark';
+        const cR   = isM ? mwR : twR;   /* cached rect van actief element */
+        const oR   = isM ? twR : mwR;   /* cached rect van ander element */
+        const aEl  = isM ? mw  : tw;
+        const oEl  = isM ? tw  : mw;
+        const oCls = isM ? 'hover-text' : 'hover-mark';
+        const lR   = aEl.getBoundingClientRect();
+        const nearOrig = isNear(cR,cx,cy);
+        const nearLive = cx>=lR.left-20&&cx<=lR.right+20&&cy>=lR.top-20&&cy<=lR.bottom+20;
+        if(!nearOrig && !nearLive){
+          /* direct wisselen als muis al in zone van het andere element is — geen uit() tussenstop */
+          if(oR && isNear(oR,cx,cy)) hov(oEl,aEl,oR,cR,oCls);
+          else uit();
+        }
+      }
+    },{passive:true});
+    f2.addEventListener('mouseleave', uit, {passive:true});
+
+    /* klik in detectiezone (niet alleen op het plaatje) opent de schets */
+    f2.addEventListener('click',function(e){
+      if(curHov===null||sketchPeek.classList.contains('actief')) return;
+      const cx=e.clientX, cy=e.clientY;
+      const cR  = curHov==='hover-mark' ? mwR  : twR;
+      const aEl = curHov==='hover-mark' ? mw   : tw;
+      if(!cR) return;
+      const lR = aEl.getBoundingClientRect();
+      const inOrig = isNear(cR,cx,cy);
+      const inLive = cx>=lR.left-20&&cx<=lR.right+20&&cy>=lR.top-20&&cy<=lR.bottom+20;
+      if(!inOrig&&!inLive) return;
+      const isMarkHov    = curHov==='hover-mark';
+      markeerGezien(isMarkHov);
+      const src          = isMarkHov ? 'fotos/logo_sketeches.png' : 'fotos/logo_text_sketches_2.png';
+      const logoGrootSrc = isMarkHov ? '' : 'fotos/new_logo_text.webp';
+      toonSchets(src, !isMarkHov, false, logoGrootSrc);
+      e.stopPropagation();
+    });
+  })();
+
+  /* ---------- debug: ?panel=N springt direct (en ontgrendelt) ---------- */
+  const q = new URLSearchParams(location.search);
+  if(q.has('panel')){
+    ontgrendel();
+    override = parseFloat(q.get('panel'))||0;
+    /* voorbij de kist? dan is de ceremonie al begonnen: simuleer de dichte kist
+       zodat de saluut/hemelvaart ook in debug zichtbaar zijn */
+    if(override > 1.05){
+      document.getElementById('sluitkist').click();
+      override = parseFloat(q.get('panel'))||0;   // klik kan override wissen → terugzetten
+    }
+    if(override > 2.95){
+      onLogoKlik();    // debug: simuleer ook de logo-klik zodat je p5/p6 kunt bereiken
+    }
+  }
+})();
+</script>
+</body>
+</html>
