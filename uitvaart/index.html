@@ -560,11 +560,14 @@
     /* ── mobiele verticale stoet: viewport scrollt verticaal door panels ── */
     #viewport{overflow-y:auto;overflow-x:hidden}
     body.locked #viewport{overflow-y:hidden}
-    #track{flex-direction:column;width:100%;height:auto}
+    /* will-change:auto zodat #track geen containing block wordt voor fixed kinderen */
+    #track{flex-direction:column;width:100%;height:auto;will-change:auto}
     .panel{width:100%;height:100vh;height:100svh}
     /* video is absoluut in de viewport maar moet het scherm bedekken ook als gescrold */
     #logobg{position:fixed}
     #wenk{display:none}
+    /* nieuw logo: altijd gecentreerd in beeld, ongeacht scrollpositie */
+    #nieuwlogo{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);transition:opacity .35s ease}
     /* ── rouwkaart: grid-stapel zodat de hoogte door inhoud bepaald wordt ── */
     .kaart{aspect-ratio:auto;display:grid}
     .vlak{position:relative;inset:auto;grid-row:1;grid-column:1}
@@ -856,7 +859,8 @@
   function paneelPx(){ return innerHeight || 1; }
   function capF(){
     if(!kistDicht) return 1;
-    if(!logoDicht) return 3.0;   /* wacht op klik voordat stoet verder loopt */
+    /* mobiel: logo staat fixed in beeld op f=2 — geen reden voorbij te scrollen */
+    if(!logoDicht) return MOB() ? 2 : 3.0;
     return PANELEN-1;
   }
   function progressF(){
@@ -916,11 +920,11 @@
       viewport.style.background='rgb('+lerp(ZWART,WIT,bgT).join(',')+')';
       stippen.classList.toggle('donkerop',bgT>.55);
       terug.classList.toggle('donkerop',bgT>.55);
-      /* nieuw logo: verschijnt PAS als licht-panel volledig bereikt is (f≥2.0) */
-      nieuwlogo.style.transform='translateY(0)';
-      nieuwlogo.style.opacity=String(clamp((f-2.0)/0.2)*(1-clamp((f-3.5)/0.15)));
+      /* nieuw logo: position:fixed via CSS — altijd in midden, verschijnt op f=2
+         CSS bepaalt de transform (translate -50%,-50%), JS raakt die niet aan */
+      nieuwlogo.style.opacity=f>=2.0?'1':'0';
       if(!logoDicht){
-        logodot.style.opacity=String(clamp((f-2.0)/0.15));
+        logodot.style.opacity='1';  /* parent-opacity regelt zichtbaarheid */
         nieuwlogo.classList.toggle('klikbaar',f>=2.0);
         logobg.style.opacity='0';
       } else {
