@@ -224,6 +224,7 @@
   #nieuwlogo{
     display:grid;position:relative;max-width:92vw;
     transform:translateY(-65vh);will-change:transform,opacity;
+    opacity:0;  /* start onzichtbaar — JS/media query bepaalt wanneer het verschijnt */
   }
   .logo-donker{
     grid-area:1/1;
@@ -566,9 +567,8 @@
     /* video is absoluut in de viewport maar moet het scherm bedekken ook als gescrold */
     #logobg{position:fixed}
     #wenk{display:none}
-    /* nieuw logo: altijd gecentreerd in beeld, ongeacht scrollpositie.
-       opacity:0 als starttoestand zodat het niet zichtbaar is vóór f=2 */
-    #nieuwlogo{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0;transition:opacity .35s ease}
+    /* nieuw logo: altijd gecentreerd in beeld, ongeacht scrollpositie */
+    #nieuwlogo{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);transition:opacity .35s ease}
     /* ── rouwkaart: grid-stapel zodat de hoogte door inhoud bepaald wordt ── */
     .kaart{aspect-ratio:auto;display:grid}
     .vlak{position:relative;inset:auto;grid-row:1;grid-column:1}
@@ -922,8 +922,8 @@
       stippen.classList.toggle('donkerop',bgT>.55);
       terug.classList.toggle('donkerop',bgT>.55);
       /* nieuw logo: position:fixed via CSS — altijd in midden, verschijnt op f=2
-         CSS bepaalt de transform (translate -50%,-50%), JS raakt die niet aan */
-      nieuwlogo.style.opacity=f>=2.0?'1':'0';
+         dubbele check: kist moet dicht én licht-panel bereikt */
+      nieuwlogo.style.opacity=(kistDicht&&f>=2.0)?'1':'0';
       if(!logoDicht){
         logodot.style.opacity='1';  /* parent-opacity regelt zichtbaarheid */
         nieuwlogo.classList.toggle('klikbaar',f>=2.0);
