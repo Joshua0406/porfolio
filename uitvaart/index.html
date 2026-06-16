@@ -566,8 +566,9 @@
     /* video is absoluut in de viewport maar moet het scherm bedekken ook als gescrold */
     #logobg{position:fixed}
     #wenk{display:none}
-    /* nieuw logo: altijd gecentreerd in beeld, ongeacht scrollpositie */
-    #nieuwlogo{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);transition:opacity .35s ease}
+    /* nieuw logo: altijd gecentreerd in beeld, ongeacht scrollpositie.
+       opacity:0 als starttoestand zodat het niet zichtbaar is vóór f=2 */
+    #nieuwlogo{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0;transition:opacity .35s ease}
     /* ── rouwkaart: grid-stapel zodat de hoogte door inhoud bepaald wordt ── */
     .kaart{aspect-ratio:auto;display:grid}
     .vlak{position:relative;inset:auto;grid-row:1;grid-column:1}
