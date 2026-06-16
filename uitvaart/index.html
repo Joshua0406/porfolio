@@ -79,6 +79,12 @@
   .vlak.achter{transform:rotateY(180deg)}
   .vlak .klein{margin-bottom:auto}
   .vlak .klein.onder{margin-top:auto;margin-bottom:0}
+  /* voorzijde heeft geen 'onder'-regel meer (nabestaanden verwijderd):
+     anders duwt .klein's margin-bottom:auto het tekstblok naar de bodem.
+     → titel bovenaan laten, tekstblok zelf verticaal centreren.
+     Op mobiel is .vlak inhoud-hoog (geen vrije ruimte) → auto-marges = 0, dus geen effect. */
+  .vlak.voor .klein{margin-bottom:0}
+  .vlak.voor>div{margin:auto 0}
   #p1 .klein{color:rgba(255,255,255,.5)}
   .aanhef{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.55);font-weight:500}
   .kaart h1{
