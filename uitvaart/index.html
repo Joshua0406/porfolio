@@ -787,7 +787,7 @@
 
 <!-- DVD easter egg — zweeft transparant boven de pagina na klik op blauwe stip -->
 <div id="dvd-overlay" aria-hidden="true">
-  <img id="dvd-img" src="fotos/ST.png" alt="" draggable="false">
+  <img id="dvd-img" src="fotos/ST.webp" alt="" draggable="false">
 </div>
 
 <script>
@@ -1403,8 +1403,8 @@
       sketchPeek.classList.contains('actief') ? verbergSchets() : toonSchets(src, metGif, groot, logoGrootSrc);
     });
   }
-  addPeek('#fase2-logobalk .logo-mark-wit',  'fotos/logo_sketeches.png',       false, false, '', ()=>markeerGezien(true));
-  addPeek('#fase2-logobalk .logo-tekst-wit', 'fotos/logo_text_sketches_2.png', true,  false, 'fotos/new_logo_text.webp', ()=>markeerGezien(false));
+  addPeek('#fase2-logobalk .logo-mark-wit',  'fotos/logo_sketeches.webp',       false, false, '', ()=>markeerGezien(true));
+  addPeek('#fase2-logobalk .logo-tekst-wit', 'fotos/logo_text_sketches_2.webp', true,  false, 'fotos/new_logo_text.webp', ()=>markeerGezien(false));
   sketchPeek.addEventListener('click', verbergSchets);
 
   /* hover: cache originele rects — geen jitter door getBCR op getransformeerde elementen */
@@ -1486,7 +1486,7 @@
       if(!inOrig&&!inLive) return;
       const isMarkHov    = curHov==='hover-mark';
       markeerGezien(isMarkHov);
-      const src          = isMarkHov ? 'fotos/logo_sketeches.png' : 'fotos/logo_text_sketches_2.png';
+      const src          = isMarkHov ? 'fotos/logo_sketeches.webp' : 'fotos/logo_text_sketches_2.webp';
       const logoGrootSrc = isMarkHov ? '' : 'fotos/new_logo_text.webp';
       toonSchets(src, !isMarkHov, false, logoGrootSrc);
       e.stopPropagation();

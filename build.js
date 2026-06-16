@@ -113,6 +113,57 @@ function updateRefs() {
   console.log(`Refs: ${updated} file(s) updated.`);
 }
 
+// ── 3a. uitvaart/fotos — PNG→WebP conversion (idempotent) ────────────────
+
+async function convertUitvaartImages() {
+  let sharp;
+  try { sharp = require("sharp"); }
+  catch { return; } // already warned by convertImages()
+
+  const dir = "uitvaart/fotos";
+  if (!fs.existsSync(dir)) { console.log("uitvaart/fotos: not found, skipping."); return; }
+
+  const EXTS = new Set([".png", ".jpg", ".jpeg"]);
+  const candidates = fs.readdirSync(dir)
+    .filter(f => EXTS.has(path.extname(f).toLowerCase()))
+    .map(f => path.join(dir, f));
+
+  let converted = 0, upToDate = 0;
+  for (const src of candidates) {
+    const dest = src.replace(/\.(png|jpe?g)$/i, ".webp");
+    const srcMtime = fs.statSync(src).mtimeMs;
+    if (fs.existsSync(dest) && fs.statSync(dest).mtimeMs >= srcMtime) { upToDate++; continue; }
+    await sharp(src).webp({ quality: 85 }).toFile(dest);
+    const origKB = Math.round(fs.statSync(src).size / 1024);
+    const webpKB = Math.round(fs.statSync(dest).size / 1024);
+    console.log(`  ${src.replace(/\\/g, "/")}  ${origKB} KB → ${webpKB} KB`);
+    converted++;
+  }
+  console.log(`uitvaart WebP: ${converted} converted, ${upToDate} already up to date.`);
+}
+
+// ── 3b. uitvaart/index.html — fotos/*.png refs → .webp ────────────────────
+
+function patchUitvaartHtml() {
+  const FILE = "uitvaart/index.html";
+  if (!fs.existsSync(FILE)) { console.log("uitvaart/index.html: not found."); return; }
+
+  let html = fs.readFileSync(FILE, "utf8");
+  const before = html;
+
+  // Replace fotos/name.png (and .jpg/.jpeg) → fotos/name.webp everywhere in the file.
+  // Matches src attrs, JS string literals, and any other context.
+  // og.png lives at uitvaart/ root (not fotos/) so it's never touched.
+  html = html.replace(/(fotos\/[^'"`\s>?#]+)\.(png|jpe?g)/gi, "$1.webp");
+
+  if (html === before) {
+    console.log("uitvaart/index.html: already up to date.");
+  } else {
+    fs.writeFileSync(FILE, html);
+    console.log("uitvaart/index.html: fotos PNG refs → WebP.");
+  }
+}
+
 // ── 3. Patch index.html ───────────────────────────────────────────────────
 
 function patchHtml() {
@@ -144,6 +195,8 @@ async function main() {
   await convertImages();
   updateRefs();
   patchHtml();
+  await convertUitvaartImages();
+  patchUitvaartHtml();
 }
 
 main().catch(err => { console.error(err); process.exit(1); });
