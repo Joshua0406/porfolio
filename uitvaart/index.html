@@ -1155,6 +1155,7 @@
     const SLOTS = window.innerWidth < 600 ? 3 : 5;  /* mobiel: 3 zichtbaar */
     const speed = window.innerWidth < 600 ? 0.08 : 0.22; /* mobiel trager */
 
+    const rots = imgs.map(()=> Math.random()*60 - 30); /* -30° tot +30°, eenmalig */
     imgs.forEach(img=>{
       document.body.appendChild(img);
       img.style.cssText='position:fixed;left:0;object-fit:contain;pointer-events:none;z-index:15;will-change:transform';
@@ -1187,7 +1188,7 @@
 
       imgs.forEach(function(img, i){
         const x = ((i * spacing + dist) % total + total) % total - cachedW;
-        img.style.transform = 'translateX('+x+'px)';
+        img.style.transform = 'translateX('+x+'px) rotate('+rots[i]+'deg)';
       });
       requestAnimationFrame(tick);
     })(performance.now());
