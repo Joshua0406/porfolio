@@ -565,6 +565,13 @@
     /* video is absoluut in de viewport maar moet het scherm bedekken ook als gescrold */
     #logobg{position:fixed}
     #wenk{display:none}
+    /* ── rouwkaart: grid-stapel zodat de hoogte door inhoud bepaald wordt ── */
+    .kaart{aspect-ratio:auto;display:grid}
+    .vlak{position:relative;inset:auto;grid-row:1;grid-column:1}
+    /* ── verzendlabel: gecentreerd ipv linksonder ── */
+    #verzendlabel{left:50%;top:auto;bottom:16%;width:82vw;max-width:300px;transform:translateX(-50%) rotate(-2deg);font-size:clamp(10px,2.8vw,14px)}
+    /* ── fase2 logo op gelijke hoogte als terug-knop ── */
+    #fase2-center-mark{top:18px}
   }
 
   /* ── DVD easter egg — zweeft boven alles, laat klikken door ── */
@@ -822,6 +829,7 @@
   const body = document.body;
   let spacer = null;
   let kistDicht = false;   /* pas na het sluiten begint de ceremonie */
+  let kistSlootTijd = null; /* timestamp (performance.now) van het sluiten, voor mobiele animaties */
   let kistnootFadeStart = null;  /* timestamp voor fade-out van de kistnoot-tekst */
   let podiumSlideAnim = null;    /* {start,from,dur} – JS-animatie van kist naar midden */
   let opgelost = false;    /* wachtwoord goed: het slot komt niet meer terug */
@@ -893,6 +901,15 @@
       const locked=body.classList.contains('locked');
       terug.classList.toggle('zichtbaar',!locked&&f>0.4);
       [...stippen.children].forEach((s,i)=>s.classList.toggle('actief',Math.round(f)===i));
+      /* saluut en verzendlabel: time-based animatie op mobiel (niet scroll-gedreven) */
+      if(kistDicht && kistSlootTijd !== null){
+        const el=performance.now()-kistSlootTijd;
+        saluut.style.opacity=String(clamp((el-500)/600));
+        label.style.opacity=String(clamp((el-1200)/500));
+      } else if(!kistDicht){
+        saluut.style.opacity='0';
+        label.style.opacity='0';
+      }
       /* achtergrond: zwart → wit terwijl het licht-panel nadert */
       const bgT=clamp((f-2.0)/1.0);
       viewport.style.background='rgb('+lerp(ZWART,WIT,bgT).join(',')+')';
@@ -1384,8 +1401,12 @@
       kistkolom.classList.add('verdwenen');
       kistDicht = true;
       updateSpacer();
-      /* mobiel: geen scroll-gedreven ceremonie — spring direct naar het licht-panel */
-      if(MOB()) setTimeout(()=>naarPaneel(2, true), 500);
+      /* mobiel: saluut en label animeren time-based; scroll naar f=1.5 zodat
+         logo-daling zichtbaar is terwijl gebruiker verder scrolt naar het licht */
+      if(MOB()){
+        kistSlootTijd = performance.now();
+        setTimeout(()=>naarPaneel(1.5, true), 2500);
+      }
       setTimeout(()=>{
         kistnootFadeStart = performance.now();
         setTimeout(()=>{
