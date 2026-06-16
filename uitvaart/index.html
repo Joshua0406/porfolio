@@ -1077,8 +1077,8 @@
     const logoMark = nieuwlogo.querySelector('.logo-mark');
     if(logoMark) logoMark.src = 'fotos/new_logo_white.webp';
     logodot.style.opacity = '0';
-    /* op mobiel: video blijft verborgen (is toch off-screen door scroll), fase2 opent sneller */
-    if(!MOB()){ logobg.play().catch(()=>{}); logobg.style.opacity = '1'; }
+    /* video onthulling — ook op mobiel (logobg is position:fixed, bedekt het scherm); mobiel opent fase2 alleen sneller */
+    logobg.play().catch(()=>{}); logobg.style.opacity = '1';
     /* na de video-fade-in (desktop) of na korte pause (mobiel) schuift fase2 boven alles */
     setTimeout(()=>{
       /* sync fase2-logobalk exact op de positie van het zichtbare nieuwlogo */
