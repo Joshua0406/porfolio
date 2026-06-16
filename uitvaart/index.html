@@ -568,8 +568,8 @@
     /* ── rouwkaart: grid-stapel zodat de hoogte door inhoud bepaald wordt ── */
     .kaart{aspect-ratio:auto;display:grid}
     .vlak{position:relative;inset:auto;grid-row:1;grid-column:1}
-    /* ── verzendlabel: gecentreerd ipv linksonder ── */
-    #verzendlabel{left:50%;top:auto;bottom:16%;width:82vw;max-width:300px;transform:translateX(-50%) rotate(-2deg);font-size:clamp(10px,2.8vw,14px)}
+    /* ── verzendlabel: boven de kist, niet onderin ── */
+    #verzendlabel{left:50%;top:8%;bottom:auto;width:82vw;max-width:300px;transform:translateX(-50%) rotate(-2deg);font-size:clamp(9px,2.4vw,12px);padding:2.5% 3.5%}
     /* ── fase2 logo op gelijke hoogte als terug-knop ── */
     #fase2-center-mark{top:18px}
   }
@@ -915,14 +915,12 @@
       viewport.style.background='rgb('+lerp(ZWART,WIT,bgT).join(',')+')';
       stippen.classList.toggle('donkerop',bgT>.55);
       terug.classList.toggle('donkerop',bgT>.55);
-      /* nieuw logo daalt in terwijl gebruiker naar het licht-panel scrolt (f 1.7→2.0) */
-      const ld=clamp((f-1.7)/0.3);
-      const lEase=ld*ld*(3-2*ld);
-      nieuwlogo.style.transform='translateY('+(-65+65*lEase)+'vh)';
-      nieuwlogo.style.opacity=String(clamp((f-1.7)/0.25)*(1-clamp((f-3.5)/0.15)));
+      /* nieuw logo: geen daling op mobiel — staat gecentreerd klaar, vervaagt in */
+      nieuwlogo.style.transform='translateY(0)';
+      nieuwlogo.style.opacity=String(clamp((f-1.8)/0.3)*(1-clamp((f-3.5)/0.15)));
       if(!logoDicht){
-        logodot.style.opacity=String(clamp((f-1.95)/0.07));
-        nieuwlogo.classList.toggle('klikbaar',f>=1.92);
+        logodot.style.opacity=String(clamp((f-1.9)/0.15));
+        nieuwlogo.classList.toggle('klikbaar',f>=1.85);
         logobg.style.opacity='0';
       } else {
         logodot.style.opacity='0';
