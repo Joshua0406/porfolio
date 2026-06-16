@@ -912,8 +912,8 @@
       /* saluut en verzendlabel: time-based animatie op mobiel (niet scroll-gedreven) */
       if(kistDicht && kistSlootTijd !== null){
         const el=performance.now()-kistSlootTijd;
-        saluut.style.opacity=String(clamp((el-500)/600));
-        label.style.opacity=String(clamp((el-1200)/500));
+        saluut.style.opacity=String(clamp((el-200)/400));
+        label.style.opacity=String(clamp((el-600)/400));
       } else if(!kistDicht){
         saluut.style.opacity='0';
         label.style.opacity='0';
@@ -1409,11 +1409,9 @@
       kistkolom.classList.add('verdwenen');
       kistDicht = true;
       updateSpacer();
-      /* mobiel: saluut en label animeren time-based; scroll-snap brengt gebruiker
-         naar panel 2 (licht) — achtergrond-overgang is zichtbaar tijdens de snap-animatie */
+      /* mobiel: saluut en label animeren time-based; gebruiker scrolt zelf naar licht */
       if(MOB()){
         kistSlootTijd = performance.now();
-        setTimeout(()=>naarPaneel(2, true), 2500);
       }
       setTimeout(()=>{
         kistnootFadeStart = performance.now();
