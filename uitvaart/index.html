@@ -556,6 +556,15 @@
     #terug{left:16px;bottom:16px}
     #stippen{bottom:20px}
     #fase2-terug{left:16px;top:18px}
+
+    /* ── mobiele verticale stoet: viewport scrollt verticaal door panels ── */
+    #viewport{overflow-y:auto;overflow-x:hidden}
+    body.locked #viewport{overflow-y:hidden}
+    #track{flex-direction:column;width:100%;height:auto}
+    .panel{width:100%;height:100vh;height:100svh}
+    /* video is absoluut in de viewport maar moet het scherm bedekken ook als gescrold */
+    #logobg{position:fixed}
+    #wenk{display:none}
   }
 
   /* ── DVD easter egg — zweeft boven alles, laat klikken door ── */
@@ -835,6 +844,7 @@
      1 zolang de kist niet dicht is: je kunt dus NIET voorbij de kist naar
      rechts. zodra de kist dicht is, gaat de hele stoet open. */
   let override = null;   /* ?panel=N debug: vaste f tot de eerste echte scroll */
+  const MOB = () => window.innerWidth <= 600;
   function paneelPx(){ return innerHeight || 1; }
   function capF(){
     if(!kistDicht) return 1;
@@ -843,14 +853,17 @@
   }
   function progressF(){
     if(override !== null) return override;
-    return Math.min(capF(), Math.max(0, scrollY / paneelPx()));
+    const scroll = MOB() ? viewport.scrollTop : scrollY;
+    return Math.min(capF(), Math.max(0, scroll / paneelPx()));
   }
   function updateSpacer(){
-    if(spacer) spacer.style.height = ((capF()+1)*100) + 'vh';
+    if(MOB()||!spacer) return;
+    spacer.style.height = ((capF()+1)*100) + 'vh';
   }
   function wisOverride(){
     if(override === null) return;
-    scrollTo(0, override * paneelPx());
+    if(MOB()) viewport.scrollTo({top: override * paneelPx(), behavior:'auto'});
+    else scrollTo(0, override * paneelPx());
     override = null;
   }
   addEventListener('wheel', wisOverride, {passive:true});
@@ -861,7 +874,46 @@
   const clamp = v => Math.min(1, Math.max(0, v));
   function lerp(a,b,t){ return a.map((v,i)=>Math.round(v+(b[i]-v)*t)); }
   function teken(){
-    const f = progressF();              // 0..5, paneelpositie (= schermen gescrold)
+    const f = progressF();              // 0..3, paneelpositie (= schermen gescrold)
+
+    /* ── MOBIEL: verticale stoet, vereenvoudigde choreografie ──────────── */
+    if(MOB()){
+      /* podium-slide animatie (eerste 900ms na kist sluiten) */
+      let podiumExtra=0, podiumExtraY=0;
+      if(podiumSlideAnim){
+        const {start,movement,movementY,dur}=podiumSlideAnim;
+        const t=Math.min((performance.now()-start)/dur,1);
+        const e=t<.5?2*t*t:-1+(4-2*t)*t;
+        podiumExtra=movement*e; podiumExtraY=(movementY||0)*e;
+      }
+      podium.style.transform=(podiumExtra||podiumExtraY)
+        ?'translateX('+podiumExtra+'px) translateY('+podiumExtraY+'px)':'';
+      podium.style.opacity='';
+      /* navigatie */
+      const locked=body.classList.contains('locked');
+      terug.classList.toggle('zichtbaar',!locked&&f>0.4);
+      [...stippen.children].forEach((s,i)=>s.classList.toggle('actief',Math.round(f)===i));
+      /* achtergrond: zwart → wit terwijl het licht-panel nadert */
+      const bgT=clamp((f-2.0)/1.0);
+      viewport.style.background='rgb('+lerp(ZWART,WIT,bgT).join(',')+')';
+      stippen.classList.toggle('donkerop',bgT>.55);
+      terug.classList.toggle('donkerop',bgT>.55);
+      /* nieuw logo daalt in terwijl gebruiker naar het licht-panel scrolt (f 1.7→2.0) */
+      const ld=clamp((f-1.7)/0.3);
+      const lEase=ld*ld*(3-2*ld);
+      nieuwlogo.style.transform='translateY('+(-65+65*lEase)+'vh)';
+      nieuwlogo.style.opacity=String(clamp((f-1.7)/0.25)*(1-clamp((f-3.5)/0.15)));
+      if(!logoDicht){
+        logodot.style.opacity=String(clamp((f-1.95)/0.07));
+        nieuwlogo.classList.toggle('klikbaar',f>=1.92);
+        logobg.style.opacity='0';
+      } else {
+        logodot.style.opacity='0';
+      }
+      requestAnimationFrame(teken);
+      return;
+    }
+    /* ── DESKTOP: horizontale stoet ──────────────────────────────────── */
     track.style.transform = 'translateX(' + (-f*100) + 'vw)';
 
     /* JS-animatie kist naar midden:
@@ -970,17 +1022,19 @@
     stippen.appendChild(b);
   }
   function ontgrendel(){
+    body.classList.remove('locked');
+    if(MOB()) return;
     if(spacer) return;
     spacer = document.createElement('div');
     spacer.id='scrollspace';
     body.appendChild(spacer);
     updateSpacer();
-    body.classList.remove('locked');
   }
   function naarPaneel(i, vloeiend){
     ontgrendel();
     i = Math.min(capF(), Math.max(0, i));
-    scrollTo({ top: i * paneelPx(), behavior: vloeiend ? 'smooth' : 'auto' });
+    const opts={top:i*paneelPx(),behavior:vloeiend?'smooth':'auto'};
+    if(MOB()) viewport.scrollTo(opts); else scrollTo(opts);
   }
   addEventListener('keydown', e=>{
     if(body.classList.contains('locked')) return;
@@ -998,9 +1052,9 @@
     const logoMark = nieuwlogo.querySelector('.logo-mark');
     if(logoMark) logoMark.src = 'fotos/new_logo_white.webp';
     logodot.style.opacity = '0';
-    logobg.play().catch(()=>{});
-    logobg.style.opacity = '1';
-    /* na de video-fade-in schuift fase2 over de viewport */
+    /* op mobiel: video blijft verborgen (is toch off-screen door scroll), fase2 opent sneller */
+    if(!MOB()){ logobg.play().catch(()=>{}); logobg.style.opacity = '1'; }
+    /* na de video-fade-in (desktop) of na korte pause (mobiel) schuift fase2 boven alles */
     setTimeout(()=>{
       /* sync fase2-logobalk exact op de positie van het zichtbare nieuwlogo */
       const r  = nieuwlogo.getBoundingClientRect();
@@ -1020,7 +1074,7 @@
       stippen.style.display  = 'none';
       terug.style.display    = 'none';
       wenk.style.display     = 'none';
-    }, 900);
+    }, MOB() ? 300 : 900);
   }
   nieuwlogo.addEventListener('click', onLogoKlik);
   nieuwlogo.addEventListener('keydown', e=>{
@@ -1140,8 +1194,10 @@
       lb2.querySelector('.logo-tekst-wit').classList.remove('gezien');
     }
     document.getElementById('fase2').classList.remove('logos-gezien', 'fase2-onderaan');
-    /* spring terug naar het logo met blauwe stip (f = 3, de cap vóór logo-klik) */
-    scrollTo({ top: 3 * paneelPx(), behavior: 'instant' });
+    /* spring terug naar het logo met blauwe stip (desktop: f=3 stilte, mobiel: f=2 licht) */
+    const backF = MOB() ? 2 : 3;
+    const backOpts = {top: backF * paneelPx(), behavior: 'instant'};
+    if(MOB()) viewport.scrollTo(backOpts); else scrollTo(backOpts);
   }
   fase2Terug.addEventListener('click', terugNaarHorizontaal);
 
@@ -1328,6 +1384,8 @@
       kistkolom.classList.add('verdwenen');
       kistDicht = true;
       updateSpacer();
+      /* mobiel: geen scroll-gedreven ceremonie — spring direct naar het licht-panel */
+      if(MOB()) setTimeout(()=>naarPaneel(2, true), 500);
       setTimeout(()=>{
         kistnootFadeStart = performance.now();
         setTimeout(()=>{
