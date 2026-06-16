@@ -510,10 +510,10 @@
     .logo-tekst{height:clamp(64px,17vw,110px)}
     .logo-donker{gap:clamp(6px,2vw,10px)}
 
-    /* ── fase2 logobalk ── */
-    #fase2-logobalk{width:90vw;gap:clamp(6px,2vw,10px)}
-    #fase2-logobalk .logo-mark-wit{height:clamp(72px,19vw,120px)}
-    #fase2-logobalk .logo-tekst-wit{height:clamp(64px,17vw,110px)}
+    /* ── fase2 logobalk: op mobiel mark bóven tekst, groter, bovenaan uitgelijnd met terug-knop ── */
+    #fase2-logobalk{width:90vw;gap:clamp(8px,2.5vw,14px);flex-direction:column}
+    #fase2-logobalk .logo-mark-wit{height:clamp(84px,23vw,140px)}
+    #fase2-logobalk .logo-tekst-wit{height:clamp(78px,25vw,116px);max-width:88vw;width:auto}
     #fase2-hero-top,#fase2-hero-bottom{height:36vh}
     #fase2-scroll-wenk{font-size:13px;bottom:28px}
 
@@ -1085,10 +1085,19 @@
       const ht = document.getElementById('fase2-hero-top');
       const hb = document.getElementById('fase2-hero-bottom');
       const lb = document.getElementById('fase2-logobalk');
-      if(ht) ht.style.height = r.top + 'px';
-      if(hb) hb.style.height = r.top + 'px';
-      if(lb) { lb.style.width = r.width + 'px'; lb.style.height = r.height + 'px'; }
-      fase2HeroTop = r.top;
+      if(MOB()){
+        /* mobiel: hero-logo bovenaan, op gelijke hoogte als de terug-knop (top:18px);
+           lb-maat niet vastzetten → de (grotere) CSS-clamp bepaalt de afmeting */
+        if(ht) ht.style.height = '16px';
+        if(hb) hb.style.height = '';   // CSS 36vh → ademruimte onder het logo
+        if(lb) { lb.style.width = ''; lb.style.height = ''; }
+        fase2HeroTop = 16;
+      } else {
+        if(ht) ht.style.height = r.top + 'px';
+        if(hb) hb.style.height = r.top + 'px';
+        if(lb) { lb.style.width = r.width + 'px'; lb.style.height = r.height + 'px'; }
+        fase2HeroTop = r.top;
+      }
       /* verberg origineel logo + toon fase2 in één frame (geen fade-animatie) */
       nieuwlogo.style.display = 'none';
       const f2 = document.getElementById('fase2');
