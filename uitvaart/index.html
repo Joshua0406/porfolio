@@ -561,14 +561,17 @@
     /* ── mobiele verticale stoet: viewport scrollt verticaal door panels ── */
     #viewport{overflow-y:auto;overflow-x:hidden}
     body.locked #viewport{overflow-y:hidden}
-    /* will-change:auto zodat #track geen containing block wordt voor fixed kinderen */
     #track{flex-direction:column;width:100%;height:auto;will-change:auto}
     .panel{width:100%;height:100vh;height:100svh}
+    /* scroll-snap: gebruiker landt altijd exact op een panel, geen overscroll voorbij licht */
+    #viewport{scroll-snap-type:y mandatory}
+    .panel{scroll-snap-align:start}
+    #p-houd{scroll-snap-align:none}
     /* video is absoluut in de viewport maar moet het scherm bedekken ook als gescrold */
     #logobg{position:fixed}
     #wenk{display:none}
-    /* nieuw logo: altijd gecentreerd in beeld, ongeacht scrollpositie */
-    #nieuwlogo{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);transition:opacity .35s ease}
+    /* nieuw logo: normaal in stroom van #p4 (geen fixed!) — desktop-neerdaling ongedaan */
+    #nieuwlogo{transform:none;pointer-events:none}
     /* ── rouwkaart: grid-stapel zodat de hoogte door inhoud bepaald wordt ── */
     .kaart{aspect-ratio:auto;display:grid}
     .vlak{position:relative;inset:auto;grid-row:1;grid-column:1}
@@ -921,9 +924,10 @@
       viewport.style.background='rgb('+lerp(ZWART,WIT,bgT).join(',')+')';
       stippen.classList.toggle('donkerop',bgT>.55);
       terug.classList.toggle('donkerop',bgT>.55);
-      /* nieuw logo: position:fixed via CSS — altijd in midden, verschijnt op f=2
-         dubbele check: kist moet dicht én licht-panel bereikt */
-      nieuwlogo.style.opacity=(kistDicht&&f>=2.0)?'1':'0';
+      /* nieuw logo: normaal in stroom van #p4 — verschijnt wanneer licht-panel bereikt */
+      const logoZichtbaar = kistDicht && f >= 2.0;
+      nieuwlogo.style.opacity = logoZichtbaar ? '1' : '0';
+      nieuwlogo.style.pointerEvents = logoZichtbaar ? 'auto' : 'none';
       if(!logoDicht){
         logodot.style.opacity='1';  /* parent-opacity regelt zichtbaarheid */
         nieuwlogo.classList.toggle('klikbaar',f>=2.0);
@@ -1405,11 +1409,11 @@
       kistkolom.classList.add('verdwenen');
       kistDicht = true;
       updateSpacer();
-      /* mobiel: saluut en label animeren time-based; scroll naar f=1.5 zodat
-         logo-daling zichtbaar is terwijl gebruiker verder scrolt naar het licht */
+      /* mobiel: saluut en label animeren time-based; scroll-snap brengt gebruiker
+         naar panel 2 (licht) — achtergrond-overgang is zichtbaar tijdens de snap-animatie */
       if(MOB()){
         kistSlootTijd = performance.now();
-        setTimeout(()=>naarPaneel(1.5, true), 2500);
+        setTimeout(()=>naarPaneel(2, true), 2500);
       }
       setTimeout(()=>{
         kistnootFadeStart = performance.now();
