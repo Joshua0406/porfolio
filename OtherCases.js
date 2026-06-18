@@ -333,7 +333,7 @@ function KNSCase({ go }) {
   ].map(
     ([k, v]) => /* @__PURE__ */ React.createElement("div", { className: "brick-meta-row", key: k }, /* @__PURE__ */ React.createElement("span", { className: "brick-meta-key" }, k), /* @__PURE__ */ React.createElement("span", { className: "brick-meta-val" }, v))
   ))), /* @__PURE__ */ React.createElement("div", { className: "brick-hero-right" }, /* @__PURE__ */ React.createElement("img", { className: "brick-hero-img", src: "assets/kns/hero_artworks.webp", alt: "Katana N' Samurai ukiyo-e characters", width: 900, height: 1600, draggable: "false", style: { objectPosition: "top center", padding: 0 } }))), /* @__PURE__ */ React.createElement("div", { className: "brick-strip" }, [
-    ["1,134", "Community members"],
+    ["2,612", "Community members"],
     ["~400", "Posts shipped (team)"],
     ["15+", "Partner venues onboarded"]
   ].map(([n, d]) => {

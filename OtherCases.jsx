@@ -797,7 +797,7 @@ function KNSCase({ go }) {
 
       <div className="brick-strip">
         {[
-        ["1,134", "Community members"],
+        ["2,612", "Community members"],
         ["~400", "Posts shipped (team)"],
         ["15+", "Partner venues onboarded"]].
         map(([n, d]) => {

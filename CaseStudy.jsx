@@ -18,7 +18,7 @@ const CASE_DATA = {
       ["03","Onboarding buried the NFC step.","The physical tag — the whole point — was introduced three screens too late."],
     ],
     quote: ["The blocking is too easy to turn off. It defeats the whole point.","— Participant 6, Finnish, 21"],
-    stats: [["1,134","Members tracked"],["82","Task success %"],["3.1","Avg. SUS delta"],["15","Iterations"]],
+    stats: [["2,612","Members tracked"],["82","Task success %"],["3.1","Avg. SUS delta"],["15","Iterations"]],
     cta: ["Interactive prototype","Walk the full locked-focus flow, from onboarding to recovery.","Open in Axure Cloud →"],
   },
   desertification: {
@@ -65,14 +65,14 @@ const CASE_DATA = {
     lead: "Katana N' Samurai is a Web3 community where owning the collectible had to mean something beyond the mint — a key that opened a real door.",
     body: "The brand tied digital ownership to physical presence: holders unlocked perks at partner ramen venues, onboarded under a formal SOP before any holder-facing feature shipped.",
     callout: "A collectible turned into a key that opens a real door.",
-    metrics: [["1,134","Members tracked"],["28","Partner venues"],["40+","Events run"],["3","Drop phases"]],
+    metrics: [["2,612","Members tracked"],["28","Partner venues"],["40+","Events run"],["3","Drop phases"]],
     findingsLabel: "Decisions",
     findings: [
       ["01","Merchants first, holders second.","Without venue buy-in the occupation mechanic was theatre — stores onboarded before any holder feature shipped."],
       ["02","The key had to open a real door.","Utility was tied to physical presence: scanning in at a partner venue, not a screen tap."],
     ],
     quote: ["I came for the art and stayed because the ramen guy knew my handle.","— Community member"],
-    stats: [["1,134","Members tracked"],["28","Partner venues"],["40","Events run"]],
+    stats: [["2,612","Members tracked"],["28","Partner venues"],["40","Events run"]],
     cta: ["Brand & community","Browse the drop artwork, the ramen map, and the event archive.","See the collection →"],
   },
 };
