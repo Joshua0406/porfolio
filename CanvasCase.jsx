@@ -19,6 +19,41 @@ function Pill({ kind, children }) {
   return <span className={"cv-pill cv-pill-" + kind}>{sym}{children}</span>;
 }
 
+/* Design-process slideshow — full-image (contain) crossfade with manual
+   dots/arrows and reduced-motion-aware auto-advance, paused on hover. */
+function CanvasProcessSlideshow({ slides }) {
+  const [i, setI] = React.useState(0);
+  const [paused, setPaused] = React.useState(false);
+  const n = slides.length;
+  React.useEffect(() => {
+    if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = setInterval(() => setI((k) => (k + 1) % n), 4000);
+    return () => clearInterval(id);
+  }, [n, paused]);
+  const jump = (k) => setI((k + n) % n);
+  return (
+    <div className="cv-process" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+      <div className="cv-process-stage">
+        {slides.map((s, idx) =>
+        <img key={s.src} src={s.src} alt={s.alt} width={s.w} height={s.h} draggable="false"
+        className={"cv-process-img" + (idx === i ? " is-active" : "")} />
+        )}
+        <button className="cv-process-arrow cv-process-prev" aria-label="Previous slide" onClick={() => jump(i - 1)}>‹</button>
+        <button className="cv-process-arrow cv-process-next" aria-label="Next slide" onClick={() => jump(i + 1)}>›</button>
+      </div>
+      <div className="cv-process-foot">
+        <p className="cv-caption cv-process-cap">{slides[i].cap}</p>
+        <div className="cv-process-dots">
+          {slides.map((s, idx) =>
+          <button key={s.src} className={"cv-process-dot" + (idx === i ? " is-active" : "")}
+          aria-label={"Go to slide " + (idx + 1)} aria-current={idx === i} onClick={() => jump(idx)} />
+          )}
+        </div>
+      </div>
+    </div>);
+
+}
+
 function CanvasCase({ go }) {
   const next = PROJECTS[0]; // brick
   const meta = [
@@ -90,6 +125,13 @@ function CanvasCase({ go }) {
   ["submit", "Submit", "Outstanding — tap to start submitting"],
   ["overdue", "Overdue", "Past deadline — tap to see options"],
   ["dash", "—", "No submission required (readings, lectures)"]];
+
+  const processSlides = [
+  { src: "assets/canvas/process-1-sketch.png", w: 1809, h: 900, cap: "01 — Paper sketches: status logic and where the pill belongs in the row.", alt: "Hand-drawn notebook sketches of the calendar tab and to-do list with status colour notes." },
+  { src: "assets/canvas/process-2-wireframe.png", w: 1568, h: 900, cap: "02 — Low-fidelity wireframes: calendar, to-do and assignment screens.", alt: "Greyscale low-fidelity wireframes of three mobile screens." },
+  { src: "assets/canvas/process-3-states.png", w: 1280, h: 980, cap: "03 — State system: four states defined as reusable pills across both tabs.", alt: "Mid-fidelity state design showing Submitted, Submit, Overdue and NA pills on the calendar and to-do tabs." },
+  { src: "assets/canvas/process-4-components.png", w: 1090, h: 500, cap: "04 — Component library in Figma: pills, nav, due-time and task-name tokens.", alt: "Figma component library with pill, nav, due-time and task-name components." },
+  { src: "assets/canvas/process-5-prototype.png", w: 687, h: 960, cap: "05 — High-fidelity prototype: the four states wired into a connected flow.", alt: "High-fidelity prototype screens connected with flow arrows across all four states." }];
 
   const measures = [
   ["Average umber of taps to reach a confident answer", "Drops from average ~12 to ≤2", "13.4 → 4.6"],
@@ -341,6 +383,8 @@ function CanvasCase({ go }) {
         <div className="brick-body">
           <p className="brick-lead" style={{ fontSize: "30px" }}>One element changes. Everything else stays.</p>
           <p>Canvas mobile's existing list-item layout is preserved entirely. Only the right-edge element changes — from a manual checkbox decoupled from reality, to a labelled state pill bound to actual submission data. Four states cover every case.</p>
+
+          <CanvasProcessSlideshow slides={processSlides} />
 
           <div className="cv-states">
             <div className="cv-state-row">

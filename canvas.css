@@ -159,6 +159,33 @@ article[data-screen-label="Case: Canvas"] .brick-strip { grid-template-columns: 
 .cv-caption-lg { font-size: 20px; font-style: normal; color: #000; line-height: 1.4; text-wrap: balance; }
 .cv-caption-lg b { font-weight: 600; }
 
+/* ── Design-process slideshow (sits between the redesign lead and the state table) ── */
+.cv-process { margin: 26px 0 6px; }
+.cv-process-stage { position: relative; width: 100%; aspect-ratio: 16 / 10; background: transparent; border: 1px solid rgba(0,0,0,0.08); border-radius: 14px; overflow: hidden; }
+.cv-process-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 14px; opacity: 0; transition: opacity 0.5s ease; pointer-events: none; -webkit-user-drag: none; user-select: none; }
+.cv-process-img.is-active { opacity: 1; }
+.cv-process-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 26px; line-height: 1; color: #CE3A83; background: rgba(255,255,255,0.82); border: 1px solid rgba(0,0,0,0.1); border-radius: 999px; cursor: pointer; transition: background 0.2s ease; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.cv-process-arrow:hover { background: #fff; }
+.cv-process-prev { left: 12px; }
+.cv-process-next { right: 12px; }
+.cv-process-foot { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; margin-top: 14px; }
+.cv-process-cap { margin-top: 0; flex: 1; }
+.cv-process-dots { display: flex; gap: 8px; padding-top: 3px; flex-shrink: 0; }
+.cv-process-dot { width: 8px; height: 8px; border-radius: 999px; background: rgba(0,0,0,0.18); border: none; cursor: pointer; padding: 0; transition: background 0.2s ease, transform 0.2s ease; }
+.cv-process-dot:hover { background: rgba(0,0,0,0.4); }
+.cv-process-dot.is-active { background: #CE3A83; transform: scale(1.25); }
+@media (max-width: 640px) {
+  .cv-process-stage { aspect-ratio: 4 / 3; }
+  .cv-process-img { padding: 8px; }
+  .cv-process-arrow { width: 38px; height: 38px; font-size: 22px; }
+  .cv-process-prev { left: 8px; }
+  .cv-process-next { right: 8px; }
+  .cv-process-foot { flex-direction: column; gap: 12px; }
+  .cv-process-cap { width: 100%; flex: none; }
+  .cv-process-dots { width: 100%; justify-content: center; gap: 10px; padding-top: 0; }
+  .cv-process-dot { width: 9px; height: 9px; }
+}
+
 /* ── Research quote grid (2×2) ── */
 .cv-quotegrid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 18px; }
 .cv-qcard { border: 1px solid rgba(0,0,0,0.08); padding: 22px; display: flex; flex-direction: column; gap: 14px; }
