@@ -350,7 +350,8 @@ body:has(.pg-marquee-page) .pg-marquee-page { flex: 1; min-height: 0; height: au
   .pg-strip-item:nth-child(5n)   { height: 62px; }
   /* About page */
   .about-page { padding: 72px 20px 60px; }
-  .about-top .portrait { max-width: 240px; }
+  .about-top { grid-template-columns: 1fr; gap: 28px 0; }
+  .about-top .portrait { order: -1; max-width: 100%; aspect-ratio: 4/5; }
   .about-bio { font-size: 16px; line-height: 1.6; }
   .contact-info { font-size: 16px; line-height: 1.8; }
   .about-bottom { grid-template-columns: 1fr; gap: 32px; padding-top: 24px; }
